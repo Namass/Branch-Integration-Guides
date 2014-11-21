@@ -84,7 +84,13 @@ To create web hook event response, use the following API endpoint. The full docu
 
 Here is an example to create a wild card web hook, which will POST http://mywebsite.com/branch with the JSON spec at the top of this section.
 
-	curl -X POST -H "Content-Type: application/json" -d '{"app_id":"21079185439064757", "calculation_type":"0", "location":"0", "type":"web_hook", "event":"*", "metadata":"{\"web_hook_url\":\"http://mywebsite.com/branch\"}"}'  https://api.branch.io/v1/eventresponse
+	curl -X POST 
+	-H "Content-Type: application/json" 
+	-d '{"app_id":"21079185439064757", 
+	"calculation_type":"0", "location":"0", "type":"web_hook", "event":"*", 
+	"metadata":"{\"web_hook_url\":\"http://mywebsite.com/branch\"}"}'  
+	
+	https://api.branch.io/v1/eventresponse
 
 Here is the specification:
 
@@ -92,14 +98,22 @@ Here is the specification:
 	https://api.branch.io/v1/eventresponse
 	Content-Type: application/json
 
-	// required parameters:
+	Required Parameters:
 	app_id	 			// This is the app id of your customer (returned in the app create call)
 	type 				// specify the value of ‘web_hook’
 	location 			// specify 0 to receive web hook POSTs for the user taking action.
-	calculation_type	// specify 0 to receive a POST every time the user takes action. You can specify 1 to receive a POST only the first time a user completes the events
-	event  				// This is the event that you want to receive a web hook POST for. For example, “install” or “signup”. If you want to receive all events, just specify “*” for our wildcard event
-	metadata  			// This is a JSON dictionary where you specify your web hook endpoint where we should post. Please use the key “web_hook_url” and the value of your URL. For example: { “web_hook_url”:”http://mywebsite.com/branch” }
+	calculation_type	// specify 0 to receive a POST every time the user takes action. 
+						// You can specify 1 to receive a POST only the first time a user completes the events
+	event  				// This is the event that you want to receive a web hook POST for. 
+						// For example, “install” or “signup”. 
+						// If you want to receive all events, just specify “*” for our wildcard event
+	metadata  			// This is a JSON dictionary where you specify your web hook endpoint where 
+						// we should post. Please use the key “web_hook_url” and the value of your URL. 
+						// For example: { “web_hook_url”:”http://mywebsite.com/branch” }
 
-	// optional parameters:
-	filter 				// This is for advanced web hook users. Specify a custom dictionary of key/value pairs that must be matched by the event metadata before the web hook is triggered. Event metadata is passed by the native library as state. The value of this key must be in JSON dictionary format.
+	Optional Parameters:
+	filter 				// This is for advanced web hook users. Specify a custom dictionary of 
+						// key/value pairs that must be matched by the event metadata before the 
+						// web hook is triggered. Event metadata is passed by the native library as state. 
+						// The value of this key must be in JSON dictionary format.
 
