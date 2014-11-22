@@ -30,17 +30,22 @@ A Branch app specifies some of the global parameters, unique to a mobile app on 
 Branch accounts can only be created via the API, through the spec listed at this [Github page](https://github.com/BranchMetrics/Branch-Public-API#creating-a-new-branch-app-config), or as described here. The app API follows standard REST guidelines, where POST creates the app, PUT updates the fields, and GET retrieves the current parameters.
 
 To retrieve the current configuration for the app, please use the following endpoint:
+
 	GET
 	https://api.branch.io/v1/app/app_id
 
-	// example 
+Example:
+
 	https://api.branch.io/v1/app/19190933253783894
 
 To create (or update) a new configuration for an app, please using the following endpoint:
+	
 	POST (PUT)
+	Content-Type: application/json
 	https://api.branch.io/v1/app
 
-	// example 
+Example:
+
 	curl -X POST 
 
 	-H "Content-Type: application/json" 
@@ -54,6 +59,8 @@ To create (or update) a new configuration for an app, please using the following
 	"web_url":"http://kindredprints.com/home"}' 
 
 	https://api.branch.io/v1/app
+
+Here is the specification:
 
 	Required Parameters:
 	user_id			// This is the Branch partner token that was provided to you
@@ -376,6 +383,8 @@ In the example below, the title, description and image were specified by employi
 	"}' 
 
 https://api.branch.io/v1/url
+
+Here is the specification:
 
 The possible OG customization keys are as follows:
 	$og_title		// This is the title that will appear in the top of the rich post, as seen in the example above
