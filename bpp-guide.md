@@ -7,7 +7,7 @@ By creating a Branch account, you will have the power to create links and receiv
 
 ## Table of Contents:
 1. [One time initial registration](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/bpp-guide.md#one-time-initial-registration)
-2. [One time setup for each customer]()
+2. [One time setup for each customer](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/bpp-guide.md#one-time-setup-for-each-customer)
 
 	2.1 [Create a Branch account for the app](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/bpp-guide.md#create-a-branch-account-for-them)
 
