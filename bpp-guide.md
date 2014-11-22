@@ -8,10 +8,13 @@ By creating a Branch account, you will have the power to create links and receiv
 ## Table of Contents:
 1. One time initial registration
 2. One time setup for each customer
+
 	2.1 Create a Branch account for the app
 	2.2 Register a web hook to receive attribution data
 	2.3 Have the customer integrate Branch native libraries
+
 3. Ongoing functionality
+
 	3.1 Creating deep links
 	3.2 Monitoring the customer's dashboard
 
