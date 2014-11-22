@@ -8,12 +8,12 @@ By creating a Branch account, you will have the power to create links and receiv
 ## Table of Contents:
 1. One time initial registration
 2. One time setup for each customer
-2.1 Create a Branch account for the app
-2.2 Register a web hook to receive attribution data
-2.3 Have the customer integrate Branch native libraries
+	2.1 Create a Branch account for the app
+	2.2 Register a web hook to receive attribution data
+	2.3 Have the customer integrate Branch native libraries
 3. Ongoing functionality
-3.1 Creating deep links
-3.2 Monitoring the customer's dashboard
+	3.1 Creating deep links
+	3.2 Monitoring the customer's dashboard
 
 ## One time initial registration
 
@@ -112,7 +112,8 @@ Here is the format of what we post to you
 		session_referring_link_data: { link data dictionary - see below }
 	}
 
-	// link data dictionary example
+Link data dictionary example:
+
 	{
 		data: { deep link dictionary }
 		type: 0 - original, 1 - one time use, 2 - marketing
@@ -181,7 +182,8 @@ Here is the specification:
 	https://api.branch.io/v1/eventresponse
 	Content-Type: application/json
 
-	Required Parameters:
+Required Parameters:
+
 	app_id	 			// This is the app id of your customer (returned in the app create call)
 
 	type 				// specify the value of ‘web_hook’
@@ -199,7 +201,8 @@ Here is the specification:
 						// we should post. Please use the key “web_hook_url” and the value of your URL. 
 						// For example: { “web_hook_url”:”http://mywebsite.com/branch” }
 
-	Optional Parameters:
+Optional Parameters:
+
 	filter 				// This is for advanced web hook users. Specify a custom dictionary of 
 						// key/value pairs that must be matched by the event metadata before the 
 						// web hook is triggered. Event metadata is passed by the native library as state. 
