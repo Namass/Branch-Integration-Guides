@@ -3,9 +3,51 @@ Branch URL Creation Guide
 
 With each Branch link, we pack in as much functionality and measurement as possible. You get the powerful deep linking functionality in addition to the all the install and reengagement attribution, all in one link.
 
-There are two methods for link creation:
+It is possible to _white-label_ the domain of the links with your own subdomain or domain. For example, you can use yoursite.com/l/13xJfm--73 instead of bnc.lt/l/13xJfm--73. The instructions and configuration can be found in the Settings page on the Branch dashboard. Linked [here](http://dashboard.branchmetrics.io/#/settings).
 
-#### The public API ([found here](https://github.com/BranchMetrics/Branch-Public-API))_
+# Link Types
+
+### Short Links (Require async call)
+
+Short links look like so: https://bnc.lt/l/13xJfm--73 and can be generated via:
+
+1. The [iOS SDK](https://github.com/BranchMetrics/Branch-iOS-SDK#generate-tracked-deep-linking-urls-pass-data-across-install-and-open) and [Android SDK](https://github.com/BranchMetrics/Branch-Android-SDK#generate-tracked-deep-linking-urls-pass-data-across-install-and-open)
+
+1. The [public API](https://github.com/BranchMetrics/Branch-Public-API#creating-a-deeplinking-url)
+
+1. The [web SDK](https://github.com/BranchMetrics/Web-SDK#createlink)
+
+1. The [dashboard](https://dashboard.branchmetrics.io/#/marketing)
+
+### Long Links (Construct via formatting)
+
+Long links don't require an asynchronous call and be created by structuring the data and analytics tags you need into the URL string itself. [Here](https://github.com/BranchMetrics/Branch-Public-API#structuring-a-dynamic-deeplink) is the document that describes how to structure it.
+
+Below is an example of one:
+https://bnc.lt/a/5680621892404085?feature=download&data=eyJjaGFubmVsIjoiIiwiY2FtcGFpZ24iOiIiLCIkaW9zX3VybCI6Imh0dHBzOi8vaXR1bmVzLmFwcGxlLmNvbS91cy9hcHAvZXZlbnRib3gvaWQ5MTM3MDcyMDE%2FbHM9MSZtdD04IiwiJGlwYWRfdXJsIjoiaHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3VzL2FwcC9ldmVudGJveC9pZDkxMzcwNzIwMT9scz0xJm10PTgiLCIkZGVza3RvcF91cmwiOiJodHRwczovL2l0dW5lcy5hcHBsZS5jb20vdXMvYXBwL2V2ZW50Ym94L2lkOTEzNzA3MjAxP2xzPTEmbXQ9OCIsImZlYXR1cmUiOiJkb3dubG9hZCJ9
+
+# Dynamic Link Creation Examples
+
+## The Android or iOS SDK ([Android](https://github.com/BranchMetrics/Branch-Android-SDK#generate-tracked-deep-linking-urls-pass-data-across-install-and-open) or [iOS](https://github.com/BranchMetrics/Branch-iOS-SDK#generate-tracked-deep-linking-urls-pass-data-across-install-and-open))
+
+Here is an example URL creation call in iOS. This would be called after using the initSession call with the appropriate app key to register the native library for your app.
+
+```objc
+NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+
+[params setObject:@"Joe" forKey:@"user"];
+[params setObject:@"https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg" forKey:@"profile_pic"];
+[params setObject:@"Joe likes long walks on the beach..." forKey:@"description"];
+
+Branch *branch = [Branch getInstance:@"Your app key"];
+[branch getShortURLWithParams:params andChannel:@"sms" andFeature:BRANCH_FEATURE_TAG_SHARE andStage:@"added_to_cart" andCallback:^(NSString *url, NSError *error) {
+	if(!error) {
+		// embed the link into an SMS for sharing
+	}
+}];
+```
+
+## The public API ([found here](https://github.com/BranchMetrics/Branch-Public-API))_
 
 Here is an example CURL call to create a link with some example parameters. You would specify the app_id key with the application key you received for your customer in the original POST to /v1/app. The data field is the dictionary of stuff that you want to appear in the app after a user installs or opens from this link, also known as the deep link parameters. The remainder of the tags are all optional and explained in great detail below.
 
@@ -20,8 +62,8 @@ Here is an example CURL call to create a link with some example parameters. You 
 	"tags":["4"], 
 	"data":"{\"name\":\"Alex\", 
 		\"email\":\alex@branch.io\", 
-		\"$desktop_url\":\"https://branch.io\"}
-	"}' 
+		\"$desktop_url\":\"https://branch.io\"}"
+	}' 
 
 	https://api.branch.io/v1/url
 
@@ -31,11 +73,19 @@ This will return a dictionary like so, with your specific link.
    		'url’ : ‘https://bnc.lt/ADaEf23-0’
 	}
 
-#### The dashboard ([found here](http://dashboard.branch.io))
+## The dashboard ([found here](http://dashboard.branch.io))
 
 When you create links on the dashboard, you have a subset of these overall labels available to you. Visit dashboard.branch.io and select the Marketing tab. Then click Add link to get started.
 
 ![Marketing Screen](https://s3-us-west-1.amazonaws.com/branch-guides/bpp001marketingScreen.png)
+
+## The web SDK
+
+to be inserted
+
+## The mobile web smart banner
+
+to be inserted
 
 # Link Analytics
 
@@ -43,7 +93,7 @@ Whether you create links via the dashboard or the API, you have a bunch of ways 
 
 All of these tags and labels are optional.
 
-## Dashboard Link Options
+## Dashboard link analytics options
 
 This first set is what you have access to when you use the dashboard.
 
@@ -65,7 +115,7 @@ This first set is what you have access to when you use the dashboard.
 				// you can add meaningful labels for organizing links
 				// that aren’t confined to a channel or campaign
 
-## API Link Options
+## API link analytics expanded options
 
 If you decide to employ the public API for link creation, you have all of the labels above, plus the expanded feature set listed below
 
@@ -106,17 +156,17 @@ A customer might want links generated that appear as a premium post like the exa
 
 Currently, we have 3 options to customize the appearance of the link: title, description and image.  
 
-## Dashboard customization
+## Dashboard customizations
 
 If you create links in the dashboard, you’ll find the interface to customize the appearance of the link under the collapsable tab ‘Social Media Description’ as seen in the screenshots below.
 
 ![Marketing Link](https://s3-us-west-1.amazonaws.com/branch-guides/bpp003marketingLink.png)
 
-When you expand it, you’ll find the ability to customize all of the fields listed above, as shown in this screenshot.
+When you expand it, you’ll find the ability to customize all of the fields listed above, as shown in this screenshot. In short, you can customize the 
 
 ![Marketing Link Creative](https://s3-us-west-1.amazonaws.com/branch-guides/bpp004marketingLinkCreative.png)
 
-## API customization
+## API customizations
 
 If you are creating links via the API, the way to properly configure the appearance of the link is by specifying a few keys in the ‘data’ dictionary of the URL creation POST. 
 In the example below, the title, description and image were specified by employing the custom keys $og_title, $og_description and $og_image_url. 
@@ -137,13 +187,17 @@ In the example below, the title, description and image were specified by employi
 		\"$og_image_url\":\"https://branch.io/img/logo.png\"}
 	"}' 
 
-https://api.branch.io/v1/url
+	https://api.branch.io/v1/url
 
 Here is the specification:
 
 	$og_title		// This is the title that will appear in the top of the rich post, as seen in the example above
 	$og_description	// This is the description that will sit below the title, as seen in the example above
 	$og_image_url	// This is the image that will be loaded into the rich post, as seen in the example above
+
+If you don't want us to host the OG tags, and want us to host the OG tags on another piece of real estate, you can use the custom key $__og_redirect. This tells us service where to send the scrapers for Facebook, Twitter and Pinterest, and allows you to control the full extent of OG tags.
+
+	$__og_redirect	// This is the key to use in order to override our hosting of OG tags with your own page
 
 # Custom link redirects
 
@@ -169,7 +223,7 @@ On the desktop, the default setting is a Branch hosted text-me-the-app page whic
 
 ![Marketing Text Me](https://s3-us-west-1.amazonaws.com/branch-guides/bpp008textMeFeature.png)
 
-## API customization
+## API customizations
 
 If you are creating links via the API, the way to properly configure the redirects of the link is by specifying a few keys in the ‘data’ dictionary of the URL creation POST. 
 
@@ -242,3 +296,6 @@ Below is an example where I embed the keys ‘name’, ‘email’ and ‘course
 	"}' 
 
 	https://api.branch.io/v1/url
+
+# Link alias name
+
