@@ -12,11 +12,8 @@ It is possible to _white-label_ the domain of the links with your own subdomain 
 Short links look like so: https://bnc.lt/l/13xJfm--73 and can be generated via:
 
 1. The [iOS SDK](https://github.com/BranchMetrics/Branch-iOS-SDK#generate-tracked-deep-linking-urls-pass-data-across-install-and-open) and [Android SDK](https://github.com/BranchMetrics/Branch-Android-SDK#generate-tracked-deep-linking-urls-pass-data-across-install-and-open)
-
 1. The [public API](https://github.com/BranchMetrics/Branch-Public-API#creating-a-deeplinking-url)
-
 1. The [web SDK](https://github.com/BranchMetrics/Web-SDK#createlink)
-
 1. The [dashboard](https://dashboard.branchmetrics.io/#/marketing)
 
 ### Long Links (Construct via formatting)
@@ -24,6 +21,7 @@ Short links look like so: https://bnc.lt/l/13xJfm--73 and can be generated via:
 Long links don't require an asynchronous call and be created by structuring the data and analytics tags you need into the URL string itself. [Here](https://github.com/BranchMetrics/Branch-Public-API#structuring-a-dynamic-deeplink) is the document that describes how to structure it.
 
 Below is an example of one:
+
 https://bnc.lt/a/5680621892404085?feature=download&data=eyJjaGFubmVsIjoiIiwiY2FtcGFpZ24iOiIiLCIkaW9zX3VybCI6Imh0dHBzOi8vaXR1bmVzLmFwcGxlLmNvbS91cy9hcHAvZXZlbnRib3gvaWQ5MTM3MDcyMDE%2FbHM9MSZtdD04IiwiJGlwYWRfdXJsIjoiaHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3VzL2FwcC9ldmVudGJveC9pZDkxMzcwNzIwMT9scz0xJm10PTgiLCIkZGVza3RvcF91cmwiOiJodHRwczovL2l0dW5lcy5hcHBsZS5jb20vdXMvYXBwL2V2ZW50Ym94L2lkOTEzNzA3MjAxP2xzPTEmbXQ9OCIsImZlYXR1cmUiOiJkb3dubG9hZCJ9
 
 # Dynamic Link Creation Examples
