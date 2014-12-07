@@ -149,7 +149,7 @@ If you decide to employ the public API for link creation, you have all of the la
 
 A customer might want links generated that appear as a premium post like the example below, when posted to Facebook or Twitter. In this case, you’ll need to specify the open graph (OG) tags for each link, so that Facebook knows to display the content properly.
 
-<img src="https://s3-us-west-1.amazonaws.com/branch-guides/bpp002premiumPost.jpg" alt="Marketing Text Me" style="width:200;height:356">
+![Premium Post](https://s3-us-west-1.amazonaws.com/branch-guides/bpp002premiumPost.jpg =200x356)
 
 Currently, we have 3 options to customize the appearance of the link: title, description and image.  
 
@@ -218,7 +218,7 @@ By default, we send on Android and iOS, we send them to the respective app store
 
 On the desktop, the default setting is a Branch hosted text-me-the-app page which allows users to send themselves a link to download the app from their phone. Here’s a sample screenshot of that page, which will be customized with the details specified about the app.
 
-<img src="https://s3-us-west-1.amazonaws.com/branch-guides/bpp008textMeFeature.png" alt="Marketing Text Me" style="width:525;height:346">
+![Marketing Text Me](https://s3-us-west-1.amazonaws.com/branch-guides/bpp008textMeFeature.png)
 
 ## API customizations
 
@@ -246,7 +246,7 @@ The possible platform redirects are the following:
 					// By default, if this key is not specified, we take the 
 					// user to this custom text-me-the-app page.
 
-<img src="https://s3-us-west-1.amazonaws.com/branch-guides/bpp008textMeFeature.png" alt="Marketing Text Me" style="width:525;height:346">
+![Marketing Text Me](https://s3-us-west-1.amazonaws.com/branch-guides/bpp008textMeFeature.png)
 
 	$ios_url 
 	$android_url 	// These keys will override the redirect location of 
