@@ -21,7 +21,6 @@ Short links look like so: https://bnc.lt/l/13xJfm--73 and can be generated via:
 Long links don't require an asynchronous call and be created by structuring the data and analytics tags you need into the URL string itself. [Here](https://github.com/BranchMetrics/Branch-Public-API#structuring-a-dynamic-deeplink) is the document that describes how to structure it.
 
 Below is an example of one:
-
 https://bnc.lt/a/5680621892404085?feature=download&data=eyJjaGFubmVsIjoiIiwiY2FtcGFpZ24iOiIiLCIkaW9zX3VybCI6Imh0dHBzOi8vaXR1bmVzLmFwcGxlLmNvbS91cy9hcHAvZXZlbnRib3gvaWQ5MTM3MDcyMDE%2FbHM9MSZtdD04IiwiJGlwYWRfdXJsIjoiaHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3VzL2FwcC9ldmVudGJveC9pZDkxMzcwNzIwMT9scz0xJm10PTgiLCIkZGVza3RvcF91cmwiOiJodHRwczovL2l0dW5lcy5hcHBsZS5jb20vdXMvYXBwL2V2ZW50Ym94L2lkOTEzNzA3MjAxP2xzPTEmbXQ9OCIsImZlYXR1cmUiOiJkb3dubG9hZCJ9
 
 # Dynamic Link Creation Examples
@@ -45,7 +44,7 @@ Branch *branch = [Branch getInstance:@"Your app key"];
 }];
 ```
 
-## The public API ([found here](https://github.com/BranchMetrics/Branch-Public-API))_
+## The public API ([found here](https://github.com/BranchMetrics/Branch-Public-API))
 
 Here is an example CURL call to create a link with some example parameters. You would specify the app_id key with the application key you received for your customer in the original POST to /v1/app. The data field is the dictionary of stuff that you want to appear in the app after a user installs or opens from this link, also known as the deep link parameters. The remainder of the tags are all optional and explained in great detail below.
 
@@ -150,7 +149,7 @@ If you decide to employ the public API for link creation, you have all of the la
 
 A customer might want links generated that appear as a premium post like the example below, when posted to Facebook or Twitter. In this case, you’ll need to specify the open graph (OG) tags for each link, so that Facebook knows to display the content properly.
 
-![Premium Post](https://s3-us-west-1.amazonaws.com/branch-guides/bpp002premiumPost.jpg)
+![Premium Post](https://s3-us-west-1.amazonaws.com/branch-guides/bpp002premiumPost.jpg = 200x356)
 
 Currently, we have 3 options to customize the appearance of the link: title, description and image.  
 
