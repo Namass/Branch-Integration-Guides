@@ -294,5 +294,55 @@ Below is an example where I embed the keys ‘name’, ‘email’ and ‘course
 
 	https://api.branch.io/v1/url
 
+This will return a dictionary like so, with your specific link.
+
+	{
+   		'url’ : ‘https://bnc.lt/ADaEf23-0’
+	}
+
 # Link alias name
 
+If you would like to use a custom label for your links, we have the ability of you to assign a custom string in place of our code. For example, you can use https://bnc.lt/l/special_download instead of our standard randomly generated code.
+
+These link aliases are unique and immutable, meaning that once you've created it, you can't delete it or reassign it. They are unique to each domain, meaning you can only have one link called 'alex' link for bnc.lt and for yoursite.com. For example, once bnc.lt/alex is created by one app, no other app can use the 'alex' alias. However, if you use your own domain (yoursite.com), you can create a yoursite.com/alex.
+
+## Dashboard customization
+
+An alias can only be specified for a link when it is _first_ being created. It cannot be changed or removed once it has been applied. To create a link, first go to create a link by clicking the Add link button in the Marketing section seen below.
+
+![Marketing Screen](https://s3-us-west-1.amazonaws.com/branch-guides/bpp001marketingScreen.png)
+
+The next step would be to specify the alias you'd like to use in the field under Custom Link Label, as shown in the screenshot below.
+
+![Marketing Alias Entry](https://s3-us-west-1.amazonaws.com/branch-guides/bpp014UrlAlias.png)
+
+After you've chosen a name you'd like to use, you can try to save it. If you get an error, it'll be because that string is already taken. At that point, you'll need to try a new string.
+
+## API customization
+
+You can also dynamically create aliases through our API. To do this, all you need to do is specify the 'alias' key with the value being hte desired label for your link. Once you have created an aliased link, it can be retrieved through the exact same call with exact same parameter set. If you alter any of the additional parameters of the link and try to retrieve it again, you'll get an HTTP 409 error code.
+
+	curl -X POST 
+
+	-H "Content-Type: application/json" 
+
+	-d '{"app_id":"5680621892404085",
+	"alias":"AUSTIN48"
+	"campaign":"announcement", 
+	"feature":"invite", 
+	"channel":"email", 
+	"tags":["4"], 
+	"data":"{\"name\":\"Alex\", 
+		\"email\":\alex@branch.io\", 
+		\"$desktop_url\":\"https://branch.io\"}"
+	}' 
+
+	https://api.branch.io/v1/url
+
+This will return a dictionary like so, with your specific link.
+
+	{
+   		'url’ : ‘https://bnc.lt/AUSTIN48’
+	}
+
+If the link was already created, and you don't specify an exact match for the remaining parameters (campaign, channel, app_id, etc..), this call will return an HTTP 409 error code.
