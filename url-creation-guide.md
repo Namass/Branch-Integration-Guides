@@ -149,7 +149,7 @@ If you decide to employ the public API for link creation, you have all of the la
 
 A customer might want links generated that appear as a premium post like the example below, when posted to Facebook or Twitter. In this case, you’ll need to specify the open graph (OG) tags for each link, so that Facebook knows to display the content properly.
 
-![Premium Post](https://s3-us-west-1.amazonaws.com/branch-guides/bpp002premiumPost.jpg =200x356)
+![Premium Post](https://s3-us-west-1.amazonaws.com/branch-guides/bpp002premiumPost.jpg)
 
 Currently, we have 3 options to customize the appearance of the link: title, description and image.  
 
