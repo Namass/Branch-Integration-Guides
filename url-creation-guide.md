@@ -188,10 +188,12 @@ In the example below, the title, description and image were specified by employi
 
 Here is the specification:
 
-	$og_title		// This is the title that will appear in the top of the rich post, as seen in the example above
+	$og_title	// This is the title that will appear in the top of the rich post, as seen in the example above
 	$og_description	// This is the description that will sit below the title, as seen in the example above
 	$og_image_url	// This is the image that will be loaded into the rich post, as seen in the example above
-
+	$og_video	// If you have a link to a video, use this tag
+	$og_url		// This is the URL you want to appear in the OG summary
+	
 If you don't want us to host the OG tags, and want us to host the OG tags on another piece of real estate, you can use the custom key $__og_redirect. This tells us service where to send the scrapers for Facebook, Twitter and Pinterest, and allows you to control the full extent of OG tags.
 
 	$__og_redirect	// This is the key to use in order to override our hosting of OG tags with your own page
