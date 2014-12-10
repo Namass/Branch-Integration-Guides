@@ -398,10 +398,12 @@ https://api.branch.io/v1/url
 Here is the specification:
 
 The possible OG customization keys are as follows:
-	$og_title		// This is the title that will appear in the top of the rich post, as seen in the example above
+	$og_title	// This is the title that will appear in the top of the rich post, as seen in the example above
 	$og_description	// This is the description that will sit below the title, as seen in the example above
 	$og_image_url	// This is the image that will be loaded into the rich post, as seen in the example above
-
+	$og_video	// If you have a link to a video, use this tag
+	$og_url		// This is the URL you want to appear in the OG summary
+	
 #### Custom link redirects
 
 We offload a lot of the complexity of building links for your apps, as we allow you to completely customize the redirects depending on the operating system of the user. We have a complex set of logic that governs the redirection, depending on whether the app is installed and whether the link redirects have been overridden. See the diagram below for the full details.
