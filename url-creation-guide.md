@@ -251,10 +251,34 @@ The possible platform redirects are the following:
 ![Marketing Text Me](https://s3-us-west-1.amazonaws.com/branch-guides/bpp008textMeFeature.png)
 
 	$ios_url 
-	$android_url 	// These keys will override the redirect location of 
+	$android_url
+	$ipad_url
+	$windows_phone_url
+	$blackberry_url
+	$fire_url		// These keys will override the redirect location of 
 					// the link when clicked on these various endpoints. 
 					// The default is the app store page if specified, 
 					// and the web url (in app settings) if no app is specified.
+
+We recently enabled the ability for you to control whether you link tries to open the app by default or not.
+
+	"$always_deeplink"	// true or false. (default is not to deep link first) 
+						// This key can be specified to have our linking service
+						// force try to open the app, even if we're not sure 
+						// the user has the app installed. If the app is not 
+						// installed, we fall back to the respective app store 
+						// or $platform_url key. By default, we only open the app 
+						// if we've seen a user initiate a session in your app 
+						// from a Branch link (has been cookied and deep linked by Branch)
+
+It's easy to support legacy deep link paths, you simply need to specify the key:
+
+	"$deeplink_path"	// With this key, use value of the deep link path that 
+						// you'd like us to append to your URI. For example, 
+						// you could specify "$deeplink_path": "radio/station/456"
+						//  and we'll open the app with the URI 
+						// "yourapp://radio/station/456?link_click_id=branch-identifier". 
+						// This is primarily for supporting legacy deep linking infrastructure. 
 
 # Deep linked data
 
