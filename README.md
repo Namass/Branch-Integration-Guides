@@ -12,6 +12,10 @@ A collection of all guides for Branch integrations
 
     A guide that explains the ins and outs of configuring a web hook
 
-2. [URL creation guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/url-creation-guide.md)
+1. [URL creation guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/url-creation-guide.md)
 
-    A guide that explains the details of creating links
+    How to create links and all their customizations
+
+1. [Basic Branch iOS integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/branchsters-ios-guide.md)
+
+    Getting started with Branch for your iOS app - a sample integration with our open source demo app, [Branchsters for iOS](https://github.com/BranchMetrics/Branch-Monster-Factory)
