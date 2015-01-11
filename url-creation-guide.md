@@ -58,7 +58,7 @@ Here is an example CURL call to create a link with some example parameters. You 
 	"channel":"email", 
 	"tags":["4"], 
 	"data":"{\"name\":\"Alex\", 
-		\"email\":\alex@branch.io\", 
+		\"email\":\"alex@branch.io\", 
 		\"$desktop_url\":\"https://branch.io\"}"
 	}' 
 
@@ -178,7 +178,7 @@ In the example below, the title, description and image were specified by employi
 	"channel":"email", 
 	"tags":["4"], 
 	"data":"{\"name\":\"Alex\", 
-		\"email\":\alex@branch.io\", 
+		\"email\":\"alex@branch.io\", 
 		\"$og_title\":\"My First Branch Link\", 
 		\"$og_description\":\"This is how to customize link appearances\", 
 		\"$og_image_url\":\"https://branch.io/img/logo.png\"}
@@ -238,7 +238,7 @@ Below is an example where I have customize the **$desktop_url** and **$ios_url**
 	"channel":"email", 
 	"tags":["4"], 
 	"data":"{\"name\":\"Alex\", 
-	\"email\":\alex@branch.io\", \"$desktop_url\":\"https://branch.io\", \"$ios_url\":\"https://branch.io/ios_site\"}"}' https://api.branch.io/v1/url
+	\"email\":\"alex@branch.io\", \"$desktop_url\":\"https://branch.io\", \"$ios_url\":\"https://branch.io/ios_site\"}"}' https://api.branch.io/v1/url
 
 The possible platform redirects are the following:
 	$desktop_url	// This key will override the default desktop destination 
@@ -314,7 +314,7 @@ Below is an example where I embed the keys ‘name’, ‘email’ and ‘course
 	"channel":"email", 
 	"tags":["4"], 
 	"data":"{\"name\":\"Alex\", 
-		\"email\":\alex@branch.io\", 
+		\"email\":\"alex@branch.io\", 
 		\"courseId\":\"415123\"}
 	"}' 
 
@@ -359,7 +359,7 @@ You can also dynamically create aliases through our API. To do this, all you nee
 	"channel":"email", 
 	"tags":["4"], 
 	"data":"{\"name\":\"Alex\", 
-		\"email\":\alex@branch.io\", 
+		\"email\":\"alex@branch.io\", 
 		\"$desktop_url\":\"https://branch.io\"}"
 	}' 
 
