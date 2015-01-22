@@ -252,8 +252,6 @@ You can set _isReferrable_ to **@YES** or **@NO**, and the behavior is as follow
 
 2. **@NO**: If _isReferrable_ is set to **@NO**, your app will never track the relationship between referring users and referred users. While we're not sure why you wouldn't want such valuable information, it is certainly an option.
 
-### TODO: offer examples of routing based on the params dict
-
 ## 3. Creating custom links for the user to share
 
 _A full guide on creating links is available: [Branch URL Creation Guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/url-creation-guide.md). The information in this section presents you with a quick way to get link creation off the ground._
