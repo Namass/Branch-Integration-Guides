@@ -296,7 +296,7 @@ params[@"og_description"] = @"Out of all the apps disrupting apps, MyApp is with
 }];
 ``` 
 
-**Note**: You can customize the Facebook OG tags of each URL if you want to dynamically share content by using the following _optional keys in the data dictionary_:
+**Note**: You can customize the Facebook OG tags of each URL if you want to dynamically share content by using the following _optional keys in the params dictionary_:
 
 | Key | Value
 | --- | ---
@@ -321,7 +321,7 @@ Also, you do custom redirection by inserting the following _optional keys in the
 | "$blackberry_url" | Same as above but for Blackberry Store
 | "$windows_phone_url" | Same as above but for Windows Store
 
-You have the ability to control the direct deep linking of each link by inserting the following _optional keys in the dictionary_:
+You have the ability to control the direct deep linking of each link by inserting the following _optional keys in the params dictionary_:
 
 | Key | Value
 | --- | ---
@@ -334,7 +334,7 @@ Branch allows you to track features and channels. The more you track, the more a
 
 *Features*: This is a String. This is the feature of the customer’s product that the link might be associated with. For example, if the custom had built a referral program in their app, they might have tagged all links with the String ‘referral’.
 
-*Referrals*: This is a String. We recommend using channel to tag the route that your link reaches users. For example, tag links with ‘Facebook’ or ‘LinkedIn’ to help track clicks and installs through those paths separately.
+*Channel*: This is a String. We recommend using channel to tag the route that your link reaches users. For example, tag links with ‘Facebook’ or ‘LinkedIn’ to help track clicks and installs through those paths separately.
 
 An example illustrates another _getShortURL.._ call with Channel and Feature specified.
 
@@ -353,7 +353,7 @@ params[@"referringUserId"] = @"1234";
 
 To quickly share via SMS/iMessage, we've included some code that you can copy and paste into your own app. This is all the code you need to get users started on inviting other users!
 
-First, note that this is making an asynchronous call to Branch's servers to generate the link and attach the information provided in the params dictionary. We highly recommend showing the user a spinner and disabling your "share" button. You can either use [UIActivityIndicatorView](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIActivityIndicatorView_Class/index.html) (native) or an external library like [MBProgressHUD](https://github.com/jdg/MBProgressHUD). 
+First, note that this is making an asynchronous call to Branch's servers to generate the link and attach the information provided in the params dictionary. We highly recommend showing the user a spinner and disabling your "share" button while the link is being generated. You can either use [UIActivityIndicatorView](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIActivityIndicatorView_Class/index.html) (native) or an external library like [MBProgressHUD](https://github.com/jdg/MBProgressHUD). 
 
 At the top of your view controller's implementation (.m) file, include the following:
 
