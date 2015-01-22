@@ -1,4 +1,4 @@
-Quickstart Deep Linking Guide for iOS
+Deep Linking Guide for iOS
 =====================================
 
 This guide will help you integrate branch into your iOS app in as little time as possible.
