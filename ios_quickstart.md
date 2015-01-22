@@ -7,7 +7,7 @@ This guide will help you integrate branch into your iOS app in as little time as
 
 Our dashboard is the starting point for adding apps as well as tracking users of your app. 
 
-To get started, point your browser to [https://dashboard.branch.io/](https://dashboard.branch.io/). Navigate to the [Summary](https://dashboard.branch.io/#) page and click the dropdown button in the top right. Choose "Create new app."
+To get started, point your browser to [https://dashboard.branch.io/](https://dashboard.branch.io/). If you haven't created an account before, you can signup and get taken through the basic setup right away. If you've signed up already, simply navigate to the [Summary](https://dashboard.branch.io/#) page and click the dropdown button in the top right. Choose "Create new app."
 
 ![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/2_dashboard.png)
 
@@ -15,9 +15,9 @@ You will be prompted to enter a name for your new app. Do so and press "Create."
 
 ![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/3_create_new_app.png)
 
-You will now be on the Settings page. Scroll down to App Store Information and search for your app by name--this is the same name listed on iTunesConnect. With this information, Branch will automatically redirect users without your app installed on their devices to the App Store.
+Navigate to the Settings page. Scroll down to App Store Information and search for your app by name--this is the same name listed on iTunesConnect. With this information, Branch will automatically redirect users without your app installed on their devices to the App Store.
 
-In the case that your app cannot be found on the App Store (e.g. if you are distributing an enterprise app over the Internet), you can also enter a custom URL by choosing "Custom URL to IPA file."
+In the case that your app cannot be found on the App Store (e.g. if you are distributing an enterprise app over the Internet, or you're not listed in the US app stores), you can also enter a custom URL by choosing "Custom URL to IPA file."
 
 ![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/4_settings_app_store.png)
 
