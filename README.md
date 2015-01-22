@@ -16,6 +16,6 @@ A collection of all guides for Branch integrations
 
     How to create links and all their customizations
 
-1. [Basic Branch iOS integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/branchsters-ios-guide.md)
+1. [Basic Branch iOS integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-quickstart.md)
 
-    Getting started with Branch for your iOS app - a sample integration with our open source demo app, [Branchsters for iOS](https://github.com/BranchMetrics/Branch-Monster-Factory)
+    Getting started with Branch for your iOS app
