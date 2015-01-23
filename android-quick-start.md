@@ -124,15 +124,11 @@ This guide assumes that you're familiar with the [Android UI lifecycle](http://d
 A single Branch object instance is used per Activity or Fragment, so declare an object at the class-level.
 
 ```Java
-
-	public YourClass extends Activity {
-	
-		Branch branch;
-		...
-		
-	}
-
-
+public YourClass extends Activity {
+	Branch branch;
+	...
+}
+```
 
 In the overridden *onStart* method in your Activity or Fragment, get an instance of the Branch object and assign it to the class-level handle that you just declared.
 
@@ -142,6 +138,7 @@ Insert your API key as the second parameter of the *getInstance()* call as shown
 
 	branch = Branch.getInstance(this.getApplicationContext(), "your-API-Key-goes-here");
 
+```
 
 ## Step 2: Getting a session
 
@@ -161,6 +158,7 @@ First, get an instance of the Branch object for use throughout your Activity; yo
 		
 	}
 
+```
 
 The next step is to call initSession. This connects to the Branch servers in preparation for receiving the links that you're to configure, or to look up the link that your app has just received.
 
@@ -177,6 +175,9 @@ As this action is Asynchronous, the response is taken care of by a *BranchReferr
 				
 			}
 		}
+		
+		
+```
 
 Next, call *initSession()* as shown here to initialise the Branch session; the last two parameters pass the data associated with an incoming intent, and *this* refers to the activity context.
 
@@ -185,7 +186,8 @@ Next, call *initSession()* as shown here to initialise the Branch session; the l
 ```Java
 
 	branch.initSession(branchReferralInitListener, this.getIntent().getData(), this);
-
+	
+```
 
 ## Step 3: Closing the session
 
@@ -201,6 +203,8 @@ In order for the SDK to know that you're finished with the Branch object, it's i
 		branch.closeSession();
 
 	}
+	
+```
 
 That's all there is to it. The next step is to create some deep links for your users to share!
 
