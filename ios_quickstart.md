@@ -376,23 +376,24 @@ params[@"referringUsername"] = @"Bob";
 params[@"referringUserId"] = @"1234";
 
 // ... insert code to start the spinner of your choice here ...
-    
-[[Branch getInstance] getShortURLWithParams:params andChannel:@"SMS" andFeature:@"Referral" andCallback:^(NSString *url, NSError *error) {
-   // Check to make sure we can send messages on this device
-   if ([MFMessageComposeViewController canSendText]) {
-       MFMessageComposeViewController *messageComposer = [[MFMessageComposeViewController alloc] init];
-       
-       // Set the contents of the SMS/iMessage -- be sure to include the URL!
-       [messageComposer setBody:[NSString stringWithFormat:@"You should definitely take a look at MyApp -- use my invite code to get free brownie points: %@", url]];
-       
-       messageComposer.messageComposeDelegate = self;
-       [self presentViewController:messageComposer animated:YES completion:^{
-           // ... insert code to stop the spinner here ...
 
-       }];
-   } else {
-       [[[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Your device does not allow sending SMS or iMessages." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
-   }
+[[Branch getInstance] getShortURLWithParams:params andChannel:@"SMS" andFeature:@"Referral" andCallback:^(NSString *url, NSError *error) {
+    // Check to make sure we can send messages on this device
+    if ([MFMessageComposeViewController canSendText]) {
+        MFMessageComposeViewController *messageComposer = [[MFMessageComposeViewController alloc] init];
+        
+        // Set the contents of the SMS/iMessage -- be sure to include the URL!
+        [messageComposer setBody:[NSString stringWithFormat:@"You should definitely take a look at MyApp -- use my invite code to get free brownie points: %@", url]];
+        
+        messageComposer.messageComposeDelegate = self;
+        [self presentViewController:messageComposer animated:YES completion:^{
+            // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
+
+        }];
+    } else {
+        // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
+        [[[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Your device does not allow sending SMS or iMessages." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+    }
 }];
 ```
 
