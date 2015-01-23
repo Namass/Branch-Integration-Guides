@@ -2,7 +2,7 @@ Android Quick-Start Guide
 =========================
 This quick start guide shows you how to integrate deep-linking functionality into an existing app project with the Branch SDK for Android.
 
-## Step 0: Sign up for a Branch account
+## Sign up for a Branch account
 The first step in the process of integrating Branch with your Android app is to sign up via the dashboard. This step is largely self-explanatory, so we'll jump into what you do once you're in.
 
 <!--
@@ -14,7 +14,7 @@ The first step in the process of integrating Branch with your Android app is to 
 [create_your_account]: images/create_your_account_now.png =600px"Create your account."
 -->
 
-## Step 1: Register your app in the Branch Dashboard
+## Register your app in the Branch Dashboard
 
 ### Getting an API Key	
 API Keys are unique per-app and required by the SDK to identify your app. If you've just signed up, you're presented with a checklist of four steps that you need to carry out to configure your app.
@@ -41,10 +41,12 @@ You'll be presented with the Settings page for your newly created app. Up top is
 </div>
 -->
 
+<!--
 Now open up your IDE:
 
 - If you're using Android Studio, skip to X.
 - If Eclipse is your chosen IDE, skip to Y.
+-->
 
 <!--
 
@@ -59,7 +61,7 @@ Todo - copy content from local-studio.md.
 
 -->
 
-## Step Y: Eclipse
+## Eclipse
 
 Note: If you're familiar with importing projects, you can import the Branchster-Android project and Branch SDK dependency and run straight to step Z - configuring the API key.
 
@@ -75,8 +77,6 @@ Browse to the directory that you unzipped the project to and select it in the di
 At this point the project will not build, and you'll see some problems relating to a missing library.
 
 Next follow the same process for the Branch SDK; download it from GitHub, unzip it and import it into your Eclipse workspace.
-
-o
 
 Right-click on the Branchster-Android project and open the project properties
 <!-- Todo: (Mac - &#8984;I, Windows )-->
@@ -137,7 +137,7 @@ Right-click on the Branchster-Android project and open the project properties
 
 -->
 
-## Step X1: Configuring your API key
+## Configuring your API key
 Now you'll need the API key that you created in the [Branch Dashboard](https://dashboard.branch.io/). 
 
 This guide assumes that you're familiar with the [Android UI lifecycle](http://developer.android.com/training/basics/activity-lifecycle/starting.html).
@@ -159,7 +159,7 @@ Insert your API key as the second parameter of the *getInstance()* call as shown
 branch = Branch.getInstance(this.getApplicationContext(), "your-API-Key-goes-here");
 ```
 
-## Step 2: Getting a session
+## Getting a session
 
 First, get an instance of the Branch object for use throughout your Activity; you should declare this in the top-level of your class so that you can refer to it throughout.
 
@@ -199,7 +199,7 @@ Next, call *initSession()* as shown here to initialise the Branch session; the l
 branch.initSession(branchReferralInitListener, this.getIntent().getData(), this);
 ```
 
-## Step 3: Closing the session
+## Important: Closing the session
 
 In order for the SDK to know that you're finished with the Branch object, it's important to close the session when you're done.
 		
@@ -216,7 +216,7 @@ protected void onStop() {
 That's all there is to it. The next step is to create some deep links for your users to share.
 
 
-## Step 4: Creating deep links from within your app
+## Creating deep links from within your app
 
 <!-- In progress -->
 
