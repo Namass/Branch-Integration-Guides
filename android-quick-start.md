@@ -5,7 +5,10 @@ This quick start guide shows you how to integrate deep-linking functionality int
 ## Step 0: Sign up for a Branch account
 The first step in the process of integrating Branch with your Android app is to sign up via the dashboard. This step is largely self-explanitory, so we'll jump into what you do once you're in.
 
+<!--
 [ optionally a screenshot of the sign up process ]
+-->
+
 <!--
 ![Create your account][create_your_account]
 [create_your_account]: images/create_your_account_now.png =600px"Create your account."
@@ -18,22 +21,26 @@ API Keys are unique per-app and required by the SDK to identify your app. If you
 
 Go to Settings on the left hand side, and use the drop-down box in the top right to create a new app.
 
+<!-- 
 <div style="text-align:center">
 <img src="images/create_new_app_button.png" width="140" >
-</div>
+</div> -->
 
 Enter the name of your app in the dialog then hit Create.
 
+<!--
 <div style="text-align:center">
 <img src="images/dashboard_create_a_new_app.png" width="480" >
-</div>
+</div> -->
 
 
 You'll be presented with the Settings page for your newly created app. Up top is your API key, which will be used in your app to identify it to the Branch servers.
 
+<!-- 
 <div style="text-align:center">
 <img src="images/dashboard_api_key.png" width="480" >
 </div>
+-->
 
 Now open up your IDE:
 
@@ -72,29 +79,41 @@ o
 
 Right-click on the Branchster-Android project and open the project properties <!-- Todo: (Mac - &#8984;I, Windows )-->
 
+<!-- 
 <div style="text-align:center">
 <img src="images/eclipse_import_existing_code_fadeout.png" width="480" >
 </div>
+-->
 
+<!--
 <div style="text-align:center">
 <img src="images/eclipse_import_app_project_fadeout.png" width="800" >
 </div>
+-->
 
+<!--
 <div style="text-align:center">
 <img src="images/eclipse_import_sdk_project_fadeout.png" width="800" >
 </div>
+-->
 
+<!--
 <div style="text-align:center">
 <img src="images/eclipse_library_added.png" width="480" >
 </div>
+-->
 
+<!--
 <div style="text-align:center">
 <img src="images/eclipse_select_sdk_fadeout.png" width="480" >
 </div>
+-->
 
+<!--
 <div style="text-align:center">
 <img src="images/eclipse_select_sdk.png" width="480" >
 </div>
+-->
 
 <!--
 ![Create your account][require_steps_checklist]
