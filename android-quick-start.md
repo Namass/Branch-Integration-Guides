@@ -3,10 +3,10 @@ Android Quick-Start Guide
 This quick start guide shows you how to integrate deep-linking functionality into an existing app project with the Branch SDK for Android.
 
 ## Step 0: Sign up for a Branch account
-The first step in the process of integrating Branch with your Android app is to sign up via the dashboard. This step is largely self-explanitory, so we'll jump into what you do once you're in.
+The first step in the process of integrating Branch with your Android app is to sign up via the dashboard. This step is largely self-explanatory, so we'll jump into what you do once you're in.
 
 <!--
-[ optionally a screenshot of the sign up process ]
+[ Todo - screenshot of the sign up process ]
 -->
 
 <!--
@@ -33,7 +33,6 @@ Enter the name of your app in the dialog then hit Create.
 <img src="images/dashboard_create_a_new_app.png" width="480" >
 </div> -->
 
-
 You'll be presented with the Settings page for your newly created app. Up top is your API key, which will be used in your app to identify it to the Branch servers.
 
 <!-- 
@@ -56,6 +55,8 @@ The easiest way to get started with Android Studio is to clone the Branchster-An
 Coming Soon
 </div>
 
+Todo - copy content from local-studio.md.
+
 -->
 
 ## Step Y: Eclipse
@@ -77,7 +78,8 @@ Next follow the same process for the Branch SDK; download it from GitHub, unzip 
 
 o
 
-Right-click on the Branchster-Android project and open the project properties <!-- Todo: (Mac - &#8984;I, Windows )-->
+Right-click on the Branchster-Android project and open the project properties
+<!-- Todo: (Mac - &#8984;I, Windows )-->
 
 <!-- 
 <div style="text-align:center">
@@ -136,7 +138,7 @@ Right-click on the Branchster-Android project and open the project properties <!
 -->
 
 ## Step X1: Configuring your API key
-Now you'll need the API key that you created in step GGG. 
+Now you'll need the API key that you created in the [Branch Dashboard](https://dashboard.branch.io/). 
 
 This guide assumes that you're familiar with the [Android UI lifecycle](http://developer.android.com/training/basics/activity-lifecycle/starting.html).
 
@@ -154,9 +156,7 @@ In the overridden *onStart* method in your Activity or Fragment, get an instance
 Insert your API key as the second parameter of the *getInstance()* call as shown.
 
 ```Java
-
-	branch = Branch.getInstance(this.getApplicationContext(), "your-API-Key-goes-here");
-
+branch = Branch.getInstance(this.getApplicationContext(), "your-API-Key-goes-here");
 ```
 
 ## Step 2: Getting a session
@@ -166,36 +166,29 @@ First, get an instance of the Branch object for use throughout your Activity; yo
 
 
 ```Java
+@Override
+protected void onStart() {
+	super.onStart();
 
-	@Override
-	protected void onStart() {
-		super.onStart();
-
-		Branch branch = Branch.getInstance(this.getApplicationContext(), "your-API-Key-goes-here");
-		
-		...
-		
-	}
-
+	Branch branch = Branch.getInstance(this.getApplicationContext(), "your-API-Key-goes-here");
+	...
+}
 ```
 
-The next step is to call initSession. This connects to the Branch servers in preparation for receiving the links that you're to configure, or to look up the link that your app has just received.
+The next step is to call *initSession(...)*. This connects to the Branch servers in preparation for receiving the links that you're to configure, or to look up the link that your app has just received.
 
 As this action is Asynchronous, the response is taken care of by a *BranchReferralListener()* which we need to configure first.
 
 ```Java
-
-	Branch branchReferralInitListener = new BranchReferralInitListener() {
-			@Override
-			public void onInitFinished(JSONObject referringParams, BranchError error) {
-			
-				// Do this when a response is returned.
-				...
+Branch branchReferralInitListener = new BranchReferralInitListener() {
+	@Override
+	public void onInitFinished(JSONObject referringParams, BranchError error) {
+		
+		// Do this when a response is returned.
+		...
 				
-			}
-		}
-		
-		
+	}
+}
 ```
 
 Next, call *initSession()* as shown here to initialise the Branch session; the last two parameters pass the data associated with an incoming intent, and *this* refers to the activity context.
@@ -203,9 +196,7 @@ Next, call *initSession()* as shown here to initialise the Branch session; the l
 **Note:** If you're running this in a Fragment, use *getActivity()* instead of *this*.
 
 ```Java
-
-	branch.initSession(branchReferralInitListener, this.getIntent().getData(), this);
-	
+branch.initSession(branchReferralInitListener, this.getIntent().getData(), this);
 ```
 
 ## Step 3: Closing the session
@@ -214,48 +205,45 @@ In order for the SDK to know that you're finished with the Branch object, it's i
 		
 
 ```Java
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		
-		branch.closeSession();
-
-	}
+@Override
+protected void onStop() {
+	super.onStop();
 	
+	branch.closeSession();
+}
 ```
 
-That's all there is to it. The next step is to create some deep links for your users to share!
+That's all there is to it. The next step is to create some deep links for your users to share.
 
 
 ## Step 4: Creating deep links from within your app
 
-[In progress]
+<!-- In progress -->
 
 ```Java
 
 branch.getShortUrl(tags, "channel1", "feature1", "1", obj, new BranchLinkCreateListener() {
-                        @Override
-                        public void onLinkCreate(String url, BranchError error) {
 
-                            // Backwards try-catch to see if error is null...does the job, not elegant though.
-                            try {
-                                Log.w(TAG, "onLinkCreate() ERROR: " + error.getMessage());
-                            } catch (Exception e){
-                                Log.v(TAG, "onLinkCreate() URL: " + url);
-                                tvShortUrl.setText(url);
+	@Override
+        public void onLinkCreate(String url, BranchError error) {
 
-                                tvShortUrl.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(((TextView)v).getText().toString()));
+    		// Backwards try-catch to see if error is null...does the job, not elegant though.
+		try {
+			Log.w(TAG, "onLinkCreate() ERROR: " + error.getMessage());
+			
+		} catch (Exception e){
+			Log.v(TAG, "onLinkCreate() URL: " + url);
+			tvShortUrl.setText(url);
+			tvShortUrl.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(((TextView)v).getText().toString()));
                                         startActivity(browserIntent);
-                                    }
-                                });
-                            }
-
-
-                        }
-                    });
+				}
+			});
+		}
+        }
+});
                     
 ```
