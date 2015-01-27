@@ -5,39 +5,27 @@ This quick start guide shows you how to integrate deep-linking functionality int
 ## Sign up for a Branch account
 The first step in the process of integrating Branch with your Android app is to sign up via the dashboard. This step is largely self-explanatory, so we'll jump into what you do once you're in.
 
-<!--
-[ Todo - screenshot of the sign up process ]
--->
+<img align="middle" src="https://s3-us-west-1.amazonaws.com/branch-guides/create_your_account_now.png" alt="Sign Up To Create Your Account">
 
-<!--
-![Create your account][create_your_account]
-[create_your_account]: images/create_your_account_now.png =600px"Create your account."
--->
+
 
 ## Register your app in the Branch Dashboard
+
 
 ### Getting an API Key	
 API Keys are unique per-app and required by the SDK to identify your app. If you've just signed up, you're presented with a checklist of four steps that you need to carry out to configure your app.
 
 Go to Settings on the left hand side, and use the drop-down box in the top right to create a new app.
 
-<img align="center" src="https://s3-us-west-1.amazonaws.com/branch-guides/create_new_app_button.png" alt="Create New App Button" width="140" >
-
+<img align="middle" src="https://s3-us-west-1.amazonaws.com/branch-guides/create_new_app_button.png" alt="Create New App Button" width="140" >
 
 Enter the name of your app in the dialog then hit Create.
 
-<!--
-<div style="text-align:center">
-<img src="images/dashboard_create_a_new_app.png" width="480" >
-</div> -->
+<img align="middle" src="https://s3-us-west-1.amazonaws.com/branch-guides/dashboard_create_a_new_app.png" alt="Create A New App In The Dashboard">
 
 You'll be presented with the Settings page for your newly created app. Up top is your API key, which will be used in your app to identify it to the Branch servers.
 
-<!-- 
-<div style="text-align:center">
-<img src="images/dashboard_api_key.png" width="480" >
-</div>
--->
+<img src="https://s3-us-west-1.amazonaws.com/branch-guides/dashboard_api_key.png">
 
 <!--
 Now open up your IDE:
@@ -61,29 +49,37 @@ Todo - copy content from local-studio.md.
 
 ## Eclipse
 
-Note: If you're familiar with importing projects, you can import the Branchster-Android project and Branch SDK dependency and run straight to step Z - configuring the API key.
+Note: If you're familiar with importing projects, you can import the Branchster-Android project and Branch SDK dependency and run straight to the next step; configuring the API key.
 
 Download or clone the Branchster-Android project to your machine, then import it into Eclipse. 
 
 Go to:
 File > Import 
-[ image of the import dialog in Eclipse ]
 
+<img src="https://s3-us-west-1.amazonaws.com/branch-guides/eclipse_import_existing_code.png"/>
 
 Browse to the directory that you unzipped the project to and select it in the dialog. Hit finish to complete the import.
 
-At this point the project will not build, and you'll see some problems relating to a missing library.
+<img src="https://s3-us-west-1.amazonaws.com/branch-guides/eclipse_import_app_project_fadeout.png">
 
-Next follow the same process for the Branch SDK; download it from GitHub, unzip it and import it into your Eclipse workspace.
+
+
+At this point the project will not build, and you'll see some problems relating to a missing library. To correct that, you need to import the Branch-SDK and configure it so that your project can access it at build time.
+
+Follow the same process for the Branch SDK; download it from GitHub, unzip it and import it into your Eclipse workspace. Import it to your workspace using the same process that you just used to import the example project.
+
+<img src="https://s3-us-west-1.amazonaws.com/branch-guides/eclipse_import_sdk_project_fadeout.png">
 
 Right-click on the Branchster-Android project and open the project properties
 <!-- Todo: (Mac - &#8984;I, Windows )-->
 
-<!-- 
-<div style="text-align:center">
-<img src="images/eclipse_import_existing_code_fadeout.png" width="480" >
-</div>
--->
+Select "Android" on the left, then click the "Add" button, then select Branch-SDK to add the project to your app as as a dependency.
+
+<img src="https://s3-us-west-1.amazonaws.com/branch-guides/eclipse_select_sdk_fadeout.png">
+
+Once that's done, you'll see a green tick next to the "Library" list, confirming that it's been added correctly. Click "OK" to confirm.
+
+<img src="https://s3-us-west-1.amazonaws.com/branch-guides/eclipse_library_added.png">
 
 <!--
 <div style="text-align:center">
@@ -91,11 +87,9 @@ Right-click on the Branchster-Android project and open the project properties
 </div>
 -->
 
-<!--
-<div style="text-align:center">
-<img src="images/eclipse_import_sdk_project_fadeout.png" width="800" >
-</div>
--->
+Now that your workspace is configured, you can get into the code.
+
+
 
 <!--
 <div style="text-align:center">
