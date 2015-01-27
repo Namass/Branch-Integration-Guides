@@ -21,10 +21,8 @@ API Keys are unique per-app and required by the SDK to identify your app. If you
 
 Go to Settings on the left hand side, and use the drop-down box in the top right to create a new app.
 
-<!-- 
-<div style="text-align:center">
-<img src="images/create_new_app_button.png" width="140" >
-</div> -->
+<img align="center" src="https://s3-us-west-1.amazonaws.com/branch-guides/create_new_app_button.png" alt="Create New App Button" width="140" >
+
 
 Enter the name of your app in the dialog then hit Create.
 
