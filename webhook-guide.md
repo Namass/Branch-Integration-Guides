@@ -16,6 +16,7 @@ Here is the format of what we post to you
 		event: ‘event name’
 		metadata: ‘event metadata’ - specified in userCompletedAction withState
 		hardware_id: ‘IDFA’
+		os: 'iOS' | 'Android'
 
 		// optionally included:
 		identity: ‘user ID’ - specified in setIdentity
