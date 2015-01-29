@@ -115,10 +115,10 @@ Update your **AndroidManifest.xml** file
 
 ```java
 <application>
-<!-- Other existing entries -->
+    <!-- Other existing entries -->
 
-<!-- Add this meta-data below -->
-<meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
+    <!-- Add this meta-data below -->
+    <meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
 </application>
 ```
 
@@ -127,22 +127,22 @@ Navigate to your app's launch activity (the first one that opens up). Add the fo
 ```java
 @Override
 public void onStart() {
-super.onStart();
+    super.onStart();
 
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.initUserSession(new BranchReferralInitListener() {
-@Override
-public void onInitFinished(JSONObject referringParams) {
-// params are the deep linked params associated with the link that the user clicked before showing up
-Log.i("BranchConfigTest", "deep link data: " + referringParams.toString());
-}
-}, this.getIntent().getData());
+    Branch branch = Branch.getInstance(getApplicationContext());
+    branch.initUserSession(new BranchReferralInitListener() {
+        @Override
+        public void onInitFinished(JSONObject referringParams) {
+                // params are the deep linked params associated with the link that the user clicked before showing up
+                Log.i("BranchConfigTest", "deep link data: " + referringParams.toString());
+        }
+    }, this.getIntent().getData());
 }
 
 @Override
 public void onStop() {
-super.onStop();
-Branch.getInstance(getApplicationContext()).closeSession();
+    super.onStop();
+    Branch.getInstance(getApplicationContext()).closeSession();
 }
 ```
 
@@ -191,6 +191,69 @@ One great use case for Branch is showing different view controllers and content 
 ```
 
 #### Android
+
+### Initialize SDK And Register Deep Link Routing Function
+
+Called in your splash activity where you handle. If you created a custom link with your own custom dictionary data, you probably want to know when the user session init finishes, so you can check that data. Think of this callback as your "deep link router". If your app opens with some data, you want to route the user depending on the data you passed in. Otherwise, send them to a generic install flow.
+
+This deep link routing callback is called 100% of the time on init, with your link params or an empty dictionary if none present.
+
+```java
+@Override
+public void onStart() {
+super.onStart();
+
+// Your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard
+Branch branch = Branch.getInstance(getApplicationContext());
+branch.initSession(new BranchReferralInitListener(){
+@Override
+public void onInitFinished(JSONObject referringParams, Branch.BranchError error) {
+if (error == null) {
+// params are the deep linked params associated with the link that the user clicked before showing up
+// params will be empty if no data found
+
+// here is the data from the example below if a new user clicked on Joe's link and installed the app
+String name = referringParams.getString("user"); // returns Joe
+String profileUrl = referringParams.getString("profile_pic"); // returns https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg
+String description = referringParams.getString("description"); // returns Joe likes long walks on the beach...
+
+// route to a profile page in the app for Joe
+// show a customer welcome
+} else {
+Log.i("MyApp", error.getMessage());
+}
+}
+}, this.getIntent().getData());
+}
+```
+
+#### Close session
+
+Required: this call will clear the deep link parameters when the app is closed, so they can be refreshed after a new link is clicked or the app is reopened.
+
+```java
+@Override
+public void onStop() {
+super.onStop();
+Branch.getInstance(getApplicationContext()).closeSession();
+}
+```
+
+#### Retrieve session (install or open) parameters
+
+These session parameters will be available at any point later on with this command. If no params, the dictionary will be empty. This refreshes with every new session (app installs AND app opens)
+```java
+Branch branch = Branch.getInstance(getApplicationContext());
+JSONObject sessionParams = branch.getLatestReferringParams();
+```
+
+#### Retrieve install (install only) parameters
+
+If you ever want to access the original session params (the parameters passed in for the first install event only), you can use this line. This is useful if you only want to reward users who newly installed the app from a referral link or something.
+```java
+Branch branch = Branch.getInstance(getApplicationContext());
+JSONObject installParams = branch.getFirstReferringParams();
+```
 
 
 ## 3. Creating custom links for the user to share
