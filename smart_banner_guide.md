@@ -254,6 +254,8 @@ JSONObject installParams = branch.getFirstReferringParams();
 
 ## 3. Implementing the Web SDK and Smart Banner
 
+### Javascript Snippet
+
 This SDK requires native browser Javascript and has been tested in all modern browsers with sessionStorage capability. 
 
 Place this code before the `</head>` statement in your HTML.  Be sure to replace `YOUR_APP_ID` with your Branch app ID.
@@ -266,7 +268,7 @@ Place this code before the `</head>` statement in your HTML.  Be sure to replace
             app_id: 'YOUR_APP_ID',
             debug: true,
             init_callback: function(){
-                console.log('Branch SDK initialized!');
+                Branch.appBanner
             }
         };
 
@@ -278,64 +280,12 @@ Place this code before the `</head>` statement in your HTML.  Be sure to replace
 </script>
 ```
 
-### .createLink()
+If you don't want to show the app banner on the desktop browser, you can embed logic in the init_callback that only calls .appBanner if the browser is a mobile browser. 
 
-Create a deep linking URL.  The `data` parameter can include Facebook Open Graph data.  To read more about 
-Open Graph, visit https://developers.facebook.com/docs/opengraph.
-
-##### Usage
-
-```
-Branch.createLink(
-    (JSON Object, required) {
-        tags (JSON array, optional),           // An array of tags for splitting out data in the dashboard.
-        channel (string, optional),            // A string to indicate the external channel (text_message, mail, facebook, etc).
-        feature (string, optional),            // The string for a particular feature (invite, referral).
-        stage (string, optional),              // A string representing the progress of the user.
-        type (int, optional),                  // Use 1 for one time use links, 0 for persistent.
-        data (JSON object, optional) {         // This parameter takes any JSON object and attaches it to the link created.  Reserved parameters are denoted with '$'.
-            '$og_app_id' (string, optional)      // Facebook app ID for Open Graph data.
-            '$og_title', (string, optional)      // Open Graph page title.
-            '$og_description' (string, optional) // Open Graph page description.
-            '$og_image_url' (url, optional)      // Open graph page image/icon URL.
-        },
-        callback (function, optional)
-    }
-)
-```
-
-##### Example
-
-```js
-branch.createLink({
-    tags: ['tag1', 'tag2'],
-    channel: 'facebook',
-    feature: 'dashboard',
-    stage: 'new user',
-    type: 1,
-    data: {
-        '$desktop_url': 'http://myappwebsite.com',
-        '$ios_url': 'http://myappwebsite.com/ios',
-        '$ipad_url': 'http://myappwebsite.com/ipad',
-        '$android_url': 'http://myappwebsite.com/android',
-        '$og_app_id': '12345',
-        '$og_title': 'My App',
-        '$og_description': 'My app\'s description.',
-        '$og_image_url': 'http://myappwebsite.com/image.png'
-    }
-}, function(data){
-    console.log(data)
-});
-```
+### App Banner
 
 
-### Smart Banners
-
-Generate on mobile and desktop browsers to direct to app installs through deeplinking.
-
-#### .appBanner()
-
-Display a smart banner directing a user to your app through a Branch referral link.  The `data` param is the exact same as in `Branch.createLink()`.
+Display a smart banner directing a user to your app through a Branch referral link.  The `data` param is the exact same as in `Branch.createLink()` in the Web SDK docs: [https://github.com/BranchMetrics/Web-SDK](https://github.com/BranchMetrics/Web-SDK)
 
 ##### Usage
 
