@@ -77,10 +77,10 @@ Update your **AndroidManifest.xml** file
 
 ```java
 <application>
-<!-- Other existing entries -->
+    <!-- Other existing entries -->
 
-<!-- Add this meta-data below -->
-<meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
+    <!-- Add this meta-data below -->
+    <meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
 </application>
 ```
 
