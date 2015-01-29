@@ -16,9 +16,9 @@ Navigate to the Settings page and fill in information in each of the fields, inc
 
 Full integration guides for iOS and Android are available at the following links with more features. 
 
-The Branch iOS SDK can be found at [https://github.com/BranchMetrics/Branch-iOS-SDK](https://github.com/BranchMetrics/Branch-iOS-SDK).
+The full Branch iOS docs can be found at [https://github.com/BranchMetrics/Branch-iOS-SDK](https://github.com/BranchMetrics/Branch-iOS-SDK), and the iOS illustrated guide can be found at [https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios_quickstart.md](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios_quickstart.md). 
 
-The Brand Android SDK can be found at [https://github.com/BranchMetrics/Branch-Android-SDK](https://github.com/BranchMetrics/Branch-Android-SDK).
+The full Brand Android docs can be found at [https://github.com/BranchMetrics/Branch-Android-SDK](https://github.com/BranchMetrics/Branch-Android-SDK), and the Android illustrated guide can be found at [https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md). 
 
 #### -or- Download the raw files
 
@@ -69,6 +69,18 @@ For Android, add your Branch API Key to the **res/values/strings.xml** file in y
 </resources>
 ```
 
+Update your **AndroidManifest.xml** file
+
+```java
+<application>
+<!-- Other existing entries -->
+
+<!-- Add this meta-data below -->
+<meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
+</application>
+```
+
+
 ### Starting a Branch session -- required for all SDK calls
 
 Branch must be started within your app before any calls can be made to the SDK. Modify the following methods:
@@ -112,17 +124,6 @@ Find - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourc
 ```
 
 #### Android
-
-Update your **AndroidManifest.xml** file
-
-```java
-<application>
-    <!-- Other existing entries -->
-
-    <!-- Add this meta-data below -->
-    <meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
-</application>
-```
 
 Navigate to your app's launch activity (the first one that opens up). Add the following code to the activity class:
 
@@ -285,7 +286,7 @@ If you don't want to show the app banner on the desktop browser, you can embed l
 ### App Banner
 
 
-Display a smart banner directing a user to your app through a Branch referral link.  The `data` param is the exact same as in `Branch.createLink()` in the Web SDK docs: [https://github.com/BranchMetrics/Web-SDK](https://github.com/BranchMetrics/Web-SDK)
+This displays a Smart Banner that directs the user from the (mobile) web to the app store and passes the embedded parameter into the install so you can route the user post-install to the appropriate place (e.g. the app version of what they were viewing on the web).  The `data` param is the exact same as in `Branch.createLink()` in the Web SDK docs: [https://github.com/BranchMetrics/Web-SDK](https://github.com/BranchMetrics/Web-SDK)
 
 ##### Usage
 
