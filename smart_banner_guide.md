@@ -14,6 +14,8 @@ Navigate to the Settings page and fill in information in each of the fields, inc
 
 ### Installing the SDK
 
+Full integration guides for iOS and Android are available at the following links with more features. 
+
 The Branch iOS SDK can be found at [https://github.com/BranchMetrics/Branch-iOS-SDK](https://github.com/BranchMetrics/Branch-iOS-SDK).
 
 The Brand Android SDK can be found at [https://github.com/BranchMetrics/Branch-Android-SDK](https://github.com/BranchMetrics/Branch-Android-SDK).
@@ -152,7 +154,7 @@ This same code also triggers the recording of an event with Branch. If this is t
 
 ### Routing based on the link (optional)
 
-One great use case for Branch is showing different view controllers and content based on what link the user just clicked on. The following implementation of _application:didFinishLaunchingWithOptions:_ looks at the params dictionary that is passed in and decides which view controller to present. If the user clicked on a Branch link with the parameter _pictureURL_ attached, the application redirects to a screen to view the picture. Otherwise the default view controller is shown. Obviously routing logic is heavily implementation-specific, so the code below is just an example. 
+One great use case for Branch is showing different view controllers and content based on what link the user just clicked on. Users that download the app after clicking on a Smart Banner are often meant to be taken directly to some content that they were viewing on the mobile web. The following implementation of _application:didFinishLaunchingWithOptions:_ looks at the params dictionary that is passed in and decides which view controller to present. If the user clicked on a Branch link or Smart Banner with the parameter _pictureURL_ attached, the application redirects to a screen to view the picture. Otherwise the default view controller is shown. Obviously routing logic is heavily implementation-specific, so the code below is just an example. 
 
 #### iOS
 
@@ -254,7 +256,7 @@ JSONObject installParams = branch.getFirstReferringParams();
 
 This SDK requires native browser Javascript and has been tested in all modern browsers with sessionStorage capability. 
 
-Place this code in the `</head>` statement in your HTML.  Be sure to replace `YOUR_APP_ID` with your Branch app ID.
+Place this code before the `</head>` statement in your HTML.  Be sure to replace `YOUR_APP_ID` with your Branch app ID.
 
 ```html
 <script type="text/javascript">
@@ -276,7 +278,7 @@ Place this code in the `</head>` statement in your HTML.  Be sure to replace `YO
 </script>
 ```
 
-#### .createLink()
+### .createLink()
 
 Create a deep linking URL.  The `data` parameter can include Facebook Open Graph data.  To read more about 
 Open Graph, visit https://developers.facebook.com/docs/opengraph.
@@ -343,7 +345,12 @@ Branch.appBanner(
         icon (string, recommended),       // URL path to your app's icon.  Recommended size is 50px by 50px with no border or whitespace.
         title (string, recommended)       // The title or name of your app.
         description (string, recommended) // The description of your app.
-        data (JSON object, optional)      // Verbatim data used in Branch.createLink().  This data is passed with your clicked links.
+        data (JSON object, optional) {         // This parameter takes any JSON object and attaches it to the link created.  Reserved parameters are denoted with '$'.
+            'picture_id'
+            '$og_app_id' (string, optional)      // Facebook app ID for Open Graph data.
+            '$og_title', (string, optional)      // Open Graph page title.
+            '$og_description' (string, optional) // Open Graph page description.
+            '$og_image_url' (url, optional)      // Open graph page image/icon URL.    
     }
 )
 ```
@@ -355,6 +362,13 @@ branch.appBanner({
     icon: 'http://icons.iconarchive.com/icons/wineass/ios7-redesign/512/Appstore-icon.png',
     title: 'My App',
     description: 'This is my app!',
+    data: {
+        'picture_id': 'photo1234',
+        '$og_app_id': '12345',
+        '$og_title': 'My App',
+        '$og_description': 'My app\'s description.',
+        '$og_image_url': 'http://myappwebsite.com/image.png'
+    }
 });
 ```
 
