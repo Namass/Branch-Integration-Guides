@@ -1,68 +1,13 @@
-Deep Linking Guide for iOS
+Smart Banner Guide for iOS
 =====================================
 
-This guide will help you integrate branch into your iOS app in as little time as possible.
+This guide will help you integrate the smart banner for converting mobile web users to app installs while maintaining a seamless user experience. 
 
-## 1. Setting up your app on the Branch Dashboard
+## 1. Create an account on the Branch Dashboard
 
-Our dashboard is the starting point for adding apps as well as tracking users of your app. 
+To get started, create an account in [https://dashboard.branch.io/](https://dashboard.branch.io/). 
 
-To get started, point your browser to [https://dashboard.branch.io/](https://dashboard.branch.io/). If you haven't created an account before, you can signup and get taken through the basic setup right away. If you've signed up already, simply navigate to the [Summary](https://dashboard.branch.io/#) page and click the dropdown button in the top right. Choose "Create new app."
-
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/2_dashboard.png)
-
-You will be prompted to enter a name for your new app. Do so and press "Create."
-
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/3_create_new_app.png)
-
-Navigate to the Settings page. Scroll down to App Store Information and search for your app by name--this is the same name listed on iTunesConnect. With this information, Branch will automatically redirect users without your app installed on their devices to the App Store.
-
-In the case that your app cannot be found on the App Store (e.g. if you are distributing an enterprise app over the Internet, or you're not listed in the US app stores), you can also enter a custom URL by choosing "Custom URL to IPA file."
-
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/4_settings_app_store.png)
-
-### Customizing the default social media (OG) tags for all links
-
-This optional step will allow you to custom the default tags for all links to your app. While you can edit OG tags when creating links by including the appropriate key-value pairs in the link's data dictionary, it is a good idea to provide a default set of tags that will work for all links.
-
-On the Settings page, scroll to Social Media - Open Graph. 
-
-1. Enter your Facebook App ID (if you have one)
-1. Enter the title you want displayed with the link
-1. Enter a description of your app (recommended: two sentences)
-1. Upload a thumbnail of your app
-
-For more information on the optimal format for the title and description, see Facebook's [Sharing Best Practices](https://developers.facebook.com/docs/sharing/best-practices#tags).
-
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/5_og.png)
-
-### Register a URI scheme direct deep linking (optional but recommended)
-
-You can register your app to respond to direct deep links (yourapp:// in a mobile browser) by adding a URI scheme in the YourProject-Info.plist file (or in Swift, Info.plist).
-
-Also, in the instructions that follow, make sure to change **yourapp** to a unique string that represents your app name. You must choose a string and use the same one on the Branch Dashboard and in XCode.
-
-Before jumping into XCode, you need to add the URI Scheme to the Branch Dashboard. On the [Settings](https://dashboard.branch.io/#/settings) page, scroll down to URI Schemes (advanced), click to expand, and add in the unique string you've chosen for your app (e.g. yourapp://). Be sure to press "Save" when you're finished.
-
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/6_dashboard_uri.png)
-
-Next, you'll need to open your project in XCode and complete the following.
-
-	
-1. Click on YourProject-Info.plist on the left (or in Swift, Info.plist).
-1. Find URL Types and click the right arrow. (If it doesn't exist, right click anywhere and choose Add Row. Scroll down and choose URL Types)
-1. Add "yourapp", where yourapp is a unique string for your app, as an item in URL Schemes as below:
-
-![URL Scheme Demo](https://s3-us-west-1.amazonaws.com/branchhost/urlScheme.png)
-
-Alternatively, you can add the URI scheme in your project's Info page.
-
-1. In Xcode, click your project in the Navigator (on the left side).
-1. Select the "Info" tab.
-1. Expand the "URL Types" section at the bottom.
-1. Click the "+" sign to add a new URI Scheme, as below:
-
-![URL Scheme Demo](https://s3-us-west-1.amazonaws.com/branchhost/urlType.png)
+Navigate to the Settings page and fill in information in each of the fields, including your app store information, URI scheme, and company info. 
 
 
 ## 2. Setting up Branch in your app
@@ -83,13 +28,20 @@ The Branch iOS SDK can be found at [https://github.com/BranchMetrics/Branch-iOS-
 
 	git clone https://github.com/BranchMetrics/Branch-iOS-SDK
 
+The Brand Android SDK can be found at [https://github.com/BranchMetrics/Branch-Android-SDK](https://github.com/BranchMetrics/Branch-Android-SDK).
+
 #### -or- Download the raw files
 
-Download code from here:
+Download iOS code from here:
 [https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip)
 
-The testbed project:
+The iOS testbed project:
 [https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-TestBed.zip](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-TestBed.zip)
+
+Download JAR file from here: [https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip)
+
+The Android testbed project: [https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-TestBed.zip](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-TestBed.zip)
+
 
 #### Importing the SDK
 
@@ -124,10 +76,13 @@ Branch must be started within your app before any calls can be made to the SDK. 
 
 ##### Objective-C
 
+Find AppDelegate.m in the left sidebar, and edit it:
+
 ```objc
 #import <Branch/Branch.h>
 ```
 
+Find didFinishLaunchingWithOptions and paste the following Branch code below it: 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// anything else you need to do in this method
@@ -144,6 +99,8 @@ Branch must be started within your app before any calls can be made to the SDK. 
 }
 ```
 
+Find - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication... and paste the following at the top of the function to handle the deeplink URL:
+
 ```objc
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 	// pass the url to the handle deep link call
@@ -155,46 +112,13 @@ Branch must be started within your app before any calls can be made to the SDK. 
 }
 ```
 
-##### Swift
-```swift
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-	// anything else you need to do in this method
-	// ...
-	
-    let branch: Branch = Branch.getInstance()
-    branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
-        if (error == nil) {
-			// params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-			// params will be empty if no data found
-			// ... insert custom logic here ...   
-        }
-    })
-        
-    return true
-}
-```
-
-```swift
-func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-    // pass the url to the handle deep link call
-    // if handleDeepLink returns true, and you registered a callback in initSessionAndRegisterDeepLinkHandler, the callback will be called with the data associated with the deep link
-    if (!Branch.getInstance().handleDeepLink(url)) {
-        // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
-    }
-        
-    return true
-}
-```
-
 The deep link handler is called every single time the app is opened, returning deep link data if the user tapped on a link that led to this app open.
 
 This same code also triggers the recording of an event with Branch. If this is the first time a user has opened the app, an "install" event is registered. Every subsequent time the user opens the app, it will trigger an "open" event.
 
-**NOTE**: If you do not fully understand the params dictionary at this point, that is okay! In the 3rd part of this Quick Start guide, you will see how this empowers you to create a custom experience for your app's users, from the moment he or she clicks on a shared link.
-
 ##### Routing based on the link (optional)
 
-One great use case for Branch is showing different view controllers and content based on what link the user just clicked on. The following implementation of _application:didFinishLaunchingWithOptions:_ looks at the params dictionary that is passed in and decides which view controller to present. If the user clicked on a Branch link with the parameter _pictureURL_ attached, the application redirects to a screen to view the picture. Otherwise the default view controller is shown. Obviously routing logic is heavily implementation-specific, so the code below is just an example. (See our iOS sample project [Branchster](https://github.com/BranchMetrics/Branchster-iOS) for another example of routing.)
+One great use case for Branch is showing different view controllers and content based on what link the user just clicked on. The following implementation of _application:didFinishLaunchingWithOptions:_ looks at the params dictionary that is passed in and decides which view controller to present. If the user clicked on a Branch link with the parameter _pictureURL_ attached, the application redirects to a screen to view the picture. Otherwise the default view controller is shown. Obviously routing logic is heavily implementation-specific, so the code below is just an example. 
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -230,84 +154,21 @@ One great use case for Branch is showing different view controllers and content 
 }
 ```
 
-##### isReferrable (Advanced)
-
-Branch's default behavior is to track which users refer other users. Also by default, a "referral" event is only recorded if a user who clicked on a link has *never* opened the app before. The first time he or she clicks a shared Branch link and opens the app, it counts as a referral.
-
-This default behavior can be overridden by modifying the _initSessionWithLaunchOptions:andRegisterDeepLinkHandler:_ method in _application:didFinishLaunchingWithOptions:_. Replace the method call with the following: 
-
-```objc
-[branch initSessionWithLaunchOptions:launchOptions isReferrable:@YES andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {     // previously initUserSessionWithCallback:withLaunchOptions:
-   if (!error) {
-       // This can now count as a referred session even if this isn't
-       // the first time a user has opened the app (aka an "Install").
-       // ... insert custom logic here ...
-   }
-}];
-```
-
-You can set _isReferrable_ to **@YES** or **@NO**, and the behavior is as follows:
-
-1. **@YES**: Now a connection can be established between a referring user and a referred user during _any_ session, not just the very first time a user opens the app. This means that if a user signs up without clicking on a shared Branch link but later clicks on a link, the referring-referred connection is established. (In the example in part 3 below, if Bob's friend Amy had already found and opened the app on her own but later came back to it because Bob sent her a link, Bob is the referring user and Amy is the referred user.) There can only be one referring user for any given user (e.g. as soon as Amy clicks a link from Bob, Bob is her referrer and no subsequent shared Branch links will change that). There are specific use cases where you may want this flexibility--feel free to reach out if you have questions.
-
-2. **@NO**: If _isReferrable_ is set to **@NO**, your app will never track the relationship between referring users and referred users. While we're not sure why you wouldn't want such valuable information, it is certainly an option.
-
 ## 3. Creating custom links for the user to share
 
 _A full guide on creating links is available: [Branch URL Creation Guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/url-creation-guide.md). The information in this section presents you with a quick way to get link creation off the ground._
 
 Part of the beauty of Branch is that you can craft a custom user experience that leverages your existing app's architecture. One of the primary methods of creating the experience involves shareable URLs. You the developer can attach custom information to any link you create. This custom information is then available to other users who click the link.
 
-### An Example
 
-As a concrete example, say that you are a ride-sharing service, and your first user, Bob, wants to invite his friends to sign up so they can both get a free ride. Rather than providing a referral code that his friends must manually enter during the signup process, you can attach that unique referral code to the URL that Bob is sharing with his friends. Then when his friend, Sarah, clicks on the link, she will be directed to the App Store to download your uber-popular ride-sharing app. As soon as she opens the app, the params dictionary (see the code in _application:didFinishLaunchingWithOptions:_ above) will have that referral code. You can then know that Bob referred Sarah and automatically reward them both with a free ride. No separate links and codes. No manual entry. More happy users.
+### Custom Redirects
 
-### Creating the links
-
-Links are created dynamically and on-the-fly in the app. The easiest way to create a link is by calling the Branch SDK's methods starting with _getShortURL.._
-
-```objc
-NSDictionary *params = @{ @"referringUsername": @"Bob",
-                         @"referringUserId": @"1234" };
-[[Branch getInstance] getShortURLWithParams:params andCallback:^(NSString *url, NSError *error) {
-   // Now we can do something with the URL...
-   NSLog(@"url: %@", url);
-}];
-```
-
-The information associated with this link is now **forever available** to other users who click this link. Now any users who click on the link will see { "referringUsername": "Bob", "referringUserId": "1234" } in the params when the app launches. The params are included in the callback of the Branch SDK's methods beginning with _initSession.._, as seen in the code in _application:didFinishLaunchingWithOptions:_, referenced in section 2 above.
-
-### Social Graph (OG) tags
-
-You can also customize the OG tags associated with the link by including key-value pairs in the params dictionary when creating a link. Note that these overwrite any defaults that you previously set on the Branch Dashboard.
-
-```objc
-NSMutableDictionary *params = [NSMutableDictionary dictionary];
-params[@"referringUsername"] = @"Bob";
-params[@"referringUserId"] = @"1234";
-    
-// Facebook OG tags -- this will overwrite any defaults you set up on the Branch Dashboard
-params[@"$og_title"] = @"MyApp is disrupting apps";
-params[@"og_description"] = @"Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out.";
-    
-[[Branch getInstance] getShortURLWithParams:params andCallback:^(NSString *url, NSError *error) {
-   // Now we can do something with the URL...
-   NSLog(@"url: %@", url);
-}];
-``` 
-
-**Note**: You can customize the Facebook OG tags of each URL if you want to dynamically share content by using the following _optional keys in the params dictionary_:
+You have the ability to control the direct deep linking of each link by inserting the following _optional keys in the params dictionary_:
 
 | Key | Value
 | --- | ---
-| "$og_title" | The title you'd like to appear for the link in social media
-| "$og_description" | The description you'd like to appear for the link in social media
-| "$og_image_url" | The URL for the image you'd like to appear for the link in social media
-| "$og_video" | The URL for the video 
-| "$og_url" | The URL you'd like to appear
-| "$og_app_id" | Your OG app ID. Optional and rarely used.
-
-### Custom Redirects
+| "$deeplink_path" | The value of the deep link path that you'd like us to append to your URI. For example, you could specify "$deeplink_path": "radio/station/456" and we'll open the app with the URI "yourapp://radio/station/456?link_click_id=branch-identifier". This is primarily for supporting legacy deep linking infrastructure. 
+| "$always_deeplink" | true or false. (default is not to deep link first) This key can be specified to have our linking service force try to open the app, even if we're not sure the user has the app installed. If the app is not installed, we fall back to the respective app store or $platform_url key. By default, we only open the app if we've seen a user initiate a session in your app from a Branch link (has been cookied and deep linked by Branch)
 
 Also, you do custom redirection by inserting the following _optional keys in the params dictionary_. 
 
@@ -321,12 +182,6 @@ Also, you do custom redirection by inserting the following _optional keys in the
 | "$blackberry_url" | Same as above but for Blackberry Store
 | "$windows_phone_url" | Same as above but for Windows Store
 
-You have the ability to control the direct deep linking of each link by inserting the following _optional keys in the params dictionary_:
-
-| Key | Value
-| --- | ---
-| "$deeplink_path" | The value of the deep link path that you'd like us to append to your URI. For example, you could specify "$deeplink_path": "radio/station/456" and we'll open the app with the URI "yourapp://radio/station/456?link_click_id=branch-identifier". This is primarily for supporting legacy deep linking infrastructure. 
-| "$always_deeplink" | true or false. (default is not to deep link first) This key can be specified to have our linking service force try to open the app, even if we're not sure the user has the app installed. If the app is not installed, we fall back to the respective app store or $platform_url key. By default, we only open the app if we've seen a user initiate a session in your app from a Branch link (has been cookied and deep linked by Branch)
 
 ### Features and Channels
 
@@ -349,78 +204,9 @@ params[@"referringUserId"] = @"1234";
 }];
 ```
 
-### Sharing via SMS/iMessage
-
-To quickly share via SMS/iMessage, we've included some code that you can copy and paste into your own app. This is all the code you need to get users started on inviting other users!
-
-First, note that this is making an asynchronous call to Branch's servers to generate the link and attach the information provided in the params dictionary. We highly recommend showing the user a spinner and disabling your "share" button while the link is being generated. You can either use [UIActivityIndicatorView](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIActivityIndicatorView_Class/index.html) (native) or an external library like [MBProgressHUD](https://github.com/jdg/MBProgressHUD). 
-
-At the top of your view controller's implementation (.m) file, include the following:
-
-```objc
-#import <MessageUI/MessageUI.h>
-#import <MessageUI/MFMailComposeViewController.h>
-```
-
-Then be sure to indicate that your view controller conforms to MFMessageComposeViewControllerDelegate protocol. This is done by modifying the @interface line of your view controller's implementation (.m) file.
-
-```objc
-@interface MyAppViewController () <MFMessageComposeViewControllerDelegate>
-```
-
-The following code should go in some method triggered by the user (such as when the user taps on a button).
-
-```objc
-NSMutableDictionary *params = [NSMutableDictionary dictionary];
-params[@"referringUsername"] = @"Bob";
-params[@"referringUserId"] = @"1234";
-
-// ... insert code to start the spinner of your choice here ...
-
-[[Branch getInstance] getShortURLWithParams:params andChannel:@"SMS" andFeature:@"Referral" andCallback:^(NSString *url, NSError *error) {
-    // Check to make sure we can send messages on this device
-    if ([MFMessageComposeViewController canSendText]) {
-        MFMessageComposeViewController *messageComposer = [[MFMessageComposeViewController alloc] init];
-        
-        // Set the contents of the SMS/iMessage -- be sure to include the URL!
-        [messageComposer setBody:[NSString stringWithFormat:@"You should definitely take a look at MyApp -- use my invite code to get free brownie points: %@", url]];
-        
-        messageComposer.messageComposeDelegate = self;
-        [self presentViewController:messageComposer animated:YES completion:^{
-            // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
-
-        }];
-    } else {
-        // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
-        [[[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Your device does not allow sending SMS or iMessages." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
-    }
-}];
-```
-
-Lastly, there is a required delegate method for the MessageComposeViewController. We provide an empty implementation, which you are free to customize.
-
-```objc
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
-                 didFinishWithResult:(MessageComposeResult)result {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-```
-
-The above code allows you to quickly achieve the following. Custom referral code!
-
-![iOS Demo](https://s3-us-west-1.amazonaws.com/branch-guides/13_sms_screenshot.PNG)
-
 ### Creating links in the API, web SDK, and Dashboard
 
-You can create links from various places. API calls are not limited to native (iOS, Android) SDKs. Backend- and web-API calls can also generate links to be used for sharing, marketing, etc. See the [link creation guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/url-creation-guide.md) for more.
 
-Lastly, links can be created manually on the Dashboard on the [Marketing Tab](https://dashboard.branch.io/#/marketing). First, click "+ Add link." 
-
-![Dashboard Demo](https://s3-us-west-1.amazonaws.com/branch-guides/11_dashboard_link.png)
-
-From here you can customize links in the ways described above, plus many many more. See below for a brief teaser:
-
-![Dashboard Demo](https://s3-us-west-1.amazonaws.com/branch-guides/12_dashboard_link.png)
 
 That's all! Welcome to Branch. Hopefully that Quick Start guide gave you some ideas. Please don't hesitate to reach out with questions, comments or suggestions.
 
