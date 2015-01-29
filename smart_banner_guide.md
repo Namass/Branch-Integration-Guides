@@ -56,7 +56,11 @@ Add the Branch library project to your project (in Eclipse, right click on your 
 
 After you register your app, your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. 
 
+##### iOS
+
 For iOS, you need to add it to YourProject-Info.plist (Info.plist for Swift). Create a key called bnc_app_key, with string value: **yourAppID**
+
+##### Android
 
 For Android, add your Branch API Key to the **res/values/strings.xml** file in your project
 
