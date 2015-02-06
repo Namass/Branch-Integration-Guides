@@ -33,25 +33,6 @@ Download JAR file from here: [https://s3-us-west-1.amazonaws.com/branchhost/Bran
 The Android testbed project: [https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-TestBed.zip](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-TestBed.zip)
 
 
-#### Importing the iOS SDK
-
-Drag and drop the Branch.framework file that you downloaded into your project. Be sure that "Copy items if needed" is selected.
-
-![Import SDK Demo](https://s3-us-west-1.amazonaws.com/branch-guides/8_drag.gif)
-
-**You also need to import CoreTelephony.** See the graphic below:
-
-![Import SDK Demo](https://s3-us-west-1.amazonaws.com/branch-guides/telephony.gif)
-
-
-#### Importing the Android SDK
-
-Open your app in your Android IDE (Eclipse or IntelliJ). Import the Branch SDK as a library project (in Eclipse, File -> Import -> Navigate to and select Branch SDK folder). 
-
-Add the Branch library project to your project (in Eclipse, right click on your project -> Properties -> Android tab -> Add -> Select Branch SDK)
-
-
-
 ### Add your app key to your project
 
 After you register your app, your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. 
