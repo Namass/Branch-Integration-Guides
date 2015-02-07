@@ -20,6 +20,6 @@ A collection of all guides for Branch integrations
 
     Getting started with Branch for your iOS app
     
-1. [Basic Branch Smart Banner guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/smart_banner_guide.md)
+1. [Branch Smart Banner guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/smart_banner_guide.md)
 
     Getting started with the trackable smart banner
