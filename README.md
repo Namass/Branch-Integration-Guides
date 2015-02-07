@@ -22,4 +22,4 @@ A collection of all guides for Branch integrations
     
 1. [Branch Smart Banner guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/smart_banner_guide.md)
 
-    Getting started with the trackable smart banner
+    Getting started with the download tracking and deep linking smart banner
