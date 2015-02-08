@@ -8,6 +8,10 @@ A collection of all guides for Branch integrations
 1. [Basic iOS integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios_quickstart.md)
 
     Getting started with Branch for your iOS app
+
+1. [Basic iOS Referral System guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md)
+
+    How to use Branch to build a referral system in your iOS app
     
 1. [Basic Android integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md)
 

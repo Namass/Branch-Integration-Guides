@@ -1,20 +1,20 @@
-Android Referral Program Guide
+iOS Referral Program Guide
 =========================
 This quick start guide shows you how to leverage Branch links to build a powerful referral system for your app.
 
 # Table of Contents
 
-1. [What Branch can do](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#what-branch-does)
-1. [Referral system design considerations](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#referral-system-design-considerations)
-1. [Basic Account Registration](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#basic-account-registration)
-1. [SDK Initialization](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#sdk-initialization)
-1. [Event Tracking and Reward Rules](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#event-tracking-and-reward-rules)
-1. [Link Creation for User Attribution](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#link-creation-for-user-attribution)
-1. [Identity Management for Influencer Tracking](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#identity-management-for-influencer-tracking)
-1. [Credit Retrieval and Rewarding](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#credit-retrieval-and-rewarding)
-1. [Testing Considerations](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#testing-considerations)
-1. [Advanced: Extending Referrals to the Web](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#advanced-extending-referrals-to-the-web)
-1. [Advanced: Coupon/Referral Codes](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#advanced-couponreferral-codes)
+1. [What Branch can do](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#what-branch-does)
+1. [Referral system design considerations](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#referral-system-design-considerations)
+1. [Basic Account Registration](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#basic-account-registration)
+1. [SDK Initialization](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#sdk-initialization)
+1. [Event Tracking and Reward Rules](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#event-tracking-and-reward-rules)
+1. [Link Creation for User Attribution](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#link-creation-for-user-attribution)
+1. [Identity Management for Influencer Tracking](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#identity-management-for-influencer-tracking)
+1. [Credit Retrieval and Rewarding](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#credit-retrieval-and-rewarding)
+1. [Testing Considerations](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#testing-considerations)
+1. [Advanced: Extending Referrals to the Web](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#advanced-extending-referrals-to-the-web)
+1. [Advanced: Coupon/Referral Codes](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#advanced-couponreferral-codes)
 
 
 # What Branch Does
@@ -69,15 +69,15 @@ You can use just the URLs to track who was the referrer or you can use the entir
 Here are a couple questions to ask yourself when you are starting to build a referral system:
 
 **_Do I want Branch to track credit balances so I don't have to?_**
-It's possible to just use us for the links and user attribution. If you're just planning to use the links, you only need section [4](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#sdk-initialization) and [6](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#link-creation-for-user-attribution) of this guide
+It's possible to just use us for the links and user attribution. If you're just planning to use the links, you only need section [4](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#sdk-initialization) and [6](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#link-creation-for-user-attribution) of this guide
 
 **_Do I want to reward both users, the user who drove the new install or just the new user, and what will the reward be?_**
-You'll want to decide this upfront, as it will play a critical role in the ultimate design of the system. With respect to Branch, you'll need to create a reward rule ([here](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#event-tracking-and-reward-rules)) for each person receiving a reward. 
+You'll want to decide this upfront, as it will play a critical role in the ultimate design of the system. With respect to Branch, you'll need to create a reward rule ([here](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#event-tracking-and-reward-rules)) for each person receiving a reward. 
 
 **_Do I want to reward only fresh installs or existing users as well_**
-If you want to reward only fresh installs, you'll want to tie our rewards to the 'install' action. If you want to reward both users, you'll want to tie the reward rule to the 'referred session' action. See [here](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#event-tracking-and-reward-rules) for instructions on configuring these reward rules.
+If you want to reward only fresh installs, you'll want to tie our rewards to the 'install' action. If you want to reward both users, you'll want to tie the reward rule to the 'referred session' action. See [here](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#event-tracking-and-reward-rules) for instructions on configuring these reward rules.
 
-If you are planning to allow existing users to be rewarded, you'll want to set the isReferrable boolean argument to true in the initSession call for Branch. This tells us that a pre-existing user is eligible for referral if they were to click on a Branch link and begin an app session. Please see section [4](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#sdk-initialization) for more info about this.
+If you are planning to allow existing users to be rewarded, you'll want to set the isReferrable boolean argument to true in the initSession call for Branch. This tells us that a pre-existing user is eligible for referral if they were to click on a Branch link and begin an app session. Please see section [4](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#sdk-initialization) for more info about this.
 
 # Basic Account Registration
 
@@ -91,72 +91,57 @@ You will be prompted to enter a name for your new app. Do so and press "Create."
 
 ![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/3_create_new_app.png)
 
-Navigate to the Settings page. Scroll down to App Store Information and search for your app by name--this is the same name listed on Google Play. With this information, Branch will automatically redirect users without your app installed on their devices to the App Store.
+Navigate to the Settings page. Scroll down to App Store Information and search for your app by name--this is the same name listed on the App Store. With this information, Branch will automatically redirect users without your app installed on their devices to the App Store.
 
-In the case that your app cannot be found on the Play Store (e.g. if you are still in development, or you're not listed in the US Play stores), you can also enter a custom URL by choosing "Custom URL to APK File". If you choose this option, Chrome will not able able to properly open up your app if it's already installed unless you append '?id=you.package.name' to your URL.
+In the case that your app cannot be found on the App Store (e.g. if you are still in development, or you're not listed in the US Play stores), you can also enter a custom URL by choosing "Custom URL to TestFlight/Other Host". 
 
 # SDK Initialization
 
 ### Step 0: Install library project
 
-Download JAR file from here:
-https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip
+#### Available in CocoaPods
+
+Branch is available through [CocoaPods](http://cocoapods.org), to install it simply add the following line to your Podfile:
+
+    pod "Branch"
+
+#### Or download the raw files
+
+Download code from here:
+https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip
 
 The testbed project:
-https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-TestBed.zip
+https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-TestBed.zip
 
-Or just clone [this project](https://github.com/BranchMetrics/Branch-Android-SDK)!
+Or just clone [this project](https://github.com/BranchMetrics/Branch-iOS-SDK)!
 
 ### Step 1: Register an activity for direct deep linking (optional but recommended)
 
-In your project's manifest file, you can register your app to respond to direct deep links (yourapp:// in a mobile browser) by adding the second intent filter block. Also, make sure to change **yourapp** to a unique string that represents your app name.
+You can register your app to respond to direct deep links (yourapp:// in a mobile browser) by adding a URI scheme in the YourProject-Info.plist file. Also, make sure to change **yourapp** to a unique string that represents your app name.
 
-Typically, you would register some sort of splash activitiy that handles routing for your app.
+1. In Xcode, click on YourProject-Info.plist on the left.
+1. Find URL Types and click the right arrow. (If it doesn't exist, right click anywhere and choose Add Row. Scroll down and choose URL Types)
+1. Add "yourapp", where yourapp is a unique string for your app, as an item in URL Schemes as below:
 
-```xml
-<activity
-	android:name="com.yourapp.SplashActivity"
-	android:label="@string/app_name" >
-	<intent-filter>
-		<action android:name="android.intent.action.MAIN" />
-		<category android:name="android.intent.category.LAUNCHER" />
-	</intent-filter>
+![URL Scheme Demo](https://s3-us-west-1.amazonaws.com/branchhost/urlScheme.png)
 
-	<!-- Add this intent filter below, and change yourapp to your app name -->
-	<intent-filter>
-		<data android:scheme="yourapp" android:host="open" />
-		<action android:name="android.intent.action.VIEW" />
-		<category android:name="android.intent.category.DEFAULT" />
-		<category android:name="android.intent.category.BROWSABLE" />
-	</intent-filter>
-</activity>
-```
+Alternatively, you can add the URI scheme in your project's Info page.
+
+1. In Xcode, click your project in the Navigator (on the left side).
+1. Select the "Info" tab.
+1. Expand the "URL Types" section at the bottom.
+1. Click the "+" sign to add a new URI Scheme, as below:
+
+![URL Scheme Demo](https://s3-us-west-1.amazonaws.com/branchhost/urlType.png)
 
 ### Step 2: Add your app key to your project
 
-After you register your app, your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. Now you need to add it to your project.
+After you register your app, your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. Now you need to add it to YourProject-Info.plist (Info.plist for Swift).
 
-1. Open your res/values/strings.xml file
-1. Add a new string resource with the name "bnc_app_key" and value as your app key
-    ```xml
-    <resources>
-        <!-- Other existing resources -->
-
-        <!-- Add this string resource below, and change "your app key" to your app key -->
-        <string name="bnc_app_key">"your app key"</string>
-    </resources>
-    ```
-
-1. Open your AndroidManifest.xml file
-1. Add the following new meta-data
-    ```xml
-    <application>
-        <!-- Other existing entries -->
-
-        <!-- Add this meta-data below; DO NOT changing the android:value -->
-        <meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
-    </application>
-    ```
+1. In plist file, mouse hover "Information Property List" which is the root item under the Key column.
+1. After about half a second, you will see a "+" sign appear. Click it.
+1. In the newly added row, fill in "bnc_app_key" for its key, leave type as String, and enter your app key obtained in above steps in its value column.
+1. Save the plist file.
 
 ### Step 3: Initialization in Launcher Activity
 
@@ -172,93 +157,104 @@ Either _install_ or _open_ will be triggered every single time the app opens, an
 
 Two scenarios must be true in order for _install_ to be called, and _open_ will be called in all other scenarios:
 
-- It must be the *first install* for that hardware id. A uninstall/reinstall is considered an open. (for testing, use setDebug to reset the hardware id every time)
-- It must *not be an app update*. We compare the APK creation date to the modification date, to ensure updates are conisdered opens
+- It must be the *first install* for that IDFA. A uninstall/reinstall is considered an open. (for testing, use setDebug to reset the IDFA every time)
+- It must *not be an app update*. We compare the bundle creation date to the modification date, to ensure updates are conisdered opens
 
-2) You register a **_deeplink handler_** BranchReferralInitListener, which will be called 100% of the time (even if a poor connection). When this callback is called, it will pass in the JSONObject of deep link parameters associated with the link a user just clicked or an empty JSONObject if no link was clicked.
+2) You register a **_deeplink handler_** block, which will be called 100% of the time (even if a poor connection). When this callback is called, it will pass in the NSDictionary of deep link parameters associated with the link a user just clicked or an empty NSDictionary if no link was clicked.
 
-3) If you plan to use Branch to track credits, you can customize your user's referral eligibility using the argument **_isReferrable_**. You can call this version of initSession to do so: initSession(BranchReferralInitListener callback, boolean **_isReferrable_**, Uri data, Activity activity). By default, we only consider a user eligible for referrals if they are a _fresh install_. If you would like ALL users, installs and opens, to be considered eligible for referrals, then you'll want to specify *true* for the isReferrable argument. 
+3) If you plan to use Branch to track credits, you can customize your user's referral eligibility using the argument **_isReferrable_**. You can call this version of initSession to do so: initSessionWithLaunchOptions:launchOptions isReferrable:YES andRegisterDeepLinkHandler:. By default, we only consider a user eligible for referrals if they are a _fresh install_. If you would like ALL users, installs and opens, to be considered eligible for referrals, then you'll want to specify *YES* for the isReferrable argument. 
 
 Here is the code to initialize your app with Branch:
 
-```java
-@Override
-public void onStart() {
-	super.onStart();
+##### Objective-C
+```objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	// your other init code
 
-	// Your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard
-	Branch branch = Branch.getInstance(getApplicationContext());
-	branch.initSession(new BranchReferralInitListener(){
-		@Override
-		public void onInitFinished(JSONObject referringParams, Branch.BranchError error) {
-			if (error == null) {
-				// params are the deep linked params associated with the link that the user clicked before showing up
-				// params will be empty if no data found
-
-				
-				// User the params to: 
-				// 1. route to specific destination in the app
-				// 2. handle your own rewarding if you'd like
-				// 3. show a custome welcome from the referring user
-			} else {
-				Log.i("MyApp", error.getMessage());
-			}
-		}
-	}, this.getIntent().getData(), this);
+	Branch *branch = [Branch getInstance];
+	[branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {	
 	// if you want to specify isReferrable, then comment out the above line and uncomment this line:
-	// }, true, this.getIntent().getData(), this);
+	// [branch initSessionWithLaunchOptions:launchOptions isReferrable:YES andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {	
+        if (!error) {
+            // params are the deep linked params associated with the link that the user clicked before showing up
+			// params will be empty if no data found
+
+			
+			// User the params to: 
+			// 1. route to specific destination in the app
+			// 2. handle your own rewarding if you'd like
+			// 3. show a custome welcome from the referring user
+        }
+	}];
 }
 ```
 
-This code is also required in the same activity where you called the above to notify Branch that the app has been closed.
-
-```java
-@Override
-public void onStop() {
-	super.onStop();
-	Branch.getInstance(getApplicationContext()).closeSession();
+```objc
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+	// pass the url to the handle deep link call
+	// if handleDeepLink returns YES, and you registered a callback in initSessionAndRegisterDeepLinkHandler, the callback will be called with the data associated with the deep link
+	if (![[Branch getInstance] handleDeepLink:url]) {
+		// do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+	}
+    return YES;
 }
 ```
+
+##### Swift
+```swift
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    // your other init code
+	
+    let branch: Branch = Branch.getInstance()
+    branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
+        if (error == nil) {
+            // params are the deep linked params associated with the link that the user clicked before showing up
+			// params will be empty if no data found
+
+			
+			// User the params to: 
+			// 1. route to specific destination in the app
+			// 2. handle your own rewarding if you'd like
+			// 3. show a custome welcome from the referring user
+        }
+    })
+        
+    return true
+}
+```
+
+```swift
+func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    // pass the url to the handle deep link call
+    // if handleDeepLink returns true, and you registered a callback in initSessionAndRegisterDeepLinkHandler, the callback will be called with the data associated with the deep link
+    if (!Branch.getInstance().handleDeepLink(url)) {
+        // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+    }
+        
+    return true
+}
+```
+
 #### Retrieving Link Parameters Later On
 
 ##### The Initial Referring Params
 
 If you ever want to access the original referring session params (the parameters passed in for the first referral event only - install only by default or first time if isReferrable is true), you can use this line. This is useful if you only want to reward users who newly installed the app from a referral link or something.
 
-Additionally, if you track identities through the Branch system using [this section](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#identity-management-for-influencer-tracking). The first referring parameters will be retrieved when you call setIdentity and we find that that particular user id had been referred before.
+Additionally, if you track identities through the Branch system using [this section](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#identity-management-for-influencer-tracking). The first referring parameters will be retrieved when you call setIdentity and we find that that particular user id had been referred before.
 
 For a particular user, these first referring parameters can never be cleared or updated.
 
 ```objc
-NSDictionary *sessionParams = [[Branch getInstance] getLatestReferringParams]; // previously getReferringParams
+NSDictionary *sessionParams = [[Branch getInstance] getLatestReferringParams];
 ```
 
 ##### The Current Session Params
 
 Every time a link is clicked and the user begins an app session, that will be considered a 'referred session' and the link parameters will be available at any time in the following call. Once the user minimizes the app, the session will be closed and those parameters will be cleared.
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-JSONObject sessionParams = branch.getLatestReferringParams();
-```
-
-### Step 4: Session Management
-
-You _must *initialize and close* a session in every activity_ that you plan to use Branch in. It's recommended that you go throughout the project and just add it everywhere so as not to accidentally make a mistake where you'll try to call Branch without an open session. This is required for us to know when a session should be closed out to be eligible for a new deep link. Below is the code you should use elsewhere:
-
-
-```java
-@Override
-public void onStart() {
-	super.onStop();
-	Branch.getInstance(getApplicationContext()).initSession();
-}
-
-@Override
-public void onStop() {
-	super.onStop();
-	Branch.getInstance(getApplicationContext()).closeSession();
-}
+```objc
+NSDictionary *installParams = [[Branch getInstance] getFirstReferringParams];
 ```
 
 # Event Tracking and Reward Rules
@@ -271,24 +267,24 @@ Tracking events through the Branch platform has many benefits. First off, you ca
 
 ![Conversion funnel example](https://s3-us-west-1.amazonaws.com/branch-guides/referral_event_conversion.png)
 
-Please note, that the events _install_, _open_ and _referred session_ are automatically created by the Branch service when you call initSession. Please see the [above section](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#step-3-initialization-in-launcher-activity) for more details on these events
+Please note, that the events _install_, _open_ and _referred session_ are automatically created by the Branch service when you call initSession. Please see the [above section](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#step-3-initialization-in-launcher-activity) for more details on these events
 
 In order to track events in your app, you must use the following code:
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.userCompletedAction("product_purchased"); // your custom event name should not exceed 63 characters
+```objc
+Branch *branch = [Branch getInstance];
+[branch userCompletedAction:@"product_purchase"]; // your custom event name should not exceed 63 characters
 ```
 
 OR if you want to store some state with the event, you can specify a JSONObject of additional key/value pairs with that event. Please note that this is where you specify the additional parameters that can help create more advanced rewarding rules based on the the _filter_ options described in the section below.
 
-```java
-JSONObject appState = new JSONObject();
-appState.set("eligible", "yes");
-appState.set("favorite_color", "blue");
+```objc
+NSMutableDictionary appState = [[NSMutableDictionary alloc] init];
+[appState setObject:@"yes" forKey:@"eligible"];
+[appState setObject:@"blue" forKey:@"favorite_color"];
 
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.userCompletedAction("product_purchased", appState); // same 63 characters max limit
+Branch *branch = [Branch getInstance];
+[branch userCompletedAction:@"product_purchase" withState:appState]; // same 63 characters max limit
 ```
 
 ### Tie Reward Rules to Events
@@ -313,7 +309,7 @@ When you create the reward rule, you'll want to specify a credit type other than
 
 Sometimes a simple event string is not enough for the complex types of systems you can dream up. For this reason, we added the ability to specify filters in addition to the basic reward rule string. This adds an additional filter on reward eligibility, tied to the event metadata that you specify in _userCompleteAction_ above.
 
-In the example above, we added "eligible":"yes" and "favorite_color":"blue" to the event via the appState JSONObject. While creating the rule, if you were to add "favorite_color":"red" into the dialog below, users that have a favorite_color of blue will not be eligible for the reward. Only users with a favorite_color of red will receive the credits.
+In the example above, we added "eligible":"yes" and "favorite_color":"blue" to the event via the appState NSDictionary. While creating the rule, if you were to add "favorite_color":"red" into the dialog below, users that have a favorite_color of blue will not be eligible for the reward. Only users with a favorite_color of red will receive the credits.
 
 ![Reward rule filter](https://s3-us-west-1.amazonaws.com/branch-guides/reward_rule_filter.png)
 
@@ -330,7 +326,7 @@ When you create a Branch link with the SDK, it's automatically associated with t
 Branch links are extremely extensible, but here are a few considerations when you create it in the SDK:
 
 - Make sure to label the links (feature, channel, etc) so that you can filter the *dashboard analytics*.
-	- **_feature_** Since this is a referral program guide, specify Branch.FEATURE_TAG_REFERRAL for this argument
+	- **_feature_** Since this is a referral program guide, specify BRANCH_FEATURE_TAG_REFERRAL for this argument
 	- **_channel_** You'll want to specify the channel that the link will be shared on, eg 'facebook', 'twitter', 'sms' etc so that you can see which channels driving the most users
 	- **_stage_** Use this if your users can access the feature at different stages in your app. This way you can see which stage is working best.
 
@@ -339,7 +335,7 @@ Branch links are extremely extensible, but here are a few considerations when yo
 	- If you are enhancing an existing referral code system, stash the code in the link so it's retrievable for users who click the link
 
 - Customize the *appearance* of a link on social media. You can customize the Facebook OG tags of each URL if you want to dynamically share content by using the following _optional keys in the data dictionary_. Please use this [Facebook tool](https://developers.facebook.com/tools/debug/og/object) to debug your OG tags!
-	- These keys/values are specified in the *custom deeplink data* JSONObject
+	- These keys/values are specified in the *custom deeplink data* NSDictionary
 
 	| Key | Value
 	| --- | ---
@@ -351,46 +347,78 @@ Branch links are extremely extensible, but here are a few considerations when yo
 	| "$og_app_id" | Your OG app ID. Optional and rarely used.
 
 - Customize the *redirect functionality*
-	- These keys/values are specified in the *custom deeplink data* JSONObject
+	- These keys/values are specified in the *custom deeplink data* NSDictionary
 
 	| Key | Value
 	| --- | ---
 	| "$desktop_url" | Where to send the user on a desktop or laptop. By default it is the Branch-hosted text-me service
-	| "$android_url" | The replacement URL for the Play Store to send the user if they don't have the app. _Only necessary if you want a mobile web splash_
+	| "$ios_url" | The replacement URL for the Play Store to send the user if they don't have the app. _Only necessary if you want a mobile web splash_
 	| "$ios_url" | The replacement URL for the App Store to send the user if they don't have the app. _Only necessary if you want a mobile web splash_
 
 For more details on how to create links, see the [Branch link creation guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/url-creation-guide.md)
 
-```java
+#### Create Urls Directly
+
+```objc
 // associate data with a link
 // you can access this data from any instance that installs or opens the app from this link (amazing...)
 
-JSONObject dataToInclude = new JSONObject();
-try {
-	dataToInclude.put("user", "Joe");
-	dataToInclude.put("profile_pic", "https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg");
-	dataToInclude.put("description", "Joe likes long walks on the beach...");
+NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 
-	// customize the display of the Branch link
-	dataToInclude.put("$og_title", "Joe's My App Referral");
-	dataToInclude.put("$og_image_url", "https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg");
-	dataToInclude.put("$og_description", "Join Joe in My App - it's awesome");
+[params setObject:@"Joe" forKey:@"user"];
+[params setObject:@"https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg" forKey:@"profile_pic"];
+[params setObject:@"Joe likes long walks on the beach..." forKey:@"description"];
 
-	// customize the desktop redirect location
-	dataToInclude.put("$desktop_url", "http://myapp.com/desktop_splash");
-} catch (JSONException ex) { }
+[params setObject:@"Joe's My App Referral" forKey:@"$og_title"];
+[params setObject:@"https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg" forKey:@"$og_image_url"];
+[params setObject:@"Join Joe in My App - it's awesome" forKey:@"$og_description"];
 
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.getShortUrl("sms", Branch.FEATURE_TAG_REFERRAL, "post_purchase", dataToInclude, new BranchLinkCreateListener() {
-	@Override
-	public void onLinkCreate(String url, Branch.BranchError error) {
-		if (error == null) {
-			// show the link to the user or share it immediately
-		} else {
-			Log.i("MyApp", error.getMessage());
-		}
-	}
-});
+[params setObject:@"http://myapp.com/desktop_splash" forKey:@"$desktop_url"];
+
+Branch *branch = [Branch getInstance];
+[branch getShortURLWithParams:params andChannel:@"sms" andFeature:BRANCH_FEATURE_TAG_REFERRAL andStage:@"post_purchase" andCallback:^(NSString *url, NSError *error) {
+	// show the link to the user or share it immediately
+}];
+```
+
+#### UIAcitivityView Share Sheet Url Creation
+
+UIActivityView is the standard way of allowing users to share content from your app. A common use case is a user sharing a referral code, or a content URL with their friends. If you want to give your users a way of sharing content from your app, this is the simpelist way to implement Branch. **_It will automatically create URLs to embed in the message._**
+
+Sample UIActivityView Share sheet:
+![UIActivityView Share Sheet](https://s3-us-west-1.amazonaws.com/branchhost/iOSShareSheet.png )
+
+The Branch iOS SDK includes a subclassed UIActivityItemProvider that can be passed into a UIActivityViewController, that will generate a Branch short URL and automatically tag it with the channel the user selects (Facebook, Twitter, etc.). The sample app included with the Branch iOS SDK shows a sample of this in ViewController.m:
+
+```objc
+// Setup up the content you want to share, and the Branch
+// params and properties, as you would for any Branch link
+
+NSString *shareString = @"Super amazing thing I want to share!";
+NSString *defaultURL = @"http://lmgtfy.com/?q=branch+metrics";
+
+NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+
+[params setObject:@"Joe" forKey:@"user"];
+[params setObject:@"https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg" forKey:@"profile_pic"];
+[params setObject:@"Joe likes long walks on the beach..." forKey:@"description"];
+
+[params setObject:@"Joe's My App Referral" forKey:@"$og_title"];
+[params setObject:@"https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg" forKey:@"$og_image_url"];
+[params setObject:@"Join Joe in My App - it's awesome" forKey:@"$og_description"];
+
+[params setObject:@"http://myapp.com/desktop_splash" forKey:@"$desktop_url"];
+    
+// Branch UIActivityItemProvider
+// No need to set the channel, that is done automatically based
+// on the share activity the user selects
+UIActivityItemProvider *itemProvider = [Branch getBranchActivityItemWithDefaultURL:defaultURL andParams:params andFeature:BRANCH_FEATURE_TAG_REFERRAL andStage:@"post_purchase"];
+
+// Pass this in the NSArray of ActivityItems when initializing a UIActivityViewController
+UIActivityViewController *shareViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString, itemProvider] applicationActivities:nil];
+
+// Present the share sheet!
+[self.navigationController presentViewController:shareViewController animated:YES completion:nil];
 ```
 
 # Identity Management for Influencer Tracking
@@ -400,7 +428,7 @@ Often, you might have your own user IDs, or want referral and event data to pers
 It's _very helpful but not required_ to spend the time and properly label the identities of your users within Branch. This means that you call setIdentity with your user id to alias the Branch automatic identity with your own. There a numerous benefits to telling Branch what your identities are:
 
 1. You can retrieve credit history, get credit balance and redeem credits via the [public API](https://github.com/BranchMetrics/Branch-Public-API) by specifying 'identity' with your user id.
-2. The Branch credit management backend will work across devices (tablet and phone) and even on the web (if you use the [web SDK](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#advanced-extending-referrals-to-the-web))
+2. The Branch credit management backend will work across devices (tablet and phone) and even on the web (if you use the [web SDK](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#advanced-extending-referrals-to-the-web))
 3. You can track which of your users are the the top influencers (invite the most new users to your app). You can see the list of influencers by visiting the appropriate section of the dashboard. Here's an example of without/with aliasing your user id.
 
 Influencer list WITHOUT calling setIdentity
@@ -410,9 +438,9 @@ Influencer list when properly calling setIdentity
 ![Influencer User Id](https://s3-us-west-1.amazonaws.com/branch-guides/influencers_with_id.png)
 
 To identify a user, just call:
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.setIdentity(@"your user id"); // your user id should not exceed 127 characters
+```objc
+// previously identifyUser:
+[[Branch getInstance] setIdentity:@"your user id"];	// your user id should not exceed 127 characters
 ```
 
 ### Logout and User Switching
@@ -421,8 +449,8 @@ If you provide a logout function in your app, be sure to clear the user when the
 
 **warning** this call will clear the referral credits and attribution on the device. Only call this when you're sure that the actual person using the app has changed.
 
-```java
-Branch.getInstance(getApplicationContext()).logout();
+```objc
+[[Branch getInstance] logout];	// previously clearUser
 ```
 
 # Credit Retrieval and Rewarding
@@ -437,42 +465,34 @@ Please note that if you've tied rewards to installs, our backend processes the r
 
 Reward balances change randomly on the backend when certain actions are taken (defined by your rules), so you'll need to make an asynchronous call to retrieve the balance. This call is also available on the public API with [this call](https://github.com/BranchMetrics/Branch-Public-API#getting-credit-count). Here is the syntax:
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.loadRewards(new BranchReferralStateChangedListener() {
-	@Override
-	public void onStateChanged(boolean changed, Branch.BranchError error) {
-		// changed boolean will indicate if the balance changed from what is currently in memory
+```objc
+[[Branch getInstance] loadRewardsWithCallback:^(BOOL changed, NSError *error) {
+	// changed boolean will indicate if the balance changed from what is currently in memory
 
-		// will return the balance of the current user's credits
-		int credits = branch.getCredits();
-	}
-});
+	// will return the balance of the current user's credits
+	NSInteger credits = [[Branch getInstance] getCredits];
+}];
+```
 
 ### Redeem (Spend) Credits
 
 We will store how many of the rewards have been deployed so that you don't have to track it on your end. In order to save that you gave the credits to the user, you can call redeem. Redemptions will reduce the balance of outstanding credits permanently. You can do this same functionality on the public API with [this call](https://github.com/BranchMetrics/Branch-Public-API#redeeming-credits).
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.redeemRewards(5);
+```objc
+// Save that the user has redeemed 5 credits
+[[Branch getInstance] redeemRewards:5];
 ```
 
 ### Retrieve Credit History (for display purposes)
 
 This call will retrieve the entire history of credits and redemptions from the individual user. Additionally, you can call this directly on the API with [this call](https://github.com/BranchMetrics/Branch-Public-API#getting-the-credit-history). To use this call, implement like so:
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.getCreditHistory(new BranchListResponseListener() {
-	public void onReceivingResponse(JSONArray list, Branch.BranchError error) {
-		if (error == null) {
-			// show the list in your app
-		} else {
-			Log.i("MyApp", error.getMessage());
-		}
-	}
-});
+```objc
+[[Branch getInstance] getCreditHistoryWithCallback:^(NSArray *history, NSError *error) {
+    if (!error) {
+        // process history
+    }
+}];
 ```
 
 The response will return an array that has been parsed from the following JSON:
@@ -526,7 +546,7 @@ At the top right of the dashboard, you have the option to create a new app. Use 
 
 ### Recommendation 2: Use setDebug To Simulate Fresh Installs
 
-One challenge aspect testing Branch's service is simulating a fresh install. We intentionally add a lot of restrictions to prevent 'install' events from being triggered on app updates or uninstall/reinstall. This is discussed extensively in [this section](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#step-3-initialization-in-launcher-activity).
+One challenge aspect testing Branch's service is simulating a fresh install. We intentionally add a lot of restrictions to prevent 'install' events from being triggered on app updates or uninstall/reinstall. This is discussed extensively in [this section](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#step-3-initialization-in-launcher-activity).
 
 To simulate a brand new user being referred from our perspective:
 
@@ -536,12 +556,10 @@ To simulate a brand new user being referred from our perspective:
 3. Click a link in the browser
 4. Run your test app
 
-```java
-	Branch branch = Branch.getInstance(getApplicationContext());
-	branch.setDebug();
-	branch.initSession(
-		// your implementation of the deep link router, etc
-	);
+```objc
+	Branch *branch = [Branch getInstance];
+	[Branch setDebug];
+	[branch initSession......]
 ```
 
 ### Recommendation 3: Use different user ids
@@ -569,81 +587,77 @@ Here are the high level SDK methods to allow you to implement this:
 Create a new referral code for the current user, only if this user doesn't have any existing non-expired referral code.
 
 In the simplest form, just specify an amount for the referral code.
-The returned referral code is a 6 character long unique alpha-numeric string wrapped inside the params dictionary with key "referral_code".
+The returned referral code is a 6 character long unique alpha-numeric string wrapped inside the params dictionary with key @"referral_code".
 
-**amount** _int_
+**amount** _NSInteger_
 : The amount of credit to redeem when user applies the referral code
 
-```java
+```objc
 // Create a referral code of 5 credits
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.getReferralCode(5, new BranchReferralInitListener() {
-	@Override
-	public void onInitFinished(JSONObject referralCode, Branch.BranchError error) {
-		try {
-			String code = referralCode.getString("referral_code");
-			// do whatever with code
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-});
+[[Branch getInstance] getReferralCodeWithAmount:5
+                                    andCallback:^(NSDictionary *params, NSError *error) {
+                                        if (!error) {
+                                            NSString *referralCode = [params objectForKey:@"referral_code"];
+                                            // do whatever with referralCode
+                                        }
+                                    }
+];
 ```
 
 Alternatively, you can specify a prefix for the referral code.
 The resulting code will have your prefix, concatenated with a 4 character long unique alpha-numeric string wrapped in the same data structure.
 
-**prefix** _String_
+**prefix** _NSString*_
 : The prefix to the referral code that you desire
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.getReferralCode("BRANCH", 5, new BranchReferralInitListener() {  // prefix should not exceed 48 characters
-	@Override
-	public void onInitFinished(JSONObject referralCode, Branch.BranchError error) {
-		try {
-			String code = referralCode.getString("referral_code");
-			// do whatever with code
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-});
+```objc
+// Create a referral code with prefix "BRANCH", 5 credits, and without an expiration date
+[[Branch getInstance] getReferralCodeWithPrefix:@"BRANCH"   // prefix should not exceed 48 characters
+                                         amount:5
+                                    andCallback:^(NSDictionary *params, NSError *error) {
+                                        if (!error) {
+                                            NSString *referralCode = [params objectForKey:@"referral_code"];
+                                            // do whatever with referralCode
+                                        }
+                                    }
+];
 ```
+
 You can also tune the referral code to the finest granularity, with the following additional parameters:
 
-**expiration** _Date_
+**expiration** _NSDate*_
 : The expiration date of the referral code
 
-**bucket** _String_ (max 63 characters)
+**bucket** _NSString*_
 : The name of the bucket to use. If none is specified, defaults to 'default'
 
-**calculation_type**  _int_
+**calculation_type**  _ReferralCodeCalculation_
 : This defines whether the referral code can be applied indefinitely, or only once per user
 
-1. _REFERRAL_CODE_AWARD_UNLIMITED_ - referral code can be applied continually
-1. _REFERRAL_CODE_AWARD_UNIQUE_ - a user can only apply a specific referral code once
+1. _BranchUnlimitedRewards_ - referral code can be applied continually
+1. _BranchUniqueRewards_ - a user can only apply a specific referral code once
 
-**location** _int_
+**location** _ReferralCodeLocation_
 : The user to reward for applying the referral code
 
-1. _REFERRAL_CODE_LOCATION_REFERREE_ - the user applying the referral code receives credit
-1. _REFERRAL_CODE_LOCATION_REFERRING_USER_ - the user who created the referral code receives credit
-1. _REFERRAL_CODE_LOCATION_BOTH_ - both the creator and applicant receive credit
+1. _BranchReferreeUser_ - the user applying the referral code receives credit
+1. _BranchReferringUser_ - the user who created the referral code receives credit
+1. _BranchBothUsers_ - both the creator and applicant receive credit
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.getReferralCode("BRANCH", 5, expirationDate, "default", REFERRAL_CODE_AWARD_UNLIMITED, REFERRAL_CODE_LOCATION_REFERRING_USER, new BranchReferralInitListener() { // prefix should not exceed 48 characters
-	@Override
-	public void onInitFinished(JSONObject referralCode, Branch.BranchError error) {
-		try {
-			String code = referralCode.getString("referral_code");
-			// do whatever with code
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-});
+```objc
+[[Branch getInstance] getReferralCodeWithPrefix:@"BRANCH"   // prefix should not exceed 48 characters
+				                         amount:5
+				                     expiration:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24]
+				                         bucket:@"default"
+				                calculationType:BranchUniqueRewards
+				                       location:BranchBothUsers
+				                    andCallback:^(NSDictionary *params, NSError *error) {
+				                        if (!error) {
+				                            NSString *referralCode = [params objectForKey:@"referral_code"];
+				                            // do whatever with referralCode
+				                        }
+			                       	}
+];
 ```
 
 ### Step 2: Validate referral code
@@ -656,62 +670,45 @@ A code is vaild if:
 
 If valid, returns the referral code JSONObject in the call back.
 
-**code** _String_
+**code** _NSString*_
 : The referral code to validate
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.validateReferralCode(code, new BranchReferralInitListener() {
-	@Override
-	public void onInitFinished(JSONObject referralCode, Branch.BranchError error) {
-		try {
-			if (!referralCode.has("error_message")) {		// will change to using a second callback parameter for error code soon!
-				String referral_code = referralCode.getString("referral_code");
-				if (referral_code.equals(code)) {
-					// valid
-				} else {
-					// invalid (should never happen)
-				}
-			} else {
-				// invalid
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-});
+```objc
+[[Branch getInstance] validateReferralCode:code andCallback:^(NSDictionary *params, NSError *error) {
+    if (!error) {
+        if ([code isEqualToString:[params objectForKey:@"referral_code"]]) {
+            // valid
+        } else {
+            // invaid (should never happen)
+        }
+    } else {
+        NSLog(@"Error in validating referral code: %@", error.localizedDescription);
+    }
+}];
 ```
 
 ### Step 3: Apply referral code
 
-Apply a referral code if it exists in Branch system and is still valid (see above). If the code is valid, returns the referral code JSONObject in the call back. This will automatically deposit the number of credits into the user's Branch credit account.
+Apply a referral code if it exists in Branch system and is still valid (see above). If the code is valid, returns the referral code NSDictionary in the call back. This will automatically deposit the number of credits into the user's Branch credit account.
 
-**code** _String_
+**code** _NSString*_
 : The referral code to apply
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.applyReferralCode(code, new BranchReferralInitListener() {
-	@Override
-	public void onInitFinished(JSONObject referralCode, Branch.BranchError error) {
-		try {
-			if (!referralCode.has("error_message")) {
-				// applied. you can get the referral code amount from the referralCode JSONObject and deduct it in your UI.
-			} else {
-				// invalid code
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-});
+```objc
+[[Branch getInstance] applyReferralCode:code andCallback:^(NSDictionary *params, NSError *error) {
+    if (!error) {
+        // applied. you can get the referral code amount from the params and deduct it in your UI.
+    } else {
+        NSLog(@"Error in applying referral code: %@", error.localizedDescription);
+    }
+}];
 ```
 
 ### Step 4: Redeem credits from code
 
 We will store how many of the rewards have been deployed so that you don't have to track it on your end. In order to save that you gave the credits to the user, you can call redeem.  Redemptions will reduce the balance of outstanding credits permanently.
 
-```java
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.redeemRewards(5);
+```objc
+// Save that the user has redeemed 5 credits
+[[Branch getInstance] redeemRewards:5];
 ```
