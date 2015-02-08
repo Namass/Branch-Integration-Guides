@@ -11,6 +11,7 @@ This quick start guide shows you how to leverage Branch links to build a powerfu
 1. [Event Tracking and Reward Rules](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#event-tracking-and-reward-rules)
 1. [Link Creation for User Attribution](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#link-creation-for-user-attribution)
 1. [Identity Management for Influencer Tracking](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#identity-management-for-influencer-tracking)
+1. [Credit Retrieval and Rewarding](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#credit-retrieval-and-rewarding)
 1. [Testing Considerations](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#testing-considerations)
 1. [Advanced: Coupon/Referral Codes](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#advanced-couponreferral-codes)
 1. [Advanced: Extending Referrals to the Web](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#advanced-extending-referrals-to-the-web)
@@ -153,7 +154,7 @@ After you register your app, your app key can be retrieved on the [Settings](htt
 
 Branch must be initialized on app open in order to check whether the user had just clicked a link or not. This first init call is critical as it's where a number of things happen. Here's a list with an explanation of each:
 
-1. _initSession_ an asynchronous call to Branch to check if a user had just clicked a Branch link. It's about a 40 ms server call. It will automatically trigger events on the Branch dashboard for your app. The possible events that are triggered are:
+1) _initSession_ an asynchronous call to Branch to check if a user had just clicked a Branch link. It's about a 40 ms server call. It will automatically trigger events on the Branch dashboard for your app. The possible events that are triggered are:
 
 - _install_
 - _open_
@@ -163,12 +164,12 @@ Either _install_ or _open_ will be triggered every single time the app opens, an
 
 Two scenarios must be true in order for _install_ to be called, and _open_ will be called in all other scenarios:
 
-	1) It must be the first install for that hardware id. A uninstall/reinstall is considered an open. (for testing, use setDebug to reset the hardware id every time)
-	2) It must not be an app update. We compare the APK creation date to the modification date, to ensure updates are conisdered opens
+- It must be the first install for that hardware id. A uninstall/reinstall is considered an open. (for testing, use setDebug to reset the hardware id every time)
+- It must not be an app update. We compare the APK creation date to the modification date, to ensure updates are conisdered opens
 
-2. You register a _deeplink handler_ BranchReferralInitListener, which will be called 100% of the time (even if a poor connection). When this callback is called, it will pass in the JSONObject of deep link parameters associated with the link a user just clicked or an empty JSONObject if no link was clicked.
+2) You register a _deeplink handler_ BranchReferralInitListener, which will be called 100% of the time (even if a poor connection). When this callback is called, it will pass in the JSONObject of deep link parameters associated with the link a user just clicked or an empty JSONObject if no link was clicked.
 
-3. If you plan to use Branch to track credits, you can customize your user's referral eligibility using the argument *isReferrable*. You can call this version of initSession to do so: initSession(BranchReferralInitListener callback, boolean *isReferrable*, Uri data, Activity activity). By default, we only consider a user eligible for referrals if they are a _fresh install_. If you would like ALL users, installs and opens, to be considered eligible for referrals, then you'll want to specify *true* for the isReferrable argument. 
+3) If you plan to use Branch to track credits, you can customize your user's referral eligibility using the argument *isReferrable*. You can call this version of initSession to do so: initSession(BranchReferralInitListener callback, boolean *isReferrable*, Uri data, Activity activity). By default, we only consider a user eligible for referrals if they are a _fresh install_. If you would like ALL users, installs and opens, to be considered eligible for referrals, then you'll want to specify *true* for the isReferrable argument. 
 
 Here is the code to initialize your app with Branch:
 
@@ -240,7 +241,7 @@ Tracking events through the Branch platform has many benefits. First off, you ca
 
 ![Conversion funnel example](https://s3-us-west-1.amazonaws.com/branch-guides/referral_event_conversion.png)
 
-Please note, that the events 'install', 'open' and 'referred session' are automatically created by the Branch service when you call initSession. Please see the [above section]()
+Please note, that the events _install_, _open_ and _referred session_ are automatically created by the Branch service when you call initSession. Please see the [above section](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#step-3-initialization-in-launcher-activity) for more details on these events
 
 In order to track events in your app, you must use the following code:
 
@@ -262,17 +263,35 @@ branch.userCompletedAction("product_purchased", appState); // same 63 characters
 
 ### Tie Reward Rules to Events
 
-Now that you've populated your app with custom events to track, you can create the reward rules that will properly
+Now that you've populated your app with custom events to track, you can create the reward rules to automatically add credits to a users. Click _Add a new rule_ to begin.
 
 ![Reward rule start](https://s3-us-west-1.amazonaws.com/branch-guides/referral_rewards.png)
 
+Rule creation for credits is very intuitive and written in a form that makes it easy to understand such complex systems. In the example below, the 'referring users' will get an unspecified number of credits every time users they've referred have triggered a _product_purchased_ event.
+
+If you also want to allow the user who was referred to get a reward, you'll want to create a new rule in addition to this one.
+
 ![Reward rule create](https://s3-us-west-1.amazonaws.com/branch-guides/reward_rule_creation.png)
+
+#### Advanced & Optional: Credit Buckets
+
+Buckets are a way for you to store special kinds of rewards. This is most applicable if you're planning to offer tiers of reward that may or may not be tied to dollars. For example, maybe you are a photo app thats to award different kinds of filters for special actions completed. Or perhaps you are a game that wants to give differentl levels away.
+
+When you create the reward rule, you'll want to specify a credit type other than _default_ type of credit. You can create specify an unlimited number of credit types with whatever name you'd like. Any credits that are awarded from that rule will be deposited in the specified credit bucket. If left as is, all credits will be deposited into the _default_ bucket.
+
+#### Advanced & Optional: Reward Rule Filters
+
+Sometimes a simple event string is not enough for the complex types of systems you can dream up. For this reason, we added the ability to specify filters in addition to the basic reward rule string. This adds an additional filter on reward eligibility, tied to the event metadata that you specify in _userCompleteAction_ above.
+
+In the example above, we added "eligible":"yes" and "favorite_color":"blue" to the event via the appState JSONObject. While creating the rule, if you were to add "favorite_color":"red" into the dialog below, users that have a favorite_color of blue will not be eligible for the reward. Only users with a favorite_color of red will receive the credits.
 
 ![Reward rule filter](https://s3-us-west-1.amazonaws.com/branch-guides/reward_rule_filter.png)
 
 # Link Creation for User Attribution
 
 # Identity Management for Influencer Tracking
+
+# Credit Retrieval and Rewarding
 
 # Testing Considerations
 
