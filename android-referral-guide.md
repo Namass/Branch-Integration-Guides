@@ -162,7 +162,7 @@ After you register your app, your app key can be retrieved on the [Settings](htt
 
 Branch must be initialized on app open in order to check whether the user had just clicked a link or not. This first init call is critical as it's where a number of things happen. Here's a list with an explanation of each:
 
-1) _initSession_ an asynchronous call to Branch to check if a user had just clicked a Branch link. It's about a 40 ms server call. It will automatically trigger events on the Branch dashboard for your app. The possible events that are triggered are:
+1) *_initSession_* an asynchronous call to Branch to check if a user had just clicked a Branch link. It's about a 40 ms server call. It will automatically trigger events on the Branch dashboard for your app. The possible events that are triggered are:
 
 - _install_
 - _open_
@@ -172,12 +172,12 @@ Either _install_ or _open_ will be triggered every single time the app opens, an
 
 Two scenarios must be true in order for _install_ to be called, and _open_ will be called in all other scenarios:
 
-- It must be the first install for that hardware id. A uninstall/reinstall is considered an open. (for testing, use setDebug to reset the hardware id every time)
-- It must not be an app update. We compare the APK creation date to the modification date, to ensure updates are conisdered opens
+- It must be the *first install* for that hardware id. A uninstall/reinstall is considered an open. (for testing, use setDebug to reset the hardware id every time)
+- It must *not be an app update*. We compare the APK creation date to the modification date, to ensure updates are conisdered opens
 
-2) You register a _deeplink handler_ BranchReferralInitListener, which will be called 100% of the time (even if a poor connection). When this callback is called, it will pass in the JSONObject of deep link parameters associated with the link a user just clicked or an empty JSONObject if no link was clicked.
+2) You register a *_deeplink handler_* BranchReferralInitListener, which will be called 100% of the time (even if a poor connection). When this callback is called, it will pass in the JSONObject of deep link parameters associated with the link a user just clicked or an empty JSONObject if no link was clicked.
 
-3) If you plan to use Branch to track credits, you can customize your user's referral eligibility using the argument *isReferrable*. You can call this version of initSession to do so: initSession(BranchReferralInitListener callback, boolean *isReferrable*, Uri data, Activity activity). By default, we only consider a user eligible for referrals if they are a _fresh install_. If you would like ALL users, installs and opens, to be considered eligible for referrals, then you'll want to specify *true* for the isReferrable argument. 
+3) If you plan to use Branch to track credits, you can customize your user's referral eligibility using the argument *_isReferrable_*. You can call this version of initSession to do so: initSession(BranchReferralInitListener callback, boolean *_isReferrable_*, Uri data, Activity activity). By default, we only consider a user eligible for referrals if they are a _fresh install_. If you would like ALL users, installs and opens, to be considered eligible for referrals, then you'll want to specify *true* for the isReferrable argument. 
 
 Here is the code to initialize your app with Branch:
 
@@ -221,6 +221,8 @@ public void onStop() {
 ```
 #### Retrieving Link Parameters Later On
 
+##### The Initial Referring Params
+
 If you ever want to access the original referring session params (the parameters passed in for the first referral event only - install only by default or first time if isReferrable is true), you can use this line. This is useful if you only want to reward users who newly installed the app from a referral link or something.
 
 Additionally, if you track identities through the Branch system using [this section](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-referral-guide.md#identity-management-for-influencer-tracking). The first referring parameters will be retrieved when you call setIdentity and we find that that particular user id had been referred before.
@@ -231,6 +233,8 @@ For a particular user, these first referring parameters can never be cleared or 
 Branch branch = Branch.getInstance(getApplicationContext());
 JSONObject installParams = branch.getFirstReferringParams();
 ```
+
+##### The Current Session Params
 
 Every time a link is clicked and the user begins an app session, that will be considered a 'referred session' and the link parameters will be available at any time in the following call. Once the user minimizes the app, the session will be closed and those parameters will be cleared.
 
@@ -327,9 +331,9 @@ When you create a Branch link with the SDK, it's automatically associated with t
 Branch links are extremely extensible, but here are a few considerations when you create it in the SDK:
 
 - Make sure to label the links (feature, channel, etc) so that you can filter the *dashboard analytics*.
-	- _feature_ Since this is a referral program guide, specify Branch.FEATURE_TAG_REFERRAL for this argument
-	- _channel_ You'll want to specify the channel that the link will be shared on, eg 'facebook', 'twitter', 'sms' etc so that you can see which channels driving the most users
-	- _stage_ Use this if your users can access the feature at different stages in your app. This way you can see which stage is working best.
+	- *_feature_* Since this is a referral program guide, specify Branch.FEATURE_TAG_REFERRAL for this argument
+	- *_channel_* You'll want to specify the channel that the link will be shared on, eg 'facebook', 'twitter', 'sms' etc so that you can see which channels driving the most users
+	- *_stage_* Use this if your users can access the feature at different stages in your app. This way you can see which stage is working best.
 
 - Decide on what *custom deeplink data* you want to permanently associate with the Branch link that you create
 	- Associate all data you have about the user (name, picture, etc) so that anyone who installs from the link will see their face
@@ -337,6 +341,7 @@ Branch links are extremely extensible, but here are a few considerations when yo
 
 - Customize the *appearance* of a link on social media. You can customize the Facebook OG tags of each URL if you want to dynamically share content by using the following _optional keys in the data dictionary_. Please use this [Facebook tool](https://developers.facebook.com/tools/debug/og/object) to debug your OG tags!
 	- These keys/values are specified in the *custom deeplink data* JSONObject
+
 	| Key | Value
 	| --- | ---
 	| "$og_title" | The title you'd like to appear for the link in social media
@@ -348,6 +353,7 @@ Branch links are extremely extensible, but here are a few considerations when yo
 
 - Customize the *redirect functionality*
 	- These keys/values are specified in the *custom deeplink data* JSONObject
+
 	| Key | Value
 	| --- | ---
 	| "$desktop_url" | Where to send the user on a desktop or laptop. By default it is the Branch-hosted text-me service
@@ -409,6 +415,8 @@ To identify a user, just call:
 Branch branch = Branch.getInstance(getApplicationContext());
 branch.setIdentity(@"your user id"); // your user id should not exceed 127 characters
 ```
+
+### Logout and User Switching
 
 If you provide a logout function in your app, be sure to clear the user when the logout completes. This will ensure that all the stored parameters get cleared and all events are properly attributed to the right identity.
 
