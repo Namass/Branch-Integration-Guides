@@ -3,7 +3,7 @@ Android Quick-Start Guide
 This quick start guide shows you how to get up and running fast with the Branch SDK for Android.
 
 
-<p align="center"><img src="images/guide_to_the_guide.png" alt="a guide to this guide"></p>
+<p align="center"><img src="https://s3-us-west-1.amazonaws.com/branch-guides/guide_to_the_guide.png" alt="a guide to this guide"></p>
 
 
 # *Step 0* - Sign Up & Setup
@@ -43,7 +43,7 @@ You'll be presented with the Settings page for your newly created app. Up top is
 
 Scroll down to the *App store information* section and select your app by searching for it within the *Google Play Search* box provided. If youre app is published outside of the Play Store, you can alternatively provide a *Custom URL to APK* that points to a publically accessible location where users can download your app - this comes in handy if you haven't yet published your app and want to try out the features of Branch before you do.
 
-<img src="images/select_your_app.gif" alt="you can select your app from the Play Store if it is already published"/>
+<img src="https://s3-us-west-1.amazonaws.com/branch-guides/select_your_app.gif" alt="you can select your app from the Play Store if it is already published"/>
 
 # Step 2 - Set Up Your IDE
 
@@ -78,7 +78,7 @@ Todo - copy content from local-studio.md.
 
 As Android Studio makes use of Gradle dependencies and the Branch SDK is hosted in Maven Central, the set up process is straightforward.
 
-<p align="center"><img src="images/android_studio_gradle_dependency.gif"></p>
+<p align="center"><img src="https://s3-us-west-1.amazonaws.com/branch-guides/android_studio_gradle_dependency.gif"></p>
 
 * Right click on the main module within your project (this is called 'app' by default).
 * Select **Open Module Settings**.
@@ -103,7 +103,7 @@ If there's no error highlighted in red, you're ready to **go to Step 4**.
 
 [Download](https://github.com/BranchMetrics/Branch-Android-SDK/archive/master.zip) or [clone](https://github.com/BranchMetrics/Branch-Android-SDK.git) the Branch SDK to your machine, and import it into your Eclipse workspace alongside the project that you want to integrate with Branch.
 
-<p align="center"><img src="images/eclipse_import_library.gif"></p>
+<p align="center"><img src="https://s3-us-west-1.amazonaws.com/branch-guides/eclipse_import_library.gif"></p>
 
 * Go to File > Import
 * Browse to the directory that you unzipped the project to and select it in the dialog.
