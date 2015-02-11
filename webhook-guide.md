@@ -55,9 +55,7 @@ Click Add a new webhook to get started.
 
 We've layed out the webhook registration in a sentence format. The format is:
 
-> 
-> Send a webhook to [ WEBHOOK URL ] [ EVERY TIME / THE FIRST TIME ] users trigger the event [ EVENT ]
->
+> Send a webhook to [ WEBHOOK URL ] [ EVERY TIME / THE FIRST TIME ] users trigger the event [ EVENT ].
 
 First, enter the webhook URL in your own web server URL that you would like the events to be posted to.
 
