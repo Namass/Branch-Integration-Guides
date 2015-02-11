@@ -15,7 +15,7 @@ Here is the format of what we post to you
 	{
 		event: ‘event name’
 		metadata: ‘event metadata’ - specified in userCompletedAction withState
-		hardware_id: ‘IDFA’
+		hardware_id: 'IDFA' (iOS) | 'Android ID' (Android)
 		os: 'iOS' | 'Android'
 
 		// optionally included:
