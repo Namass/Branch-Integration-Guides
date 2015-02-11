@@ -186,6 +186,13 @@ func application(application: UIApplication, openURL url: NSURL, sourceApplicati
 }
 ```
 
+_Swift only: You need to include Branch in your bridging header. If you have not yet created a bridging header, add a new **Objective-C File** (Empty file works, name it anything you want). XCode will ask you if you want to create a new bridging header. Choose **Yes** and then delete the empty Objective-C file. Your newly created bridging header will be called **${YOUR-PROJECT}-Bridging-Header.h**. Add the following to that file:_
+
+```
+#import <Branch/Branch.h>
+```
+
+
 The deep link handler is called every single time the app is opened, returning deep link data if the user tapped on a link that led to this app open.
 
 This same code also triggers the recording of an event with Branch. If this is the first time a user has opened the app, an "install" event is registered. Every subsequent time the user opens the app, it will trigger an "open" event.
@@ -236,6 +243,7 @@ Branch's default behavior is to track which users refer other users. Also by def
 
 This default behavior can be overridden by modifying the _initSessionWithLaunchOptions:andRegisterDeepLinkHandler:_ method in _application:didFinishLaunchingWithOptions:_. Replace the method call with the following: 
 
+##### Objective-C
 ```objc
 [branch initSessionWithLaunchOptions:launchOptions isReferrable:@YES andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {     // previously initUserSessionWithCallback:withLaunchOptions:
    if (!error) {
@@ -246,11 +254,24 @@ This default behavior can be overridden by modifying the _initSessionWithLaunchO
 }];
 ```
 
-You can set _isReferrable_ to **@YES** or **@NO**, and the behavior is as follows:
+##### Swift
+```swift
+branch.initSessionWithLaunchOptions(launchOptions, isReferrable: true, andRegisterDeepLinkHandler: { params, error in
+    if (error == nil) {
+        // This can now count as a referred session even if this isn't
+        // the first time a user has opened the app (aka an "Install").
+        // ... insert custom logic here ...
+    }
+})
+```
 
-1. **@YES**: Now a connection can be established between a referring user and a referred user during _any_ session, not just the very first time a user opens the app. This means that if a user signs up without clicking on a shared Branch link but later clicks on a link, the referring-referred connection is established. (In the example in part 3 below, if Bob's friend Amy had already found and opened the app on her own but later came back to it because Bob sent her a link, Bob is the referring user and Amy is the referred user.) There can only be one referring user for any given user (e.g. as soon as Amy clicks a link from Bob, Bob is her referrer and no subsequent shared Branch links will change that). There are specific use cases where you may want this flexibility--feel free to reach out if you have questions.
+You can set _isReferrable_ to **@YES** or **@NO** (Swift: **true** or **false**), and the behavior is as follows:
 
-2. **@NO**: If _isReferrable_ is set to **@NO**, your app will never track the relationship between referring users and referred users. While we're not sure why you wouldn't want such valuable information, it is certainly an option.
+1. **@YES** (_Swift_ **true**): Now a connection can be established between a referring user and a referred user during _any_ session, not just the very first time a user opens the app. This means that if a user signs up without clicking on a shared Branch link but later clicks on a link, the referring-referred connection is established. (In the example in part 3 below, if Bob's friend Amy had already found and opened the app on her own but later came back to it because Bob sent her a link, Bob is the referring user and Amy is the referred user.) There can only be one referring user for any given user (e.g. as soon as Amy clicks a link from Bob, Bob is her referrer and no subsequent shared Branch links will change that). There are specific use cases where you may want this flexibility--feel free to reach out if you have questions.
+
+2. **@NO** (_Swift_ **false**): If _isReferrable_ is set to **@NO**, your app will never track the relationship between referring users and referred users. While we're not sure why you wouldn't want such valuable information, it is certainly an option.
+
+Note that the default behavior when _isReferrable_ is not set is different from both @YES and @NO. It relates the current user to a referring user ONLY for the very first open (aka "Install").
 
 ## 3. Creating custom links for the user to share
 
@@ -266,6 +287,7 @@ As a concrete example, say that you are a ride-sharing service, and your first u
 
 Links are created dynamically and on-the-fly in the app. The easiest way to create a link is by calling the Branch SDK's methods starting with _getShortURL.._
 
+##### Objective-C
 ```objc
 NSDictionary *params = @{ @"referringUsername": @"Bob",
                          @"referringUserId": @"1234" };
@@ -275,12 +297,25 @@ NSDictionary *params = @{ @"referringUsername": @"Bob",
 }];
 ```
 
+##### Swift
+```swift
+var params = [ "referringUsername": "Bob",
+                "referringUserId": "1234" ]
+Branch.getInstance().getShortURLWithParams(params, andCallback: { (url: String!, error: NSError!) -> Void in
+    if (error == nil) {
+        // Now we can do something with the URL...
+        NSLog("url: %@", url);
+    }
+})
+```
+
 The information associated with this link is now **forever available** to other users who click this link. Now any users who click on the link will see { "referringUsername": "Bob", "referringUserId": "1234" } in the params when the app launches. The params are included in the callback of the Branch SDK's methods beginning with _initSession.._, as seen in the code in _application:didFinishLaunchingWithOptions:_, referenced in section 2 above.
 
 ### Social Graph (OG) tags
 
 You can also customize the OG tags associated with the link by including key-value pairs in the params dictionary when creating a link. Note that these overwrite any defaults that you previously set on the Branch Dashboard.
 
+##### Objective-C
 ```objc
 NSMutableDictionary *params = [NSMutableDictionary dictionary];
 params[@"referringUsername"] = @"Bob";
@@ -294,6 +329,23 @@ params[@"og_description"] = @"Out of all the apps disrupting apps, MyApp is with
    // Now we can do something with the URL...
    NSLog(@"url: %@", url);
 }];
+``` 
+
+##### Swift
+```swift
+var params = [ "referringUsername": "Bob",
+                "referringUserId": "1234" ]
+
+// Facebook OG tags -- this will overwrite any defaults you set up on the Branch Dashboard
+params["$og_title"] = "MyApp is disrupting apps"
+params["og_description"] = "Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out."
+
+Branch.getInstance().getShortURLWithParams(params, andCallback: { (url: String!, error: NSError!) -> Void in
+    if (error == nil) {
+        // Now we can do something with the URL...
+        NSLog("url: %@", url);
+    }
+})
 ``` 
 
 **Note**: You can customize the Facebook OG tags of each URL if you want to dynamically share content by using the following _optional keys in the params dictionary_:
@@ -339,15 +391,30 @@ Branch allows you to track features and channels. The more you track, the more a
 
 An example illustrates another _getShortURL.._ call with Channel and Feature specified.
 
+##### Objective-C
 ```objc
 NSMutableDictionary *params = [NSMutableDictionary dictionary];
 params[@"referringUsername"] = @"Bob";
 params[@"referringUserId"] = @"1234";
     
 [[Branch getInstance] getShortURLWithParams:params andChannel:@"Facebook" andFeature:@"Referral" andCallback:^(NSString *url, NSError *error) {
-   // Now we can do something with the URL...
-   NSLog(@"url: %@", url);
+	if (!error) {
+	   // Now we can do something with the URL...
+	   NSLog(@"url: %@", url);
+	}
 }];
+```
+
+##### Swift
+```swift
+var params = [ "referringUsername": "Bob",
+                "referringUserId": "1234" ]
+Branch.getInstance().getShortURLWithParams(params, andChannel: "Facebook", andFeature: "Referral", andCallback: { (url: String!, error: NSError!) -> Void in
+    if (error == nil) {
+        // Now we can do something with the URL...
+        NSLog("url: %@", url);
+    }
+})
 ```
 
 ### Sharing via SMS/iMessage
@@ -355,6 +422,8 @@ params[@"referringUserId"] = @"1234";
 To quickly share via SMS/iMessage, we've included some code that you can copy and paste into your own app. This is all the code you need to get users started on inviting other users!
 
 First, note that this is making an asynchronous call to Branch's servers to generate the link and attach the information provided in the params dictionary. We highly recommend showing the user a spinner and disabling your "share" button while the link is being generated. You can either use [UIActivityIndicatorView](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIActivityIndicatorView_Class/index.html) (native) or an external library like [MBProgressHUD](https://github.com/jdg/MBProgressHUD). 
+
+##### Objective-C
 
 At the top of your view controller's implementation (.m) file, include the following:
 
@@ -379,21 +448,23 @@ params[@"referringUserId"] = @"1234";
 // ... insert code to start the spinner of your choice here ...
 
 [[Branch getInstance] getShortURLWithParams:params andChannel:@"SMS" andFeature:@"Referral" andCallback:^(NSString *url, NSError *error) {
-    // Check to make sure we can send messages on this device
-    if ([MFMessageComposeViewController canSendText]) {
-        MFMessageComposeViewController *messageComposer = [[MFMessageComposeViewController alloc] init];
-        
-        // Set the contents of the SMS/iMessage -- be sure to include the URL!
-        [messageComposer setBody:[NSString stringWithFormat:@"You should definitely take a look at MyApp -- use my invite code to get free brownie points: %@", url]];
-        
-        messageComposer.messageComposeDelegate = self;
-        [self presentViewController:messageComposer animated:YES completion:^{
-            // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
+	if (!error) {
+	    // Check to make sure we can send messages on this device
+	    if ([MFMessageComposeViewController canSendText]) {
+	        MFMessageComposeViewController *messageComposer = [[MFMessageComposeViewController alloc] init];
+	        
+	        // Set the contents of the SMS/iMessage -- be sure to include the URL!
+	        [messageComposer setBody:[NSString stringWithFormat:@"You should definitely take a look at MyApp -- use my invite code to get free brownie points: %@", url]];
+	        
+	        messageComposer.messageComposeDelegate = self;
+	        [self presentViewController:messageComposer animated:YES completion:^{
+	            // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
 
-        }];
-    } else {
-        // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
-        [[[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Your device does not allow sending SMS or iMessages." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+	        }];
+	    } else {
+	        // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
+	        [[[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Your device does not allow sending SMS or iMessages." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+	    }
     }
 }];
 ```
@@ -407,7 +478,59 @@ Lastly, there is a required delegate method for the MessageComposeViewController
 }
 ```
 
-The above code allows you to quickly achieve the following. Custom referral code!
+The above code allows you to quickly implement sharing via SMS. See the screenshot below (below Swift example)!
+
+##### Swift
+
+At the top of your view controller's implementation (.m) file, include the following:
+
+```swift
+import MessageUI
+```
+
+Then be sure to indicate that your view controller conforms to MFMessageComposeViewControllerDelegate protocol. This is done by modifying the class line of your view controller's .swift file.
+
+```swift
+class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
+```
+
+The following code should go in some method triggered by the user (such as when the user taps on a button).
+
+```swift
+var params = [ "referringUsername": "Bob",
+                "referringUserId": "1234" ]
+
+// ... insert code to start the spinner of your choice here ...
+
+Branch.getInstance().getShortURLWithParams(params, andChannel: "SMS", andFeature: "Referral", andCallback: { (url: String!, error: NSError!) -> Void in
+    if (error == nil) {
+        if MFMessageComposeViewController.canSendText() {
+            let messageComposer = MFMessageComposeViewController()
+            messageComposer.body = String(format: "You should definitely take a look at MyApp -- use my invite code to get free brownie points: %@", url)
+            messageComposer.messageComposeDelegate = self
+            self.presentViewController(messageComposer, animated: true, completion:{(Bool) in
+                // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
+            })
+        } else {
+            // ... insert code to stop the spinner here (be sure to do so on the main thread) ...
+            var alert = UIAlertController(title: "Error", message: "Your device does not allow sending SMS or iMessages.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+})
+```
+
+Lastly, there is a required delegate method for the MessageComposeViewController. We provide an empty implementation, which you are free to customize.
+
+```swift
+func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+    self.dismissViewControllerAnimated(true, completion: nil)
+}
+```
+
+
+The above code allows you to quickly implement sharing via SMS. See the screenshot below!
 
 ![iOS Demo](https://s3-us-west-1.amazonaws.com/branch-guides/13_sms_screenshot.PNG)
 
