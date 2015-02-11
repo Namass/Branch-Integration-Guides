@@ -259,6 +259,8 @@ The possible platform redirects are the following:
 					// the link when clicked on these various endpoints. 
 					// The default is the app store page if specified, 
 					// and the web url (in app settings) if no app is specified.
+					// Warning: Currently, Android Chrome does not support 
+					// the $android_url override.
 
 We recently enabled the ability for you to control whether you link tries to open the app by default or not.
 
