@@ -178,7 +178,32 @@ If there's an error highlighted in red, hover over it and select *Import 'Branch
 ## Configuring your API key
 Now you'll need the API key that you created in the [Branch Dashboard](https://dashboard.branch.io/). 
 
-This guide assumes that you're familiar with the [Android UI lifecycle](http://developer.android.com/training/basics/activity-lifecycle/starting.html). A single Branch object instance is used per Activity or Fragment, so declare an object at the class-level.
+Open up **strings.xml** and add your key as a String value.
+
+```XML
+<string name="bnc_app_key">your app key</string>
+```
+
+Now add a reference to the value that your just created in your **AndroidManifest.xml** file, within the Application element.
+
+```XML
+
+<application .. >
+	
+	<!-- Your existing activities, intent filters and associated attributes. -->
+	<activity .. >
+		..
+	</activity>
+
+	<!-- The reference to the string value that you created in strings.xml, with name as shown. -->
+	<meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
+	
+</application>
+```
+
+This guide assumes that you're familiar with the [Android UI lifecycle](http://developer.android.com/training/basics/activity-lifecycle/starting.html). A single Branch object instance is used per Activity or Fragment, so declare an object at the class-level, and you can call this in every Activity or Fragment where you need to interact with Branch; if it has already be initialised elsewhere in your app, the same instance will be returned.
+
+The Branch SDK looks for the **io.branch.sdk.ApplicationId** meta-data value when it is initialised. If you want to base other projects on this one and would like to track link analytics separately in the dashboard, you need only to create a new app in the Branch dashboard and update the value in strings.xml with the new key in order to associate the project with the new project.
 
 ```Java
 public YourClass extends Activity {
@@ -189,17 +214,16 @@ public YourClass extends Activity {
 
 In the overridden *onStart* method in your Activity or Fragment, get an instance of the singleton Branch object and assign it to the class-level handle that you just declared.
 
-Insert your API key as the second parameter of the *getInstance()* call as shown.
-
 ```Java
 @Override
 protected void onStart() {
 	super.onStart();
 
-	branch = Branch.getInstance(this.getApplicationContext(), "your-API-Key-goes-here");
+	branch = Branch.getInstance(this.getApplicationContext());
 	...
 }
 ```
+**Note:** *If you have already integrated the SDK via the two-parameter getInstance(context, "app key") method, it has been deprecated. You should update your project to [store your app key as meta data in your AndroidManifest file](https://github.com/BranchMetrics/Branch-Android-SDK/blob/2cb4f05fd8f67bce1019456f26b7f384a39abb2c/README.md#add-your-app-key-to-your-project).*
 
 ## Getting a session
 
