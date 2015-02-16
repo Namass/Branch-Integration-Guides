@@ -374,3 +374,18 @@ This will return a dictionary like so, with your specific link.
 	}
 
 If the link was already created, and you don't specify an exact match for the remaining parameters (campaign, channel, app_id, etc..), this call will return an HTTP 409 error code.
+
+
+# FAQ
+
+Q: Why is my link always redirecting to the App Store / Play Store, even though I have everything configured correctly? -OR- What is $always_deeplink?
+
+A: First, working through a Quick Start guide ([iOS](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios_quickstart.md), [Android](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md)) is the fastest way to catch anything you may have missed, both in configuring the app and correctly generating a link. Second, please take a look at these frequent mistakes: ([iOS](https://github.com/BranchMetrics/Branch-iOS-SDK#faq), [Android](https://github.com/BranchMetrics/Branch-Android-SDK#faq)).
+
+Even if you have followed all of these steps, it is possible that the link will redirect to the App Store / Play Store on a device that Branch's servers have not yet seen. By default, we only open the app if we've seen a user initiate a session in your app from a Branch link (has been cookied and deep linked by Branch). If we have not seen the user initiate a session, we will re-direct to the App Store. However, you have the option to override the default behavior. 
+
+By setting the key-value pair **"$always_deeplink": "true"** as a part of the data associated with a link, you can force a link to try to open your app first every time. However, this configuration has a downside. If "$always_deeplink" is set to "true" but a user does not have your app on his/her phone, an ugly error message may be triggered for a split second before the phone redirects to the App Store / Play Store. So there are tradeoffs to this approach. 
+
+By setting the key-value pair **"$always_deeplink": "false"** as part of the data associated with a link, you can force a link to always re-direct to the App Store. This option is not frequently used, but it is available.
+
+$always_deeplink can be set on both an app-wide and an individual-link basis. Above, we mentioned setting it in the link's data. You can also request that $always_deeplink be set explicitly on the backend, and we plan to add this to our [Dashboard](https://dashboard.branch.io) in the near future.
