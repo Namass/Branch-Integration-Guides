@@ -388,4 +388,6 @@ By setting the key-value pair **"$always_deeplink": "true"** as a part of the da
 
 By setting the key-value pair **"$always_deeplink": "false"** as part of the data associated with a link, you can force a link to always re-direct to the App Store. This option is not frequently used, but it is available.
 
+Note that "true" and "false" are strings.
+
 $always_deeplink can be set on both an app-wide and an individual-link basis. Above, we mentioned setting it in the link's data. You can also request that $always_deeplink be set explicitly on the backend, and we plan to add this to our [Dashboard](https://dashboard.branch.io) in the near future.
