@@ -550,7 +550,7 @@ One challenge aspect testing Branch's service is simulating a fresh install. We 
 
 To simulate a brand new user being referred from our perspective:
 
-0. use the setDebug call before you call initSession in the launch activity(see below)
+0. use the setDebug call before you call initSession in the AppDelegate (see below)
 1. Uninstall your test app
 2. Clear your browser cookies
 3. Click a link in the browser
