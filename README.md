@@ -5,7 +5,7 @@ A collection of all guides for Branch integrations
 
 # Mobile Integration Guides
 
-1. [Basic iOS integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios_quickstart.md)
+1. [Basic iOS integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-quickstart.md)
 
     Getting started with Branch for your iOS app
 
