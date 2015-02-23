@@ -1,14 +1,14 @@
-App Content Share with Deeplink for iOS
-=======================================
+App Content Share with Deeplink for Android
+===========================================
 
 This guide will help you integrate content sharing with deeplinking into your app. We will also cover several customizations you can perform. The sections are as follows:
 
-1. Dashboard Configuration
-1. Configuring Your App
-1. Sharing Content
-1. Routing to Content
-1. Identify Your Influential Users
-1. Analytics
+1. [Dashboard Configuration](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-app-content-share-with-deeplink.md#1-dashboard-configuration)
+1. [Configuring Your App](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-app-content-share-with-deeplink.md#2-configuring-your-app)
+1. [Sharing Content](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-app-content-share-with-deeplink.md#3-sharing-content)
+1. [Routing to Content](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-app-content-share-with-deeplink.md#4-routing-to-content)
+1. [Identify Your Influential Users](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-app-content-share-with-deeplink.md#5-identify-your-influntial-users)
+1. [Analytics](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-app-content-share-with-deeplink.md#6-analytics)
 
 
 ## 1. Dashboard Configuration
