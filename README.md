@@ -13,6 +13,10 @@ A collection of all guides for Branch integrations
 
     How to use Branch to build a referral system in your iOS app
     
+1. [iOS App Content Share with Deeplink guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md)
+
+    Sharing content and deeplinking directly to that content
+    
 1. [Basic Android integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md)
 
     Getting started with Branch for your Android app

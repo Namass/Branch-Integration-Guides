@@ -239,13 +239,13 @@ Branch automatically tracks unique devices. However, to make full use of our pow
 
 The good news is that your app only needs the addition of two lines of code
 
- 1. Add a `setIdentity:` call wherever you create or login a user.
+1. Add a `setIdentity:` call wherever you create or login a user.
 
 ```objc
 [[Branch getInstance] setIdentity:@"1234"]; // your app's userId
 ```
 
- 2. Add a `logout` call anywhere you allow the user to logout.
+1. Add a `logout` call anywhere you allow the user to logout.
 
 ```objc
 [[Branch getInstance] logout];
