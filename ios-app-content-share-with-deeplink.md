@@ -3,13 +3,13 @@ App Content Share with Deeplink for iOS
 
 This guide will help you integrate content sharing with deeplinking into your app. We will also cover several customizations you can perform. The sections are as follows:
 
-1. Dashboard Configuration
-1. Configuring Your App
-1. Sharing Content
-1. Routing to Content
-1. Identify Your Influntial Users
-1. Analytics
-1. Advanced Sharing and Routing
+1. [Dashboard Configuration](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md#1-dashboard-configuration)
+1. [Configuring Your App](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md#2-configuring-your-app)
+1. [Sharing Content](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md#3-sharing-content)
+1. [Routing to Content](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md#4-routing-to-content)
+1. [Identify Your Influential Users](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md#5-identify-your-influntial-users)
+1. [Analytics](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md#6-analytics)
+1. [Advanced Sharing and Routing](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md#7-advanced-sharing-and-routing-optional)
 
 
 ## 1. Dashboard Configuration
@@ -83,19 +83,21 @@ Add the following to your AppDelegate.m file. For Swift, or more in-depth instru
 
 ## 3. Sharing Content
 
-We will start with the most basic implementation of sharing. Let's say the content you want to share is a picture with a caption.
+We will start with the most basic implementation of sharing. Let's say the content you want to share is a picture with a caption. We recommend always setting the feature and channel.
 
 ```objc
 NSDictionary *params = @{@"referringUsername": @"Mario",
-                        @"referringUserId": @"1234",
-                        @"pictureId": @"987666",
-                        @"pictureURL": @"http://yoursite.com/pics/987666",
-                        @"pictureCaption": @"The princess and the plumber" };
-[[Branch getInstance] getShortURLWithParams:params andCallback:^(NSString *url, NSError *error) {
-   if (!error) {
-       // url is available for sharing!
-       NSLog(@"url is: %@", url);
-   }
+                         @"referringUserId": @"1234",
+                         @"pictureId": @"987666",
+                         @"pictureURL": @"http://yoursite.com/pics/987666",
+                         @"pictureCaption": @"The princess and the plumber"};
+NSString *channel = @"sms"; // or @"facebook" or @"twitter", etc.
+NSString *feature = BRANCH_FEATURE_TAG_SHARE;
+[[Branch getInstance] getShortURLWithParams:params andChannel:channel andFeature:feature andCallback:^(NSString *url, NSError *error) {
+    if (!error) {
+        // url is available for sharing!
+        NSLog(@"url is: %@", url);
+    }
 }];
 ```
 
@@ -115,7 +117,9 @@ NSDictionary *params = @{@"referringUsername": @"Mario",
                          @"$og_image_url": @"http://yoursite.com/pics/987666",
                          @"$og_title": @"Mario's Recent Picture",
                          @"$og_description": @"The princess and the plumber"};
-[[Branch getInstance] getShortURLWithParams:params andCallback:^(NSString *url, NSError *error) {
+NSString *channel = @"Facebook";
+NSString *feature = BRANCH_FEATURE_TAG_SHARE;
+[[Branch getInstance] getShortURLWithParams:params andChannel:channel andFeature:feature andCallback:^(NSString *url, NSError *error) {
     if (!error) {
         // url is available for sharing!
         NSLog(@"url is: %@", url);
@@ -149,14 +153,16 @@ The following code should go in some method triggered by the user (such as when 
 
 ```objc
 NSDictionary *params = @{@"referringUsername": @"Mario",
-                        @"referringUserId": @"1234",
-                        @"pictureId": @"987666",
-                        @"pictureURL": @"http://yoursite.com/pics/987666",
-                        @"pictureCaption": @"The princess and the plumber" };
-
-// ... insert code to start the spinner of your choice here ...
-
-[[Branch getInstance] getShortURLWithParams:params andChannel:@"SMS" andFeature:@"Referral" andCallback:^(NSString *url, NSError *error) {
+                         @"referringUserId": @"1234",
+                         @"pictureId": @"987666",
+                         @"pictureURL": @"http://yoursite.com/pics/987666",
+                         @"pictureCaption": @"The princess and the plumber",
+                         @"$og_image_url": @"http://yoursite.com/pics/987666",
+                         @"$og_title": @"Mario's Recent Picture",
+                         @"$og_description": @"The princess and the plumber"};
+NSString *channel = @"sms";
+NSString *feature = BRANCH_FEATURE_TAG_SHARE;
+[[Branch getInstance] getShortURLWithParams:params andChannel:channel andFeature:feature andCallback:^(NSString *url, NSError *error) {
 	if (!error) {
 	    // Check to make sure we can send messages on this device
 	    if ([MFMessageComposeViewController canSendText]) {
