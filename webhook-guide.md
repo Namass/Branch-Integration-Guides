@@ -134,3 +134,33 @@ Here is the specification:
 						// webhook is triggered. Event metadata is passed by the native library as state.
 						// The value of this key must be in JSON dictionary format.
 
+
+## Example: Using Requestb.in to test a postback (webhook)
+
+If you're not sure whether one of our webhooks is configured correctly, take a look at [requestb.in](http://requestb.in). RequestBin gives you a URL that collects requests, such as our webhook's requests, to see what the client (aka Branch) is sending.
+
+To get started, navigate to their website and click "+ Create a RequestBin". 
+
+![requestbin - new requestbin](http://derrrick.com/branch/webhook/1.png)
+
+Now you should have a dedicated URL that you can use to simulate your own servers. For example:
+
+![requestbin - new requestbin](http://derrrick.com/branch/webhook/2.png)
+
+You can test it out using cURL, which is pretty sweet. Give it a shot if you want.
+
+The next step is to setup your postback with Branch. Navigate to the Dashboard's [Webhooks page](http://dashboard.branch.io/#/webhook) and click "+ Add a new webhook". 
+
+Now you should copy your URL from RequestBin into the textfield following the label "Send a webhook to".
+
+![requestbin - new requestbin](http://derrrick.com/branch/webhook/3.png)
+
+Choose "Install" for the event.
+
+Now every time someone opens the app, the webhook you've configured on Branch will send a request to your RequestBin. Give it a shot!
+
+After tapping a marketing link (visit [our Deeplinked Ads Guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md) to see how this link was constructed), RequestBin shows the following response:
+
+![requestbin - new requestbin](http://derrrick.com/branch/webhook/4.png)
+
+There is a ton of information here, and it is up to you to configure your webhook to parse the appropriate params.
