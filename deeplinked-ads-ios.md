@@ -62,7 +62,7 @@ The following sections will walk through various options and their implications.
 
 One example description if you want to treat this guide is: "Facebook ad for blue sneakers - summer 2015" -- type that in the box.
 
-![Description](http://derrrick.com/branch/deeplinked-ads/1.png) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_1.png) 
 
 #### Tags: Channel, Campaign, Etc. (highly recommended)
 
@@ -70,7 +70,7 @@ The more information you enter, the better you'll be able to segment data on the
 
 *Hint: Press the 'comma' or 'return' key after each tag.*
 
-![Description](http://derrrick.com/branch/deeplinked-ads/2.png) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_2.png) 
 
 
 #### Custom Link Label (optional)
@@ -97,7 +97,7 @@ For more information on the optimal format for the title and description, see Fa
 
 This is a great place to specify any other information that you think will be of use either in-app or in when combing through data later on. If you are treating this guide like a tutorial, go ahead and enter key "ad_id" and value "abc123".
 
-![Description](http://derrrick.com/branch/deeplinked-ads/3.png) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_3.png) 
 
 
 #### Save!
@@ -190,17 +190,17 @@ Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/c
 
 Choose "Send people to your website". Unfortunately due to a bug with Facebook's API, you cannot currently run campaigns for app downloads through the option "Get installs of your app."
 
-![Description](http://derrrick.com/branch/deeplinked-ads/4.png) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_4.png) 
 
 On the next page, you need to enter the Branch link that was generated in the last step. Here's a gif to help:
 
-![Description](http://derrrick.com/branch/deeplinked-ads/5.gif) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_5.gif) 
 
 You can now customize your ad per the usual Facebook ad creation interface.
 
 Notice that any OG tag information your provided has prepopulated in the interface.
 
-![Description](http://derrrick.com/branch/deeplinked-ads/6.png) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_6.png) 
 
 Now make sure you have a picture, then order up that ad! 
 
@@ -279,11 +279,11 @@ NSMutableDictionary *params = @{@"product_id": @"2976"};
 
 If you track these two events, you can now create a funnel on the Dashboard. At the bottom of the Summary page, add a funnel and choose the following events:
 
-![Description](http://derrrick.com/branch/deeplinked-ads/7.png) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_7.png) 
 
 If you locate the above lines of code next to the actual ad click and purchase events, you should now have an accurate funnel showing the conversion from ad clicks to actual purchases.
 
-![Description](http://derrrick.com/branch/deeplinked-ads/8.png) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_8.png)
 
 That's all you need for custom events and funnels.
 
