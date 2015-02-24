@@ -47,6 +47,8 @@ On the [Settings](https://dashboard.branch.io/#/settings) page, scroll down to U
 
 ![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/6_dashboard_uri.png)
 
+For further instructions, pop over to the [iOS SDK Readme](https://github.com/BranchMetrics/Branch-iOS-SDK/blob/master/README.md#register-a-uri-scheme-direct-deep-linking-optional-but-recommended).
+
 
 ## 2. Dashboard: Marketing Links
 
@@ -102,7 +104,7 @@ This is a great place to specify any other information that you think will be of
 
 #### Save!
 
-Press the greeen "Save" button when you are done editing the link.
+Press the green "Save" button when you are done editing the link.
 
 
 ## 3. Configuring Your App to Track Installs (optional but highly recommended)
@@ -178,9 +180,9 @@ You can now see exactly how many people are installing your app based on each of
 
 We are now going to take a break from code to offer an example of how to place your ad on Facebook (Section 4).
 
-To personalize a user's first experience after tapping the ad, skip down to section 5, Personalizing A User's First Experience (Advanced).
+To personalize a user's first experience after tapping the ad, skip down to section 5, [Personalizing A User's First Experience (Advanced)](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md#5-personalizing-a-users-first-experience-advanced).
 
-Skip ahead to section 6, Custom Events and Funnels (Advanced), if you want to track events and create funnels. Again, this allows you to see which ads are performing best on concrete measures such as # of completed signups or number/type of purchases.
+Skip ahead to section 6, [Custom Events and Funnels (Advanced)](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md#6-custom-events-and-funnels-advanced), if you want to track events and create funnels. Again, this allows you to see which ads are performing best on concrete measures such as # of completed signups or number/type of purchases.
 
 
 
@@ -202,7 +204,11 @@ Notice that any OG tag information your provided has prepopulated in the interfa
 
 ![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_6.png) 
 
-Now make sure you have a picture, then order up that ad! 
+Last step is to make sure you target the mobile app, not the desktop! If you need help, see the gif below:
+
+![Description](http://derrrick.com/branch/deeplinked-ads/6A.gif) 
+
+Now make sure you have a picture of the appropriate size, then order up that ad! 
 
 ## 5. Personalizing A User's First Experience (Advanced)
 
