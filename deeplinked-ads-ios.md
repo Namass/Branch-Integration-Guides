@@ -206,7 +206,7 @@ Notice that any OG tag information your provided has prepopulated in the interfa
 
 Last step is to make sure you target the mobile app, not the desktop! If you need help, see the gif below:
 
-![Description](http://derrrick.com/branch/deeplinked-ads/6A.gif) 
+![Description](https://s3-us-west-1.amazonaws.com/branch-guides/6A.gif) 
 
 Now make sure you have a picture of the appropriate size, then order up that ad! 
 
