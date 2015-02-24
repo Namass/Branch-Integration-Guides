@@ -3,12 +3,12 @@ Deeplinked Ads
 
 This guide will help you integrate content sharing with deeplinking into your app. We will also cover several customizations you can perform. The sections are as follows:
 
-1. Dashboard: App Setup
-1. Dashboard: Marketing Links
-1. Configuring Your App to Track Installs
-1. Example: Facebook Ads
-1. Personalizing A User's First Experience
-1. Custom Events and Funnels
+1. [Dashboard: App Setup](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md#1-dashboard-app-setup)
+1. [Dashboard: Marketing Links](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md#2-dashboard-marketing-links)
+1. [Configuring Your App to Track Installs](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md#3-configuring-your-app-to-track-installs-optional-but-highly-recommended)
+1. [Example: Facebook Ads](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md#4-example-facebook-ads)
+1. [Personalizing A User's First Experience](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md#5-personalizing-a-users-first-experience-advanced)
+1. [Custom Events and Funnels](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md#6-custom-events-and-funnels-advanced)
 
 
 ## 1. Dashboard: App Setup
