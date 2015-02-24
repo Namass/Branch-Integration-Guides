@@ -16,6 +16,10 @@ A collection of all guides for Branch integrations
 1. [iOS App Content Share with Deeplink guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-app-content-share-with-deeplink.md)
 
     Sharing content and deeplinking directly to that content
+
+1. [Deeplinked Ads (plus iOS integration)](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md)
+
+    Deeplinked ads, including the optional iOS configuration
     
 1. [Basic Android integration guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md)
 
