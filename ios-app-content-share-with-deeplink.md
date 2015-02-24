@@ -101,7 +101,7 @@ NSString *feature = BRANCH_FEATURE_TAG_SHARE;
 }];
 ```
 
-If your app already has sharing functionality, simply replace an existing link to this piece of content with this link. Skip down to the next section, "4. Routing to Content."
+If your app already has sharing functionality, simply replace an existing link to this piece of content with this link. Otherwise we provide multiple examples in this guide, so keep reading.
 
 
 #### Optional: Social Media (OG) tags
