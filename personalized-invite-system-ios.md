@@ -3,14 +3,14 @@ Personalized Invite System (with iOS integration)
 
 This guide will help you integrate a personalized into your app. We will also cover several customizations you can perform. The sections are as follows:
 
-1. [Dashboard Configuration]()
-1. [Configuring Your App]()
-1. [Generating Personalized Invites]()
-1. [Routing -- Handling Personalized Invites]()
-1. [Identify Your Influential Users (Optional)]()
-1. [Analytics (Optional)]()
-1. [Reward Users for Referrals (Optional)]()
-1. [Advanced Invites and Routing (Optional)]()
+1. [Dashboard Configuration](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/personalized-invite-system-ios.md#1-dashboard-configuration)
+1. [Configuring Your App](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/personalized-invite-system-ios.md#2-configuring-your-app)
+1. [Generating Personalized Invites](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/personalized-invite-system-ios.md#3-generating-personalized-invites)
+1. [Routing -- Handling Personalized Invites](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/personalized-invite-system-ios.md#4-routing----handling-personalized-invites)
+1. [Identify Your Influential Users (Optional)](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/personalized-invite-system-ios.md#5-identify-your-influntial-users-optional)
+1. [Analytics (Optional)](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/personalized-invite-system-ios.md#6-analytics-optional)
+1. [Reward Users for Referrals (Optional)](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/personalized-invite-system-ios.md#7-reward-users-for-referrals-optional)
+1. [Advanced Invites and Routing (Optional)](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/personalized-invite-system-ios.md#8-advanced-sharing-and-routing-optional)
 
 While this guide covers iOS apps, the exact same logic applies to Android apps and web apps. In fact, if you perform the standard configuration of client apps and use the same App Key, your personalized invite system will work seamlessly across platforms.
 
