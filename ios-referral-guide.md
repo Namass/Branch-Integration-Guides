@@ -276,7 +276,7 @@ Branch *branch = [Branch getInstance];
 [branch userCompletedAction:@"product_purchase"]; // your custom event name should not exceed 63 characters
 ```
 
-OR if you want to store some state with the event, you can specify a JSONObject of additional key/value pairs with that event. Please note that this is where you specify the additional parameters that can help create more advanced rewarding rules based on the the _filter_ options described in the section below.
+OR if you want to store some state with the event, you can specify a dictionary of additional key/value pairs with that event. Please note that this is where you specify the additional parameters that can help create more advanced rewarding rules based on the the _filter_ options described in the section below.
 
 ```objc
 NSMutableDictionary appState = [[NSMutableDictionary alloc] init];
@@ -307,7 +307,7 @@ When you create the reward rule, you'll want to specify a credit type other than
 
 #### Advanced & Optional: Reward Rule Filters
 
-Sometimes a simple event string is not enough for the complex types of systems you can dream up. For this reason, we added the ability to specify filters in addition to the basic reward rule string. This adds an additional filter on reward eligibility, tied to the event metadata that you specify in _userCompleteAction_ above.
+Sometimes a simple event string is not enough for the complex types of systems you can dream up. For this reason, we added the ability to specify filters in addition to the basic reward rule string. This adds an additional filter on reward eligibility, tied to the event metadata that you specify in _userCompletedAction_ above.
 
 In the example above, we added "eligible":"yes" and "favorite_color":"blue" to the event via the appState NSDictionary. While creating the rule, if you were to add "favorite_color":"red" into the dialog below, users that have a favorite_color of blue will not be eligible for the reward. Only users with a favorite_color of red will receive the credits.
 
