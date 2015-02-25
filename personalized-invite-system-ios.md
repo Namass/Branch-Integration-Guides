@@ -328,11 +328,11 @@ Now that you've populated your app with custom events to track (such as "sent SM
 
 Rule creation for credits is very intuitive and written in a form that makes it easy to understand such complex systems. In the example below, the 'referring users' will get 10 credits every time users they've referred have triggered an _install_ event.
 
-![Reward rule create](../to-be-uploaded/personalized-invite/1.png)
+![Reward rule create](http://derrrick.com/branch/personalized-invite/1.png)
 
 If you also want to allow the user who was referred to get a reward, you'll want to create a new rule in addition to this one, which looks like:
 
-![Reward rule create](../to-be-uploaded/personalized-invite/2.png)
+![Reward rule create](http://derrrick.com/branch/personalized-invite/2.png)
 
 If you need multiple reward buckets or rules that are triggered based on the params attached to events, check out our [iOS Referral Guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-referral-guide.md#advanced--optional-credit-buckets).
 
