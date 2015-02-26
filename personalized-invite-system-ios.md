@@ -343,11 +343,6 @@ For the sake of simplicity, I'll just point you to the [webhook integration guid
 
 ## 8. Advanced Sharing and Routing (Optional)
 
-### Expiring or one-use Invites
-
-TODO
-
-
 
 ### Branch custom subclass of UIActivityItemProvider
 
