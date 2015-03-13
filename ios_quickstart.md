@@ -199,7 +199,7 @@ This same code also triggers the recording of an event with Branch. If this is t
 
 **NOTE**: If you do not fully understand the params dictionary at this point, that is okay! In the 3rd part of this Quick Start guide, you will see how this empowers you to create a custom experience for your app's users, from the moment he or she clicks on a shared link.
 
-##### Routing based on the link (optional)
+### Routing based on the link (optional)
 
 One great use case for Branch is showing different view controllers and content based on what link the user just clicked on. The following implementation of _application:didFinishLaunchingWithOptions:_ looks at the params dictionary that is passed in and decides which view controller to present. If the user clicked on a Branch link with the parameter _pictureURL_ attached, the application redirects to a screen to view the picture. Otherwise the default view controller is shown. Obviously routing logic is heavily implementation-specific, so the code below is just an example. (See our iOS sample project [Branchster](https://github.com/BranchMetrics/Branchster-iOS) for another example of routing.)
 
