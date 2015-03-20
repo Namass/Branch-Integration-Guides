@@ -172,11 +172,7 @@ In the example below, the title, description and image were specified by employi
 	"feature":"invite", 
 	"channel":"email", 
 	"tags":["4"], 
-	"data":"{\"name\":\"Alex\", 
-		\"email\":\"alex@branch.io\", 
-		\"$og_title\":\"My First Branch Link\", 
-		\"$og_description\":\"This is how to customize link appearances\", 
-		\"$og_image_url\":\"https://branch.io/img/logo.png\"}
+	"data":"{\"name\":\"Alex\", \"email\":\"alex@branch.io\", \"$og_title\":\"My First Branch Link\", \"$og_description\":\"This is how to customize link appearances\", \"$og_image_url\":\"https://branch.io/img/logo.png\"}
 	"}' 
 
 	https://api.branch.io/v1/url
@@ -310,9 +306,7 @@ Below is an example where I embed the keys ‘name’, ‘email’ and ‘course
 	"feature":"invite", 
 	"channel":"email", 
 	"tags":["4"], 
-	"data":"{\"name\":\"Alex\", 
-		\"email\":\"alex@branch.io\", 
-		\"courseId\":\"415123\"}
+	"data":"{\"name\":\"Alex\", \"email\":\"alex@branch.io\", \"courseId\":\"415123\"}
 	"}' 
 
 	https://api.branch.io/v1/url
@@ -355,9 +349,7 @@ You can also dynamically create aliases through our API. To do this, all you nee
 	"feature":"invite", 
 	"channel":"email", 
 	"tags":["4"], 
-	"data":"{\"name\":\"Alex\", 
-		\"email\":\"alex@branch.io\", 
-		\"$desktop_url\":\"https://branch.io\"}"
+	"data":"{\"name\":\"Alex\", \"email\":\"alex@branch.io\", \"$desktop_url\":\"https://branch.io\"}"
 	}' 
 
 	https://api.branch.io/v1/url
