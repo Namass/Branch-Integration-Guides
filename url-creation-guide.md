@@ -48,21 +48,16 @@ Branch *branch = [Branch getInstance:@"Your app key"];
 
 Here is an example CURL call to create a link with some example parameters. You would specify the app_id key with the application key you received for your customer in the original POST to /v1/app. The data field is the dictionary of stuff that you want to appear in the app after a user installs or opens from this link, also known as the deep link parameters. The remainder of the tags are all optional and explained in great detail below.
 
-	curl -X POST 
-
-	-H "Content-Type: application/json" 
-
-	-d '{"app_id":"5680621892404085", 
-	"campaign":"announcement", 
-	"feature":"invite", 
-	"channel":"email", 
-	"tags":["4"], 
-	"data":"{\"name\":\"Alex\", 
-		\"email\":\"alex@branch.io\", 
-		\"$desktop_url\":\"https://branch.io\"}"
-	}' 
-
-	https://api.branch.io/v1/url
+    curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"app_id":"107063778440381061", 
+    "campaign":"announcement",
+    "feature":"invite",
+    "channel":"email",
+    "tags":["4"],
+    "data":"{\"name\":\"Alex\",\"email\":\"alex@branch.io\",\"$desktop_url\":\"https://branch.io\"}"
+    }' \
+    https://api.branch.io/v1/url
 
 This will return a dictionary like so, with your specific link.
 
