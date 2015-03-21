@@ -236,6 +236,30 @@ The following implementation can tell if a user wanted to view a picture - even 
 }
 ```
 
+#### A word on Tab Bar Controller routing
+
+There can be some complexity around properly loading a piece of content in a tab bar, so here's what some of our community has found to work well for routing.
+
+1. Post an NSNotification from the AppDelegate, from within the initSession with the deep link params 
+
+```swift
+NSNotificationCenter.defaultCenter().postNotificationName(branchEventKey, object: branchParams)
+```
+
+2. Listen to that notification in the root tab bar view controller.
+3. In the tab bar view controller notification handler, add code to set the selectedIndex of the tab bar ONLY. Don't init any VCs yet
+4. In the root view controller of each relevant tab, add in the notification handler to properly load
+5. In the root view controller, initialize and load the proper custom views and then call self.showViewController to display
+
+```swift
+let storyboard = self.storyboard
+let exchangeDetailVc = storyboard?.instantiateViewControllerWithIdentifier(“ThingDetailViewController") as ThingDetailTableViewController
+
+let targetThingId = branchParams[“thing"] as String
+thingDetailVc.selectedThingId = targetThingId
+
+self.showViewController(thingDetailVc, sender: self)
+```
 
 ## 5. Identify Your Influntial Users
 
