@@ -223,38 +223,46 @@ Branch is beautiful because it allows deeplinking directly to content -- even if
 The following implementation can tell if a user wanted to view a picture of an existing monster - even if the user just installed the app and this is the first open! If the user clicked on a Branch link with the parameter _monster_ attached, the application redirects to a screen to view the picture. In addition, this user can be shown a personalized message, such as the following: "Thanks for checking out our app. Let's view the picture that Mario just shared with you." Otherwise the default view controller is shown. Obviously routing logic is heavily implementation-specific, so the code below is just an example. See our Android sample project [Branchster](https://github.com/BranchMetrics/Branchster-Android) for the full example on routing.
 
 ```java
+private static final String TAG = "MyActivity";
 
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    branch = Branch.getInstance(this.getApplicationContext(), getResources().getString(R.string.bnc_app_key));
+    branch = Branch.getInstance(this.getApplicationContext());
     branch.initSession(new BranchReferralInitListener() {
         @Override
         public void onInitFinished(JSONObject referringParams, BranchError error) {
-            Log.i("Branchster", "branch init complete!");
-            try {
-                MonsterPreferences prefs = MonsterPreferences.getInstance(getApplicationContext());
-                Intent i;
-                if (referringParams.has("monster")) {
-                    prefs.setMonsterName(referringParams.getString("monster_name"));
-                    prefs.setFaceIndex(referringParams.getInt("face_index"));
-                    prefs.setBodyIndex(referringParams.getInt("body_index"));
-                    prefs.setColorIndex(referringParams.getInt("color_index"));
-                    i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
-                }
-                else {
-                    if (prefs.getMonsterName() == null) {
-                        prefs.setMonsterName("");
-                        i = new Intent(getApplicationContext(), MonsterCreatorActivity.class);
-                        // If no name has been saved, this user is new, so load the monster maker screen
-                    }
-                    else {
-                        i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
-                    }
-                }
+            if (error != null) {
+                Log.e(TAG, "branch init failed");
+                Intent i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
                 startActivity(i);
             }
-            catch (JSONException e) {
-                e.printStackTrace();
+            else {
+                Log.i(TAG, "branch init complete!");
+                try {
+                    MonsterPreferences prefs = MonsterPreferences.getInstance(getApplicationContext());
+                    Intent i;
+                    if (referringParams.has("monster")) {
+                        prefs.setMonsterName(referringParams.getString("monster_name"));
+                        prefs.setFaceIndex(referringParams.getInt("face_index"));
+                        prefs.setBodyIndex(referringParams.getInt("body_index"));
+                        prefs.setColorIndex(referringParams.getInt("color_index"));
+                        i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
+                    }
+                    else {
+                        if (prefs.getMonsterName() == null) {
+                            prefs.setMonsterName("");
+                            i = new Intent(getApplicationContext(), MonsterCreatorActivity.class);
+                            // If no name has been saved, this user is new, so load the monster maker screen
+                        }
+                        else {
+                             i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
+                        }
+                    }
+                startActivity(i);
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }, this.getIntent().getData(), this);
