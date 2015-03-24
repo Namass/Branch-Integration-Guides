@@ -220,44 +220,54 @@ You should now help the user share this on Facebook, via SMS, or through whichev
 
 Branch is beautiful because it allows deeplinking directly to content -- even if the user clicking the link does not have the app installed! Upon opening the app, a user can be directed straight to content and even an individually-personalized experience. 
 
-The following implementation can tell if a user wanted to view a picture - even if the user just installed the app and this is the first open! If the user clicked on a Branch link with the parameter _pictureURL_ attached, the application redirects to a screen to view the picture. In addition, this user can be shown a personalized message, such as the following: "Thanks for checking out our app. Let's view the picture that Mario just shared with you." Otherwise the default view controller is shown. Obviously routing logic is heavily implementation-specific, so the code below is just an example (this example uses Storyboards). See our iOS sample project [Branchster](https://github.com/BranchMetrics/Branchster-iOS) for another example of routing.
+The following implementation can tell if a user wanted to view a picture of an existing monster - even if the user just installed the app and this is the first open! If the user clicked on a Branch link with the parameter _monster_ attached, the application redirects to a screen to view the picture. In addition, this user can be shown a personalized message, such as the following: "Thanks for checking out our app. Let's view the picture that Mario just shared with you." Otherwise the default view controller is shown. Obviously routing logic is heavily implementation-specific, so the code below is just an example. See our Android sample project [Branchster](https://github.com/BranchMetrics/Branchster-Android) for the full example on routing.
 
-```objc
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    // Initalize Branch and register the deep link handler
-    // The deep link handler is called on every install/open to tell you if the user had just clicked a deep link
-    Branch *branch = [Branch getInstance];
-    [branch initSessionWithLaunchOptions:launchOptions isReferrable:@YES andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {     // previously initUserSessionWithCallback:withLaunchOptions:
-        UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-        NSString * storyboardName = @"Main";
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-        UIViewController *nextVC;
-        
-        // If the key 'pictureURL' is present in the deep link dictionary
-        // then load the picture screen with the appropriate URL
-        NSString *pictureURL = [params objectForKey:@"pictureURL"];
-        if (pictureURL) {
-            [MyAppPreferences setNextPictureURL:pictureURL];
-            [MyAppPreferences setNextPictureCaption:[params objectForKey:@"pictureCaption"]];
-            [MyAppPreferences setNextPictureReferringUserName:[params objectForKey:@"referringUsername"]];
+```java
+private static final String TAG = "MyActivity";
 
-            // Choose the picture viewer as the next VC
-            nextVC = [storyboard instantiateViewControllerWithIdentifier:@"PictureViewerViewController"];
-        // Else, the app is being opened up from the home screen or from the app store
-        // Load the next logical view controller
-        } else {
-            nextVC = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    branch = Branch.getInstance(this.getApplicationContext());
+    branch.initSession(new BranchReferralInitListener() {
+        @Override
+        public void onInitFinished(JSONObject referringParams, BranchError error) {
+            if (error != null) {
+                Log.e(TAG, "branch init failed");
+                Intent i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
+                startActivity(i);
+            }
+            else {
+                Log.i(TAG, "branch init complete!");
+                try {
+                    MonsterPreferences prefs = MonsterPreferences.getInstance(getApplicationContext());
+                    Intent i;
+                    if (referringParams.has("monster")) {
+                        prefs.setMonsterName(referringParams.getString("monster_name"));
+                        prefs.setFaceIndex(referringParams.getInt("face_index"));
+                        prefs.setBodyIndex(referringParams.getInt("body_index"));
+                        prefs.setColorIndex(referringParams.getInt("color_index"));
+                        i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
+                    }
+                    else {
+                        if (prefs.getMonsterName() == null) {
+                            prefs.setMonsterName("");
+                            i = new Intent(getApplicationContext(), MonsterCreatorActivity.class);
+                            // If no name has been saved, this user is new, so load the monster maker screen
+                        }
+                        else {
+                            i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
+                        }
+                    }
+                    startActivity(i);
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        
-        // launch the next view controller
-        [navController setViewControllers:@[nextVC] animated:YES];
-    }];
-    
-    return YES;
+    }, this.getIntent().getData(), this);
 }
 ```
-
 
 ## 5. Identify Your Influntial Users
 
