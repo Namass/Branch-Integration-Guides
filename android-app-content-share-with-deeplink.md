@@ -255,10 +255,10 @@ protected void onCreate(Bundle savedInstanceState) {
                             // If no name has been saved, this user is new, so load the monster maker screen
                         }
                         else {
-                             i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
+                            i = new Intent(getApplicationContext(), MonsterViewerActivity.class);
                         }
                     }
-                startActivity(i);
+                    startActivity(i);
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
