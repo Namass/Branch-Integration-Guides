@@ -242,64 +242,63 @@ JSONObject installParams = branch.getFirstReferringParams();
 
 ### Javascript Snippet
 
-This SDK requires native browser Javascript and has been tested in all modern browsers with sessionStorage capability. 
+The Branch Web SDK provides an easy way to interact with the Branch API on your website or web app. It requires no frameworks, and is only ~7K gzipped.
 
-Place this code before the `</head>` statement in your HTML.  Be sure to replace `YOUR_APP_ID` with your Branch app ID.
+Place this code before the `</head>` statement in your HTML.  Be sure to replace `APP-KEY` with your Branch app ID found in your [Branch dashboard](https://dashboard.branch.io/#/settings).
 
 ```html
 <script type="text/javascript">
-    (function() {
+(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-v1.3.1.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"init data setIdentity logout track link sendSMS referrals credits redeem banner".split(" "),0);
 
-        var config = {
-            app_id: 'YOUR_APP_ID',
-            debug: true,
-            init_callback: function(){
-                Branch.appBanner
-            }
-        };
-
-        // Begin Branch SDK //
-            var Branch_Init=function(e){var t=this;t.app_id=e.app_id,t.debug=e.debug,t.init_callback=e.init_callback,t.queued=[],t.init=function(){for(var e=["close","logout","track","identify","createLink","showReferrals","showCredits","redeemCredits","appBanner"],n=0;n<e.length;n++)t[e[n]]=function(e){return function(){t.queued.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(e[n])},t.init();var n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src="https://bnc.lt/_r",document.getElementsByTagName("head")[0].appendChild(n),t._r=function(){if(void 0!==window.browser_fingerprint_id){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="http://s3-us-west-1.amazonaws.com/branch-web-sdk/branch-0.2.x.min.js",document.getElementsByTagName("head")[0].appendChild(e)}else window.setTimeout(function(){t._r()},100)},t._r()};window.branch=new Branch_Init(config);
-        // End Branch SDK //
-
-    })();
+branch.init('APP-KEY', function(err, data) {
+    // callback to handle err or data
+});
 </script>
 ```
 
-If you don't want to show the app banner on the desktop browser, you can embed logic in the init_callback that only calls .appBanner if the browser is a mobile browser. 
 
 ### App Banner
 
-
-This displays a Smart Banner that directs the user from the (mobile) web to the app store and passes the embedded parameter into the install so you can route the user post-install to the appropriate place (e.g. the app version of what they were viewing on the web).  The `data` param is the exact same as in `Branch.createLink()` in the Web SDK docs: [https://github.com/BranchMetrics/Web-SDK](https://github.com/BranchMetrics/Web-SDK)
+This displays a Smart Banner that directs the user from the (mobile) web to the app store and passes the embedded parameter into the install so you can route the user post-install to the appropriate place (e.g. the app version of what they were viewing on the web). The banner method takes two arguments, the first being an object literal of options to set the title, description, icon, and button text of the banner, along with options for what devices to show the banner. The `data` param is the exact same as in `Branch.link()` in the Web SDK docs: [https://github.com/BranchMetrics/Web-SDK](https://github.com/BranchMetrics/Web-SDK#linklinkdata-callback)
 
 ##### Usage
 
 ```
-Branch.appBanner(
-    (JSON object, required) {
-        icon (string, recommended),       // URL path to your app's icon.  Recommended size is 50px by 50px with no border or whitespace.
-        title (string, recommended)       // The title or name of your app.
-        description (string, recommended) // The description of your app.
-        data (JSON object, optional) {         // This parameter takes any JSON object and attaches it to the link created.  Reserved parameters are denoted with '$'.
-            'picture_id'
-            '$og_app_id' (string, optional)      // Facebook app ID for Open Graph data.
-            '$og_title', (string, optional)      // Open Graph page title.
-            '$og_description' (string, optional) // Open Graph page description.
-            '$og_image_url' (url, optional)      // Open graph page image/icon URL.    
-    }
-)
+branch.banner(
+    options, // Banner options: See example for all available options
+    linkData // Data for link, same as Branch.link()
+);
 ```
 
 ##### Example
 
 ```js
-branch.appBanner({
+branch.banner({
     icon: 'http://icons.iconarchive.com/icons/wineass/ios7-redesign/512/Appstore-icon.png',
-    title: 'My App',
-    description: 'This is my app!',
+    title: 'Branch Demo App',
+    description: 'The Branch demo app!',
+    openAppButtonText: 'Open',         // Text to show on button if the user has the app installed
+    downloadAppButtonText: 'Download', // Text to show on button if the user does not have the app installed
+    iframe: true,                      // Show banner in an iframe, recomended to isolate Branch banner CSS
+    showiOS: true,                     // Should the banner be shown on iOS devices?
+    showAndroid: true,                 // Should the banner be shown on Android devices?
+    showDesktop: true,                 // Should the banner be shown on desktop devices?
+    disableHide: false,                // Should the user have the ability to hide the banner? (show's X on left side)
+    forgetHide: false,                 // Should we remember or forget whether the user hid the banner?
+    make_new_link: false               // Should the banner create a new link, even if a link already exists?
+}, {
+    phone: '9999999999',
+    tags: ['tag1', 'tag2'],
+    feature: 'dashboard',
+    stage: 'new user',
+    type: 1,
     data: {
-        'picture_id': 'photo1234',
+        mydata: 'something',
+        foo: 'bar',
+        '$desktop_url': 'http://myappwebsite.com',
+        '$ios_url': 'http://myappwebsite.com/ios',
+        '$ipad_url': 'http://myappwebsite.com/ipad',
+        '$android_url': 'http://myappwebsite.com/android',
         '$og_app_id': '12345',
         '$og_title': 'My App',
         '$og_description': 'My app\'s description.',
