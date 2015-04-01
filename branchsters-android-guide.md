@@ -145,7 +145,15 @@ public class SplashActivity extends Activity {
 
 # 6. Set the user identity
 
-Inside `MonsterCreatorActivity` you'll want to call the `setIdentity` method.
+After any point you identify a user, it's helpful to set a user identity so that we can alias our internal ID for a device to whatever you have called it. This helps with everything from your own internal reporting to identifying power users of your app. 
+
+To identify a user, just call:
+```java
+Branch.getInstance(getApplicationContext()).setIdentity("your user id"); // your user id should not exceed 127 characters
+```
+
+Even without setIdentity, we will have our own internal ID assigned to all your apps' devices.
+
 
 # 7. Add event tracking
 
