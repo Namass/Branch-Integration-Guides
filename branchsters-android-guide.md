@@ -145,4 +145,27 @@ public class SplashActivity extends Activity {
 
 # 6. Set the user identity
 
+Inside `MonsterCreatorActivity` you'll want to call the `setIdentity` method.
+
 # 7. Add event tracking
+
+Navigate to `MonsterViewerActivity.java`. Inside, you'll notice the following line of code:
+
+```
+Branch.getInstance(getApplicationContext()).userCompletedAction("monster_view", monsterMetadata);
+```
+
+`monsterMetadata` is of type `JSONObject` and contains the following values:
+
+```
+monsterMetadata.put("color_index", prefs.getColorIndex());
+monsterMetadata.put("body_index", prefs.getBodyIndex());
+monsterMetadata.put("face_index", prefs.getFaceIndex());
+monsterMetadata.put("monster_name", prefs.getMonsterName());
+monsterMetadata.put("monster", "true");
+monsterMetadata.put("$og_title", "My Branchster: " + monsterName);
+monsterMetadata.put("$og_description", monsterDescription);
+monsterMetadata.put("$og_image_url", "https://s3-us-west-1.amazonaws.com/branchmonsterfactory/" + (short)prefs.getColorIndex() + (short)prefs.getBodyIndex() + (short)prefs.getFaceIndex() + ".png");
+```
+
+By sending this up to our dashboard, you'll be able to track events and data associated with who reached these events. You can even create custom funnels based off these events!
