@@ -252,6 +252,9 @@ The possible platform redirects are the following:
 					// and the web url (in app settings) if no app is specified.
 					// Warning: Currently, Android Chrome does not support 
 					// the $android_url override.
+					
+	$android_bypass_chrome_intent
+				// Pass in this key, with the value 1 or true to override the Chrome intent, and redirect 					// 100% of the time to $android_url. Otherwise, on Chrome, it will either open the app or 				// fall back to the Play Store
 
 We recently enabled the ability for you to control whether you link tries to open the app by default or not.
 
