@@ -252,6 +252,8 @@ Place this code before the `</head>` statement in your HTML.  Be sure to replace
 
 branch.init('APP-KEY', function(err, data) {
     // callback to handle err or data
+    
+    // app banner goes here
 });
 </script>
 ```
@@ -269,6 +271,8 @@ branch.banner(
     linkData // Data for link, same as Branch.link()
 );
 ```
+
+**Note: this `branch.banner()` goes inside the `branch.init()` callback! See the comment in the `init()` example above.**
 
 ##### Example
 
