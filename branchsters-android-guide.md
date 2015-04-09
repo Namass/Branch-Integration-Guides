@@ -145,4 +145,35 @@ public class SplashActivity extends Activity {
 
 # 6. Set the user identity
 
+After any point you identify a user, it's helpful to set a user identity so that we can alias our internal ID for a device to whatever you have called it. This helps with everything from your own internal reporting to identifying power users of your app. 
+
+To identify a user, just call:
+```java
+Branch.getInstance(getApplicationContext()).setIdentity("your user id"); // your user id should not exceed 127 characters
+```
+
+Even without setIdentity, we will have our own internal ID assigned to all your apps' devices.
+
+
 # 7. Add event tracking
+
+Navigate to `MonsterViewerActivity.java`. Inside, you'll notice the following line of code:
+
+```
+Branch.getInstance(getApplicationContext()).userCompletedAction("monster_view", monsterMetadata);
+```
+
+`monsterMetadata` is of type `JSONObject` and contains the following values:
+
+```
+monsterMetadata.put("color_index", prefs.getColorIndex());
+monsterMetadata.put("body_index", prefs.getBodyIndex());
+monsterMetadata.put("face_index", prefs.getFaceIndex());
+monsterMetadata.put("monster_name", prefs.getMonsterName());
+monsterMetadata.put("monster", "true");
+monsterMetadata.put("$og_title", "My Branchster: " + monsterName);
+monsterMetadata.put("$og_description", monsterDescription);
+monsterMetadata.put("$og_image_url", "https://s3-us-west-1.amazonaws.com/branchmonsterfactory/" + (short)prefs.getColorIndex() + (short)prefs.getBodyIndex() + (short)prefs.getFaceIndex() + ".png");
+```
+
+By sending this up to our dashboard, you'll be able to track events and data associated with who reached these events. You can even create custom funnels based off these events!

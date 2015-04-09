@@ -48,21 +48,16 @@ Branch *branch = [Branch getInstance:@"Your app key"];
 
 Here is an example CURL call to create a link with some example parameters. You would specify the app_id key with the application key you received for your customer in the original POST to /v1/app. The data field is the dictionary of stuff that you want to appear in the app after a user installs or opens from this link, also known as the deep link parameters. The remainder of the tags are all optional and explained in great detail below.
 
-	curl -X POST 
-
-	-H "Content-Type: application/json" 
-
-	-d '{"app_id":"5680621892404085", 
-	"campaign":"announcement", 
-	"feature":"invite", 
-	"channel":"email", 
-	"tags":["4"], 
-	"data":"{\"name\":\"Alex\", 
-		\"email\":\"alex@branch.io\", 
-		\"$desktop_url\":\"https://branch.io\"}"
-	}' 
-
-	https://api.branch.io/v1/url
+    curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"app_id":"107063778440381061", 
+    "campaign":"announcement",
+    "feature":"invite",
+    "channel":"email",
+    "tags":["4"],
+    "data":"{\"name\":\"Alex\",\"email\":\"alex@branch.io\",\"$desktop_url\":\"https://branch.io\"}"
+    }' \
+    https://api.branch.io/v1/url
 
 This will return a dictionary like so, with your specific link.
 
@@ -177,11 +172,7 @@ In the example below, the title, description and image were specified by employi
 	"feature":"invite", 
 	"channel":"email", 
 	"tags":["4"], 
-	"data":"{\"name\":\"Alex\", 
-		\"email\":\"alex@branch.io\", 
-		\"$og_title\":\"My First Branch Link\", 
-		\"$og_description\":\"This is how to customize link appearances\", 
-		\"$og_image_url\":\"https://branch.io/img/logo.png\"}
+	"data":"{\"name\":\"Alex\", \"email\":\"alex@branch.io\", \"$og_title\":\"My First Branch Link\", \"$og_description\":\"This is how to customize link appearances\", \"$og_image_url\":\"https://branch.io/img/logo.png\"}
 	"}' 
 
 	https://api.branch.io/v1/url
@@ -261,6 +252,9 @@ The possible platform redirects are the following:
 					// and the web url (in app settings) if no app is specified.
 					// Warning: Currently, Android Chrome does not support 
 					// the $android_url override.
+					
+	$android_bypass_chrome_intent
+				// Pass in this key, with the value 1 or true to override the Chrome intent, and redirect 					// 100% of the time to $android_url. Otherwise, on Chrome, it will either open the app or 				// fall back to the Play Store
 
 We recently enabled the ability for you to control whether you link tries to open the app by default or not.
 
@@ -315,9 +309,7 @@ Below is an example where I embed the keys ‘name’, ‘email’ and ‘course
 	"feature":"invite", 
 	"channel":"email", 
 	"tags":["4"], 
-	"data":"{\"name\":\"Alex\", 
-		\"email\":\"alex@branch.io\", 
-		\"courseId\":\"415123\"}
+	"data":"{\"name\":\"Alex\", \"email\":\"alex@branch.io\", \"courseId\":\"415123\"}
 	"}' 
 
 	https://api.branch.io/v1/url
@@ -360,9 +352,7 @@ You can also dynamically create aliases through our API. To do this, all you nee
 	"feature":"invite", 
 	"channel":"email", 
 	"tags":["4"], 
-	"data":"{\"name\":\"Alex\", 
-		\"email\":\"alex@branch.io\", 
-		\"$desktop_url\":\"https://branch.io\"}"
+	"data":"{\"name\":\"Alex\", \"email\":\"alex@branch.io\", \"$desktop_url\":\"https://branch.io\"}"
 	}' 
 
 	https://api.branch.io/v1/url
