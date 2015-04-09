@@ -109,14 +109,14 @@ After you register your app, your app key can be retrieved on the [Settings](htt
 
 1. In plist file, mouse hover "Information Property List" which is the root item under the Key column.
 1. After about half a second, you will see a "+" sign appear. Click it.
-1. In the newly added row, fill in "bnc_app_key" for its key, leave type as String, and enter your app key obtained in above steps in its value column.
+1. In the newly added row, fill in "branch_key" for its key, leave type as String, and enter your app's Branch Key in the value column. (See the animated gif below for help finding your Branch Key on the Dashboard.)
 1. Save the plist file.
 
 ##### Screenshot
-![Setting Key in PList Demo](https://s3-us-west-1.amazonaws.com/branch-guides/10_plist.png)
+![Setting Key in PList Demo](resources/branch_key.png)
 
 ##### Animated Gif
-![Setting Key in PList Demo](https://s3-us-west-1.amazonaws.com/branch-guides/9_plist.gif)
+![Setting Key in PList Demo](resources/branch_key.gif)
 
 Branch must be started within your app before any calls can be made to the SDK. Modify the following two methods in your App Delegate:
 
