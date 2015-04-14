@@ -103,7 +103,7 @@ You will need to drag and drop the Branch.framework file that you downloaded int
 
 ![Import SDK Demo](https://s3-us-west-1.amazonaws.com/branch-guides/telephony.gif)
 
-### Add your app key to your project
+### Add your Branch Key to your project
 
 After you register your app, your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. Now you need to add it to YourProject-Info.plist (Info.plist for Swift).
 
