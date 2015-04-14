@@ -33,7 +33,7 @@ Now you'll need the API key that you created in the [Branch Dashboard](https://d
 Open up **strings.xml** and add your key as a String value.
 
 ```XML
-<string name="bnc_app_key">your app key</string>
+<string name="branch_key">your Branch Key</string>
 ```
 
 Now add a reference to the value that your just created in your **AndroidManifest.xml** file, within the Application element.
@@ -48,7 +48,7 @@ Now add a reference to the value that your just created in your **AndroidManifes
 	</activity>
 
 	<!-- The reference to the string value that you created in strings.xml, with name as shown. -->
-	<meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/bnc_app_key" />
+	<meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/branch_key" />
 	
 </application>
 ```
