@@ -32,7 +32,7 @@ If this is your very first time, see these [instructions with graphics](https://
 
 #### A. Integrating your Branch Key
 
-For iOS, you need to add it to YourProject-Info.plist (Info.plist for Swift). Create a key called branch, with the value being your Branch Key (obtained on the dashboard). Here are [instructions with graphics](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-quickstart.md#add-your-app-key-to-your-project).
+For iOS, you need to add it to YourProject-Info.plist (Info.plist for Swift). Create a key called branch, with the value being your Branch Key (obtained on the dashboard). Here are [instructions with graphics](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-quickstart.md#add-your-branch-key-to-your-project).
 
 #### B. Setting the URI scheme
 
