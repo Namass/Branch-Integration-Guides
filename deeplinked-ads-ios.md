@@ -123,7 +123,7 @@ If you integrate our SDK into your app, you can:
 
 #### A. Integrating your app key
 
-For iOS, you need to add it to YourProject-Info.plist (Info.plist for Swift). Create a key called bnc_app_key, with string value: **yourAppID**. Here are [instructions with graphics](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-quickstart.md#add-your-app-key-to-your-project).
+For iOS, you need to add it to YourProject-Info.plist (Info.plist for Swift). Create a key called branch_key, with string value: **yourAppID**. Here are [instructions with graphics](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-quickstart.md#add-your-app-key-to-your-project).
 
 #### B. Setting the URI scheme
 
