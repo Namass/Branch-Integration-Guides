@@ -9,17 +9,17 @@ Our dashboard is the starting point for adding apps as well as tracking users of
 
 To get started, point your browser to [https://dashboard.branch.io/](https://dashboard.branch.io/). If you haven't created an account before, you can signup and get taken through the basic setup right away. If you've signed up already, simply navigate to the [Summary](https://dashboard.branch.io/#) page and click the dropdown button in the top right. Choose "Create new app."
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/2_dashboard.png)
+![Dashboard Screenshot](resources/dashboard_add_app.png)
 
 You will be prompted to enter a name for your new app. Do so and press "Create."
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/3_create_new_app.png)
+![Dashboard Screenshot](resources/dashboard_add_app_2.png)
 
 Navigate to the Settings page. Scroll down to App Store Information and search for your app by name--this is the same name listed on iTunesConnect. With this information, Branch will automatically redirect users without your app installed on their devices to the App Store.
 
 In the case that your app cannot be found on the App Store (e.g. if you are distributing an enterprise app over the Internet, or you're not listed in the US app stores), you can also enter a custom URL by choosing "Custom URL to TestFlight/Other Host"
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/4_settings_app_store.png)
+![Dashboard Screenshot](resources/dashboard_link_app_store.png)
 
 ### Customizing the default social media (OG) tags for all links
 
@@ -34,7 +34,7 @@ On the Settings page, scroll to Social Media - Open Graph.
 
 For more information on the optimal format for the title and description, see Facebook's [Sharing Best Practices](https://developers.facebook.com/docs/sharing/best-practices#tags).
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/5_og.png)
+![Dashboard Screenshot](resources/dashboard_link_social.png)
 
 ### Register a URI scheme direct deep linking (optional but recommended)
 
@@ -44,7 +44,7 @@ Also, in the instructions that follow, make sure to change **yourapp** to a uniq
 
 Before jumping into XCode, you need to add the URI Scheme to the Branch Dashboard. On the [Settings](https://dashboard.branch.io/#/settings) page, scroll down to URI Schemes (advanced), click to expand, and add in the unique string you've chosen for your app (e.g. yourapp://). Be sure to press "Save" when you're finished.
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/6_dashboard_uri.png)
+![Dashboard Screenshot](resources/dashboard_link_uri.png)
 
 Next, you'll need to open your project in XCode and complete the following.
 
@@ -109,14 +109,14 @@ After you register your app, your app key can be retrieved on the [Settings](htt
 
 1. In plist file, mouse hover "Information Property List" which is the root item under the Key column.
 1. After about half a second, you will see a "+" sign appear. Click it.
-1. In the newly added row, fill in "bnc_app_key" for its key, leave type as String, and enter your app key obtained in above steps in its value column.
+1. In the newly added row, fill in "branch_key" for its key, leave type as String, and enter your app's Branch Key in the value column. (See the animated gif below for help finding your Branch Key on the Dashboard.)
 1. Save the plist file.
 
 ##### Screenshot
-![Setting Key in PList Demo](https://s3-us-west-1.amazonaws.com/branch-guides/10_plist.png)
+![Setting Key in PList Demo](resources/branch_key.png)
 
 ##### Animated Gif
-![Setting Key in PList Demo](https://s3-us-west-1.amazonaws.com/branch-guides/9_plist.gif)
+![Setting Key in PList Demo](resources/branch_key.gif)
 
 Branch must be started within your app before any calls can be made to the SDK. Modify the following two methods in your App Delegate:
 
@@ -540,11 +540,11 @@ You can create links from various places. API calls are not limited to native (i
 
 Lastly, links can be created manually on the Dashboard on the [Marketing Tab](https://dashboard.branch.io/#/marketing). First, click "+ Add link." 
 
-![Dashboard Demo](https://s3-us-west-1.amazonaws.com/branch-guides/11_dashboard_link.png)
+![Dashboard Demo](resources/dashboard_marketing_add_link.png)
 
 From here you can customize links in the ways described above, plus many many more. See below for a brief teaser:
 
-![Dashboard Demo](https://s3-us-west-1.amazonaws.com/branch-guides/12_dashboard_link.png)
+![Dashboard Demo](resources/dashboard_marketing_add_link_2.png)
 
 That's all! Welcome to Branch. Hopefully that Quick Start guide gave you some ideas. Please don't hesitate to reach out with questions, comments or suggestions.
 

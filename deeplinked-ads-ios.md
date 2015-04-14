@@ -27,11 +27,11 @@ If you've already done this, you can skip ahead to section 2, Dashboard: Marketi
 
 To get started, point your browser to [https://dashboard.branch.io/](https://dashboard.branch.io/). If you haven't created an account before, you can signup and get taken through the basic setup right away. If you've signed up already, simply navigate to the [Summary](https://dashboard.branch.io/#) page and click the dropdown button in the top right. Choose "Create new app."
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/2_dashboard.png)
+![Dashboard Screenshot](resources/dashboard_add_app.png)
 
 You will be prompted to enter a name for your new app. Do so and press "Create."
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/3_create_new_app.png)
+![Dashboard Screenshot](resources/dashboard_add_app_2.png)
 
 #### 2. App Store / Play Store information
 
@@ -39,13 +39,13 @@ Navigate to the Settings page. Scroll down to App Store Information and search f
 
 In the case that your app cannot be found on the App Store (e.g. if you are distributing an enterprise app over the Internet, or you're not listed in the US app stores), you can also enter a custom URL by choosing "Custom URL to TestFlight/Other Host"
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/4_settings_app_store.png)
+![Dashboard Screenshot](resources/dashboard_link_app_store.png)
 
 #### 3. URI Scheme
 
 On the [Settings](https://dashboard.branch.io/#/settings) page, scroll down to URI Schemes (advanced), click to expand, and add in the unique string you've chosen for your app (e.g. yourapp://). Be sure to press "Save" when you're finished.
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/6_dashboard_uri.png)
+![Dashboard Screenshot](resources/dashboard_link_uri.png)
 
 For further instructions, pop over to the [iOS SDK Readme](https://github.com/BranchMetrics/Branch-iOS-SDK/blob/master/README.md#register-a-uri-scheme-direct-deep-linking-optional-but-recommended).
 
@@ -58,13 +58,13 @@ When you create links on the dashboard, you have a subset of these overall label
 
 The minimum required information is a Link Description. Creating links is actually this simple!
 
-![Marketing Screen](https://s3-us-west-1.amazonaws.com/branch-guides/bpp001marketingScreen.png)
+![Marketing Screen](resources/dashboard_marketing_add_link.png)
 
 The following sections will walk through various options and their implications.
 
 One example description if you want to treat this guide is: "Facebook ad for blue sneakers - summer 2015" -- type that in the box.
 
-![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_1.png) 
+![Description](resources/dashboard_marketing_fb.png) 
 
 #### Tags: Channel, Campaign, Etc. (highly recommended)
 
@@ -72,7 +72,7 @@ The more information you enter, the better you'll be able to segment data on the
 
 *Hint: Press the 'comma' or 'return' key after each tag.*
 
-![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_2.png) 
+![Description](resources/dashboard_marketing_channel_etc.png) 
 
 
 #### Custom Link Label (optional)
@@ -92,14 +92,14 @@ While our [URL Creation Guide](https://github.com/BranchMetrics/Branch-Integrati
 
 For more information on the optimal format for the title and description, see Facebook's [Sharing Best Practices](https://developers.facebook.com/docs/sharing/best-practices#tags).
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/5_og.png)
+![Dashboard Screenshot](resources/dashboard_link_social.png)
 
 
 #### Deep Link Data (Advanced)
 
 This is a great place to specify any other information that you think will be of use either in-app or in when combing through data later on. If you are treating this guide like a tutorial, go ahead and enter key "ad_id" and value "abc123".
 
-![Description](https://s3-us-west-1.amazonaws.com/branch-guides/deeplink_ads_3.png) 
+![Description](resources/dashboard_marketing_data.png) 
 
 
 #### Save!

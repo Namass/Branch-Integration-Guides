@@ -85,11 +85,11 @@ Our dashboard is the starting point for adding apps as well as tracking users of
 
 To get started, point your browser to [https://dashboard.branch.io/](https://dashboard.branch.io/). If you haven't created an account before, you can signup and get taken through the basic setup right away. If you've signed up already, simply navigate to the [Summary](https://dashboard.branch.io/#) page and click the dropdown button in the top right. Choose "Create new app."
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/2_dashboard.png)
+![Dashboard Screenshot](resources/dashboard_add_app.png)
 
 You will be prompted to enter a name for your new app. Do so and press "Create."
 
-![Dashboard Screenshot](https://s3-us-west-1.amazonaws.com/branch-guides/3_create_new_app.png)
+![Dashboard Screenshot](resources/dashboard_add_app_2.png)
 
 Navigate to the Settings page. Scroll down to App Store Information and search for your app by name--this is the same name listed on the App Store. With this information, Branch will automatically redirect users without your app installed on their devices to the App Store.
 
@@ -134,13 +134,13 @@ Alternatively, you can add the URI scheme in your project's Info page.
 
 ![URL Scheme Demo](https://s3-us-west-1.amazonaws.com/branchhost/urlType.png)
 
-### Step 2: Add your app key to your project
+### Step 2: Add your Branch Key to your project
 
-After you register your app, your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. Now you need to add it to YourProject-Info.plist (Info.plist for Swift).
+After you register your app, your Branch Key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. Now you need to add it to YourProject-Info.plist (Info.plist for Swift).
 
 1. In plist file, mouse hover "Information Property List" which is the root item under the Key column.
 1. After about half a second, you will see a "+" sign appear. Click it.
-1. In the newly added row, fill in "bnc_app_key" for its key, leave type as String, and enter your app key obtained in above steps in its value column.
+1. In the newly added row, fill in "branch_key" for its key, leave type as String, and enter your app's Branch Key in the value column. 
 1. Save the plist file.
 
 ### Step 3: Initialization in Launcher Activity
