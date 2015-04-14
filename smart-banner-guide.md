@@ -16,7 +16,7 @@ Navigate to the Settings page and fill in information in each of the fields, inc
 
 Full integration guides for iOS and Android are available at the following links with more features. 
 
-The full Branch iOS docs can be found at [https://github.com/BranchMetrics/Branch-iOS-SDK](https://github.com/BranchMetrics/Branch-iOS-SDK), and the iOS illustrated guide can be found at [https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios_quickstart.md](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios_quickstart.md). 
+The full Branch iOS docs can be found at [https://github.com/BranchMetrics/Branch-iOS-SDK](https://github.com/BranchMetrics/Branch-iOS-SDK), and the iOS illustrated guide can be found at [https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-quickstart.md](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios-quickstart.md). 
 
 The full Brand Android docs can be found at [https://github.com/BranchMetrics/Branch-Android-SDK](https://github.com/BranchMetrics/Branch-Android-SDK), and the Android illustrated guide can be found at [https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md). 
 
