@@ -250,7 +250,7 @@ Now every time someone opens the app, the webhook you've configured on Branch wi
 
 After tapping a marketing link (visit [our Deeplinked Ads Guide](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/deeplinked-ads-ios.md) to see how this link was constructed), RequestBin shows the following response:
 
-![requestbin - new requestbin](http://derrrick.com/branch/webhook/4.png)
+![requestbin - new requestbin](resources/requestbin.png)
 
 There is a ton of information here, and it is up to you to configure your webhook to parse the appropriate params.
 
