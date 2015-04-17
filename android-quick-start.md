@@ -16,7 +16,7 @@ Our dashboard is the starting point for adding apps as well as tracking users of
 
 To get started, point your browser to https://dashboard.branch.io/. If you haven't created an account before, you can signup and get taken through the basic setup right away. If you've signed up already, simply navigate to the Summary page and click the dropdown button in the top right. Choose "Create new app."
 
-<img align="middle" src="https://camo.githubusercontent.com/977650e449925021e8617c0ce8e4edef0831fd14/68747470733a2f2f73332d75732d776573742d312e616d617a6f6e6177732e636f6d2f6272616e63682d6775696465732f325f64617368626f6172642e706e67" alt="Sign Up To Create Your Account">
+![Dashboard Screenshot](resources/dashboard_add_app.png)
 
 You will be prompted to enter a name for your new app. Do so and press "Create."
 
