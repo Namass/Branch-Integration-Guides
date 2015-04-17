@@ -48,7 +48,7 @@ Now add a reference to the value that your just created in your **AndroidManifes
 	</activity>
 
 	<!-- The reference to the string value that you created in strings.xml, with name as shown. -->
-	<meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/branch_key" />
+	<meta-data android:name="io.branch.sdk.BranchKey" android:value="@string/branch_key" />
 	
 </application>
 ```
