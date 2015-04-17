@@ -24,22 +24,10 @@ You will be prompted to enter a name for your new app. Do so and press "Create."
 
 # Step 1 - Register Your App
 
-## Getting an API Key	
-API Keys are unique per-app and required by the SDK to identify your app. If you've just signed up, you're presented with a checklist of four steps that you need to carry out to configure your app.
+## Getting a Branch Key	
+Branch Keys are unique per-app and required by the SDK to identify your app. If you've signed up, you can find your Branch key at the top of the Settings page in your dashboard.
 
-Go to Settings on the left hand side, and use the drop-down box in the top right to create a new app.
-
-<p align="center">
-<img align="middle" src="https://s3-us-west-1.amazonaws.com/branch-guides/create_new_app_button.png" alt="Create New App Button" width="140" >
-</p>
-
-Enter the name of your app in the dialog then hit Create.
-
-<img align="middle" src="https://s3-us-west-1.amazonaws.com/branch-guides/dashboard_create_a_new_app.png" alt="Create A New App In The Dashboard">
-
-You'll be presented with the Settings page for your newly created app. Up top is your API key, which will be used in your app to identify it to the Branch servers.
-
-<p align="center"><img src="https://s3-us-west-1.amazonaws.com/branch-guides/dashboard_api_key.png"></p>
+![Dashboard Screenshot](resources/dashboard_branch_key.png)
 
 Scroll down to the *App store information* section and select your app by searching for it within the *Google Play Search* box provided. If youre app is published outside of the Play Store, you can alternatively provide a *Custom URL to APK* that points to a publically accessible location where users can download your app - this comes in handy if you haven't yet published your app and want to try out the features of Branch before you do.
 
@@ -175,8 +163,8 @@ If there's an error highlighted in red, hover over it and select *Import 'Branch
 
 # Step 4 - Create a Branch Session
 
-## Configuring your API key
-Now you'll need the API key that you created in the [Branch Dashboard](https://dashboard.branch.io/). 
+## Configuring your Branch key
+Now you'll need the Branch key that you created in the [Branch Dashboard](https://dashboard.branch.io/). 
 
 Open up **strings.xml** and add your key as a String value.
 
