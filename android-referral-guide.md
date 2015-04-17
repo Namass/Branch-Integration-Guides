@@ -163,7 +163,7 @@ After you register your app, your app key can be retrieved on the [Settings](htt
         <!-- Other existing entries -->
 
         <!-- Add this meta-data below; DO NOT changing the android:value -->
-        <meta-data android:name="io.branch.sdk.ApplicationId" android:value="@string/branch_key" />
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="@string/branch_key" />
     </application>
     ```
 
