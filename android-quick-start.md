@@ -20,7 +20,7 @@ To get started, point your browser to https://dashboard.branch.io/. If you haven
 
 You will be prompted to enter a name for your new app. Do so and press "Create."
 
-<img align="middle" src="https://s3-us-west-1.amazonaws.com/branch-guides/3_create_new_app.png"/>
+![Dashboard Screenshot](resources/dashboard_add_app_2.png)
 
 # Step 1 - Register Your App
 
