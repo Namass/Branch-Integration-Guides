@@ -222,7 +222,7 @@ protected void onStart() {
 	...
 }
 ```
-**Note:** *If you have already integrated the SDK via the two-parameter getInstance(context, "app key") method, it has been deprecated. You should update your project to [store your app key as meta data in your AndroidManifest file](https://github.com/BranchMetrics/Branch-Android-SDK#add-your-branch-key-to-your-project).*
+**Note:** *If you have already integrated the SDK via the two-parameter getInstance(context, "app key") method, it has been deprecated. You should update your project to [store your branch key as meta data in your AndroidManifest file](https://github.com/BranchMetrics/Branch-Android-SDK#add-your-branch-key-to-your-project).*
 
 ## Getting a session
 
