@@ -15,11 +15,18 @@ Here is the format of what we post to you
 	{
 		event: ‘event name’
 		metadata: ‘event metadata’ - specified in userCompletedAction withState
-		hardware_id: 'IDFA' (iOS) | 'Android ID' (Android)
+		
+		hardware_id: 'IDFA' (iOS) | 'Android ID' (Android)  | not present if not sent from device or debug mode
+		google_advertising_id: 'GAID' (Android) | not present if not sent from device
 		os: 'iOS' | 'Android'
+		os_version: 'OS version' | not present if not sent from device
 
+		// For web SDK sessions only
+		browser_id: 'Branch browser identifier' | not present if not a web session
+		browser_user_agent: 'User agent' | not present if not a web session
+		
 		// optionally included:
-		identity: ‘user ID’ - specified in setIdentity
+		identity: ‘user ID’ - specified in setIdentity | not present if not assigned to user
 
 		// the referrer who created the new user
 		first_referring_identity: ‘user ID’ - specified in setIdentity
@@ -94,15 +101,7 @@ To create webhook event response, use the following API endpoint. The full docum
 
 Here is an example to create a wild card webhook, which will POST http://mywebsite.com/branch with the JSON spec at the top of this section.
 
-	curl -X POST
-
-	-H "Content-Type: application/json"
-
-	-d '{"app_id":"21079185439064757",
-	"calculation_type":"0", "location":"0", "type":"web_hook", "event":"*",
-	"metadata":"{\"web_hook_url\":\"http://mywebsite.com/branch\"}"}'
-
-	https://api.branch.io/v1/eventresponse
+	curl -X POST -H "Content-Type: application/json" -d '{"branch_key":"key from dashboard", "branch_secret":"secret ke from dashboard", "calculation_type":"0", "location":"0", "type":"web_hook", "event":"*", "metadata":"{\"web_hook_url\":\"http://mywebsite.com/branch\"}"}' https://api.branch.io/v1/eventresponse
 
 Here is the specification:
 
