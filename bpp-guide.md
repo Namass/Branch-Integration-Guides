@@ -104,7 +104,10 @@ Here is the format of what we post to you
 	{
 		event: ‘event name’
 		metadata: ‘event metadata’ - specified in userCompletedAction withState
-		
+		    automatically inserted keys
+		    ip: 'the ip address of the client who sent the event'
+		    referred: true | false - whether the user was referred by a Branch link (also present in the link data below)
+		    
 		hardware_id: 'IDFA' (iOS) | 'Android ID' (Android)  | not present if not sent from device or debug mode
 		google_advertising_id: 'GAID' (Android) | not present if not sent from device
 		os: 'iOS' | 'Android'
@@ -131,14 +134,18 @@ Here is the format of what we post to you
 	// link data dictionary example
 	{
 		data: { deep link dictionary }
-		type: 0 - original, 1 - one time use, 2 - marketing
-		campaign: ‘campaign label’
-		feature: ‘feature label’
-		channel: ‘channel label’
-		tags: [tags array]
-		stage: ‘stage label’
+		campaign: campaign label | null if not present
+		feature: feature label | null if not present
+		channel: channel label | null if not present
+		tags: [tags array] | null if not present
+		tag: deprecated
+		stage: stage label | null if not present
+		alias: the alias of the URL | null if not present
+		date: link creation date
+		href: the http/s link that was clicked
+		app_id: your app id - to be removed
+		branch_id: the id of the link
 	}
-
 
 #### Register Webhook on Dashboard
 
