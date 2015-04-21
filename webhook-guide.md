@@ -95,7 +95,7 @@ After you save, you should see the webhook in the list of your reward rules.
 
 ## Register Webhook on API
 
-In addition to the dashboard, you have the ability to create these webhooks via the API. This allows to register what we call ‘event responses’, which are actions that we taken after an event is detected in the native or web library.
+In addition to the dashboard, you have the ability to create these webhooks via the API. This allows to register what we call ‘event responses’, which are actions that we taken after an event is detected in the native or web library. *Note* that web hooks created via the API will not be visible on the Branch dashboard.
 
 To create webhook event response, use the following API endpoint. The full documentation is listed here in our [API documentation](https://github.com/BranchMetrics/Branch-Public-API#creating-a-remote-event-for-funnels) but reproduced below with examples for convenience.
 
