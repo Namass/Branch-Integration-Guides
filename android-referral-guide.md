@@ -141,20 +141,9 @@ Typically, you would register some sort of splash activitiy that handles routing
 </activity>
 ```
 
-### Step 2: Add your app key to your project
+### Step 2: Add your Branch key to your project
 
-After you register your app, your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. Now you need to add it to your project.
-
-1. Open your res/values/strings.xml file
-1. Add a new string resource with the name "branch_key" and value as your app key
-    ```xml
-    <resources>
-        <!-- Other existing resources -->
-
-        <!-- Add this string resource below, and change "your app key" to your app key -->
-        <string name="branch_key">"your Branch Key"</string>
-    </resources>
-    ```
+After you register your app, your Branch key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. Now you need to add it to your project.
 
 1. Open your AndroidManifest.xml file
 1. Add the following new meta-data
@@ -162,8 +151,8 @@ After you register your app, your app key can be retrieved on the [Settings](htt
     <application>
         <!-- Other existing entries -->
 
-        <!-- Add this meta-data below; DO NOT changing the android:value -->
-        <meta-data android:name="io.branch.sdk.BranchKey" android:value="@string/branch_key" />
+        <!-- Add this meta-data below, and change "your branch key" to your actual live Branch key -->
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="your branch Key" />
     </application>
     ```
 
@@ -195,7 +184,6 @@ Here is the code to initialize your app with Branch:
 public void onStart() {
 	super.onStart();
 
-	// Your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard
 	Branch branch = Branch.getInstance(getApplicationContext());
 	branch.initSession(new BranchReferralInitListener(){
 		@Override
@@ -529,9 +517,9 @@ The response will return an array that has been parsed from the following JSON:
 
 Testing a referral program can be challenging due to the fact that it requires two parties to complete. Here are a couple suggestions to ensure that you can test out the system to your satisfaction.
 
-### Recommendation 1: Create A Duplicate Test App on the Branch Dashboard
+### Recommendation 1: Use the Test App on the Branch Dashboard
 
-At the top right of the dashboard, you have the option to create a new app. Use the same settings as your production app by choosing to copy an existing. Copy this new test app key into your native app so as to not pollute your production app's Branch data.
+At the top right of the dashboard, you have the option to switch to the test app Branch Metrics created for you. Copy the test app's Branch key into your native app so as to not pollute your production app's Branch data.
 
 ### Recommendation 2: Use setDebug To Simulate Fresh Installs
 
