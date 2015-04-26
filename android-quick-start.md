@@ -166,13 +166,7 @@ If there's an error highlighted in red, hover over it and select *Import 'Branch
 ## Configuring your Branch key
 Now you'll need the Branch key that you created in the [Branch Dashboard](https://dashboard.branch.io/). 
 
-Open up **strings.xml** and add your key as a String value.
-
-```XML
-<string name="branch_key">your Branch Key</string>
-```
-
-Now add a reference to the value that your just created in your **AndroidManifest.xml** file, within the Application element.
+Open your **AndroidManifest.xml** file, and add a meta-data within the Application element.
 
 ```XML
 
@@ -183,12 +177,11 @@ Now add a reference to the value that your just created in your **AndroidManifes
 		..
 	</activity>
 
-	<!-- The reference to the string value that you created in strings.xml, with name as shown. -->
-	<meta-data android:name="io.branch.sdk.BranchKey" android:value="@string/branch_key" />
+	<meta-data android:name="io.branch.sdk.BranchKey" android:value="your branch key" />
 	
 </application>
 ```
-The Branch SDK looks for the **io.branch.sdk.BranchKey** meta-data value when it is initialised. If you want to base other projects on this one and would like to track link analytics separately in the dashboard, you need only to create a new app in the Branch dashboard and update the value in strings.xml with the new key in order to associate the project with the new project.
+The Branch SDK looks for the **io.branch.sdk.BranchKey** meta-data value when it is initialized. If you want to base other projects on this one and would like to track link analytics separately in the dashboard, you need only to create a new app in the Branch dashboard and update the value in AndroidManifest.xml with the new key in order to associate the project with the new project.
 
 This guide assumes that you're familiar with the [Android UI lifecycle](http://developer.android.com/training/basics/activity-lifecycle/starting.html). A single Branch object instance is used per Activity or Fragment, so declare an object at the class-level, and you can call this in every Activity or Fragment where you need to interact with Branch; if it has already be initialised elsewhere in your app, the same instance will be returned.
 
