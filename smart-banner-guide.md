@@ -248,12 +248,10 @@ Place this code before the `</head>` statement in your HTML.  Be sure to replace
 
 ```html
 <script type="text/javascript">
-(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-v1.3.1.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"init data setIdentity logout track link sendSMS referrals credits redeem banner".split(" "),0);
+	(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-v1.4.2.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"init data setIdentity logout track link sendSMS referrals credits redeem banner closeBanner".split(" "),0);
 
-branch.init('APP-KEY', function(err, data) {
-    // callback to handle err or data
-    
-    // app banner goes here
+branch.init('BRANCH KEY', function(err, data) {
+   // callback to handle err or data
 });
 </script>
 ```
@@ -283,12 +281,15 @@ branch.banner({
     description: 'The Branch demo app!',
     openAppButtonText: 'Open',         // Text to show on button if the user has the app installed
     downloadAppButtonText: 'Download', // Text to show on button if the user does not have the app installed
+    sendLinkText: 'Send Link',         // Text to show on desktop button to allow users to text themselves the app
+    phonePreviewText: '+44 9999-9999', // The default phone placeholder is a US format number, localize the placeholder number with a custom placeholder with this option
     iframe: true,                      // Show banner in an iframe, recomended to isolate Branch banner CSS
     showiOS: true,                     // Should the banner be shown on iOS devices?
     showAndroid: true,                 // Should the banner be shown on Android devices?
     showDesktop: true,                 // Should the banner be shown on desktop devices?
     disableHide: false,                // Should the user have the ability to hide the banner? (show's X on left side)
     forgetHide: false,                 // Should we remember or forget whether the user hid the banner?
+    position: 'top',                   // Sets the position of the banner, options are: 'top' or 'bottom', and the default is 'top'
     make_new_link: false               // Should the banner create a new link, even if a link already exists?
 }, {
     phone: '9999999999',
