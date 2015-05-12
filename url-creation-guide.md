@@ -50,7 +50,7 @@ Here is an example CURL call to create a link with some example parameters. You 
 
     curl -X POST \
     -H "Content-Type: application/json" \
-    -d '{"app_id":"107063778440381061", 
+    -d '{"branch_key":"key_live_jfdweptNITtAY5HVY3mBSojopgfGf8qQ", 
     "campaign":"announcement",
     "feature":"invite",
     "channel":"email",
