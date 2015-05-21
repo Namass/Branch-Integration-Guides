@@ -1,4 +1,8 @@
-Smart Banner Guide for iOS
+# This guide is out of date!
+
+Please click over to our new dev portal for an [up-to-date Web Banner guide](https://dev.branch.io/recipes/mobile_web_smart_banner/ios/)!
+
+(Deprecated) Smart Banner Guide for iOS
 =====================================
 
 This guide will help you integrate the smart banner for converting mobile web users to app installs while maintaining a seamless user experience. 
