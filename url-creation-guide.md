@@ -365,7 +365,7 @@ If the link was already created, and you don't specify an exact match for the re
 
 **Why is my link always redirecting to the App Store / Play Store, even though I have everything configured correctly? -OR- What is $always_deeplink?**
 
-A: First, working through a Quick Start guide ([iOS](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/ios_quickstart.md), [Android](https://github.com/BranchMetrics/Branch-Integration-Guides/blob/master/android-quick-start.md)) is the fastest way to catch anything you may have missed, both in configuring the app and correctly generating a link. Second, please take a look at these frequent mistakes: ([iOS](https://github.com/BranchMetrics/Branch-iOS-SDK#faq), [Android](https://github.com/BranchMetrics/Branch-Android-SDK#faq)).
+A: First, working through a Quick Start guide ([iOS](https://dev.branch.io/recipes/quickstart_guide/ios/), [Android](https://dev.branch.io/recipes/quickstart_guide/android/)) is the fastest way to catch anything you may have missed, both in configuring the app and correctly generating a link. Second, please take a look at these frequent mistakes: ([iOS](https://github.com/BranchMetrics/Branch-iOS-SDK#faq), [Android](https://github.com/BranchMetrics/Branch-Android-SDK#faq)).
 
 Even if you have followed all of these steps, it is possible that the link will redirect to the App Store / Play Store on a device that Branch's servers have not yet seen. By default, we only open the app if we've seen a user initiate a session in your app from a Branch link (has been cookied and deep linked by Branch). If we have not seen the user initiate a session, we will re-direct to the App Store. However, you have the option to override the default behavior. 
 
