@@ -1,3 +1,8 @@
+{% highlight %}
+# These docs have been deprecated.  
+Please visit [dev.branch.io](https://dev.branch.io/recipes/) for the most up to date documentation and other learning resources for Branch.
+{% endhighlight %}
+
 Branch Integration Guides
 =========================
 

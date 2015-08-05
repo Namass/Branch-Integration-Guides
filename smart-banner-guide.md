@@ -1,6 +1,7 @@
-# This guide is out of date!
-
-Please click over to our new dev portal for an [up-to-date Web Banner guide](https://dev.branch.io/recipes/mobile_web_smart_banner/ios/)!
+{% highlight %}
+# These docs have been deprecated! 
+Please click over to our new dev portal for an [up-to-date Web Banner guide](https://dev.branch.io/recipes/app_download_banner/)!
+{% endhighlight %}
 
 (Deprecated) Smart Banner Guide for iOS
 =====================================

@@ -1,3 +1,8 @@
+{% highlight %}
+# This doc has been deprecated.  
+Please visit [dev.branch.io](https://dev.branch.io/recipes/content_sharing/android/) for the most up to date version of this guide and other learning resources for Branch.
+{% endhighlight %}
+
 App Content Share with Deeplink for Android
 ===========================================
 
