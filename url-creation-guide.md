@@ -1,3 +1,8 @@
+{% highlight %}
+# This doc has been deprecated! 
+Please visit [dev.branch.io](https://dev.branch.io/recipes/url_creation_guide/) for the most up to date version of this guide and other learning resources for Branch.
+{% endhighlight %}
+
 Branch URL Creation Guide
 =========================
 

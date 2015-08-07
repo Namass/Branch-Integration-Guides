@@ -1,3 +1,8 @@
+{% highlight %}
+# This doc has been deprecated.  
+Please visit [dev.branch.io](https://dev.branch.io/recipes/advanced_referral_incentives/android/) for the most up to date version of this guide and other learning resources for Branch.
+{% endhighlight %}
+
 Basic Branch Integration Guide for Android
 =========================
 

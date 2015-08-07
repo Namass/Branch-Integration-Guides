@@ -1,5 +1,11 @@
+{% highlight %}
+# This doc has been deprecated.  
+Please visit [dev.branch.io](https://dev.branch.io/recipes/advanced_referral_incentives/android/) for the most up to date version of this guide and other learning resources for Branch.
+{% endhighlight %}
+
 Android Referral Program Guide
 =========================
+
 This quick start guide shows you how to leverage Branch links to build a powerful referral system for your app.
 
 # Table of Contents

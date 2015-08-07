@@ -1,5 +1,11 @@
+{% highlight %}
+# This doc has been deprecated.  
+Please visit [dev.branch.io](https://dev.branch.io/references/android_sdk/) for the most up to date version of this guide and other learning resources for Branch.
+{% endhighlight %}
+
 Android Quick-Start Guide
 =========================
+
 This quick start guide shows you how to get up and running fast with the Branch SDK for Android.
 
 
