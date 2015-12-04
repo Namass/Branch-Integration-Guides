@@ -23,15 +23,15 @@ By creating a Branch account, you will have the power to create links and receiv
 
 ## One time initial registration
 
-First, you will need a Branch partner token that gives you the ability to create/edit Branch accounts on behalf of your customers. This is a simple process where Branch reviews your application and, if approved, creates a token for you. To apply, just send us a note at http://branch.io/contact. We’ll send you an invite to join the dashboard for one of our sample apps to get a feel for the dashboard interface if you want to try some of the technology. 
+First, you will need a Branch partner token that gives you the ability to create/edit Branch accounts on behalf of your customers. This is a simple process where Branch reviews your application and, if approved, creates a key and user id for you. To apply, just send us a note at http://branch.io/contact.
 
-The token will be in the form of a long series of numbers like this: ‘19190933253783894’. If you lose this token, just send a note to your contact at Branch or submit a request via the form. 
+The key will be in the form similar to the following: "key_live_ybqLNEcCZpVcb4Xr9bGbzoilCth8PTR7". The user id will be a string of numbers like this: '19190933253783894'. If you lose either of these, just send a note to your contact at Branch or submit a request via the form.
 
 ## One time setup for each customer
 
 ### Create a Branch account for them
 
-Before you can start creating links for your customers, you must first create a Branch account for them. This account will yield a unique app key that must be used for all subsequent requests on behalf of that app. The app key format is the same format as your preferred partner token, for example: “19190933253783894”. If you lose this token for the app, you can just go through the same process to create a new version with all of the previous settings.
+Before you can start creating links for your customers, you must first create a Branch account for them. This account will yield a unique branch key and secret that must be used for all subsequent requests on behalf of that app. The app key format is the same format as your branch key, for example: "key_live_ybqLNEcCZpVcb4Xr9bGbzoilCth8PTR7", and the secret will be in a similar format: "secret_live_2wjYsrrhnPp1VLOtEHzYbXWOZXQiQPNO".
 
 A Branch app specifies some of the global parameters, unique to a mobile app on the store, but can span across all app store. For example, if the customer has a few app in the App Store, you’ll want to create one Branch account per App Store app. However, if the customer has one app across the App Store and Google Play, you’ll only need one Branch account.
 
@@ -40,11 +40,11 @@ Branch accounts can only be created via the API, through the spec listed at this
 To retrieve the current configuration for the app, please use the following endpoint:
 
 	GET
-	https://api.branch.io/v1/app/app_id
+	https://api.branch.io/v1/app/<branch key>?branch_secret=<branch secret>
 
 Example:
 
-	https://api.branch.io/v1/app/19190933253783894
+	https://api.branch.io/v1/app/key_live_ybqLNEcCZpVcb4Xr9bGbzoilCth8PTR7?branch_secret=secret_live_2wjYsrrhnPp1VLOtEHzYbXWOZXQiQPNO
 
 To create (or update) a new configuration for an app, please using the following endpoint:
 	
@@ -87,6 +87,9 @@ Here is the specification:
 	og_title
 	og_description
 	og_image_url
+
+Return value:
+	We'll return a branch_key and branch_secret along with these parameters, which you can use for subsequent requests.
 
 ### Register a web hook for all attribution data from Branch
 
@@ -198,7 +201,7 @@ To create webhook event response, use the following API endpoint. The full docum
 
 Here is an example to create a wild card webhook, which will POST http://mywebsite.com/branch with the JSON spec at the top of this section.
 
-	curl -X POST -H "Content-Type: application/json" -d '{"branch_key":"key from dashboard", "branch_secret":"secret ke from dashboard", "calculation_type":"0", "location":"0", "type":"web_hook", "event":"*", "metadata":"{\"web_hook_url\":\"http://mywebsite.com/branch\"}"}' https://api.branch.io/v1/eventresponse
+	curl -X POST -H "Content-Type: application/json" -d '{"branch_key":"<fill in the partner's key>", "branch_secret":"secret ke from dashboard", "calculation_type":"0", "location":"0", "type":"web_hook", "event":"*", "metadata":"{\"web_hook_url\":\"http://mywebsite.com/branch\"}"}' https://api.branch.io/v1/eventresponse
 
 Here is the specification:
 
@@ -312,7 +315,7 @@ Here is an example CURL call to create a link with some example parameters. You 
 
 	-H "Content-Type: application/json" 
 
-	-d '{"app_id":"5680621892404085", 
+	-d '{"branch_key":"<fill in the partner's key>",
 	"campaign":"announcement", 
 	"feature":"invite", 
 	"channel":"email", 
@@ -327,7 +330,7 @@ Here is an example CURL call to create a link with some example parameters. You 
 This will return a dictionary like so, with your specific link.
 
 	{
-   		'url’ : ‘https://bnc.lt/ADaEf23-0’
+   		'url' : 'https://bnc.lt/ADaEf23-0'
 	}
 
 _The dashboard ([found here](http://dashboard.branch.io))_
@@ -534,7 +537,7 @@ Below is an example where I embed the keys ‘name’, ‘email’ and ‘course
 
 	-H "Content-Type: application/json" 
 
-	-d '{"app_id":"5680621892404085", 
+	-d '{"branch_key":"<fill in the partner's key>"
 	"campaign":"announcement", 
 	"feature":"invite", 
 	"channel":"email", 
